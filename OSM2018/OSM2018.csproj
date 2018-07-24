@@ -93,6 +93,7 @@
     <Compile Include="Networks\BaseNetwork.cs" />
     <Compile Include="Networks\Edge.cs" />
     <Compile Include="Networks\Node.cs" />
+    <Compile Include="Networks\BA_NetworkGenerator.cs" />
     <Compile Include="Networks\WS_NetworkGenerator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
