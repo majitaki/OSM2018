@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{25362EFA-84FB-4F81-98CA-EA2C623281FB}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>OSM2018</RootNamespace>
     <AssemblyName>OSM2018</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -45,14 +48,75 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Abstracts\A_NetworkGenerator.cs" />
+    <Compile Include="Factories\NetworkFactory.cs" />
+    <Compile Include="GUIs\AgentGUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUIs\AgentGUI.Designer.cs">
+      <DependentUpon>AgentGUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\AnimationGUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUIs\AnimationGUI.Designer.cs">
+      <DependentUpon>AnimationGUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\ExperimentGUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUIs\ExperimentGUI.Designer.cs">
+      <DependentUpon>ExperimentGUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\LearningGUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUIs\LearningGUI.Designer.cs">
+      <DependentUpon>LearningGUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="GUIs\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUIs\NetworkGUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUIs\NetworkGUI.Designer.cs">
+      <DependentUpon>NetworkGUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\I_Edge.cs" />
+    <Compile Include="Interfaces\I_Network.cs" />
+    <Compile Include="Interfaces\I_NetworkGenerator.cs" />
+    <Compile Include="Interfaces\I_Node.cs" />
+    <Compile Include="Networks\BaseNetwork.cs" />
+    <Compile Include="Networks\Edge.cs" />
+    <Compile Include="Networks\Node.cs" />
+    <Compile Include="Networks\WS_NetworkGenerator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\ConvertNetwork.cs" />
+    <Compile Include="Utility\Enum.cs" />
+    <Compile Include="Utility\PythonProxy.cs" />
+    <EmbeddedResource Include="GUIs\AgentGUI.resx">
+      <DependentUpon>AgentGUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\AnimationGUI.resx">
+      <DependentUpon>AnimationGUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\ExperimentGUI.resx">
+      <DependentUpon>ExperimentGUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\LearningGUI.resx">
+      <DependentUpon>LearningGUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\NetworkGUI.resx">
+      <DependentUpon>NetworkGUI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -61,6 +125,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -71,9 +136,95 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\Output\Working\adjacency.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Output\Working\edge.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Output\Working\node.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\PythonScript\NetworkGenerator\barabasi_albert_graph.py">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\PythonScript\NetworkGenerator\connected_watts_strogatz_graph.py">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\PythonScript\NetworkGenerator\erdos_renyi_graph.py">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\PythonScript\NetworkGenerator\fast_gnp_random_graph.py">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\PythonScript\NetworkGenerator\gnm_random_graph.py">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\PythonScript\NetworkGenerator\gnp_random_graph.py">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\PythonScript\NetworkGenerator\newman_watts_strogatz_graph.py">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\PythonScript\NetworkGenerator\powerlaw_cluster_graph.py">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\PythonScript\NetworkGenerator\watts_strogatz_graph.py">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\PythonScript\LayoutGenerator\circular_layout.py">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\PythonScript\LayoutGenerator\fruchterman_reingold_layout.py">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\PythonScript\LayoutGenerator\kamada_kawai_layout.py">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\PythonScript\LayoutGenerator\random_layout.py">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\PythonScript\LayoutGenerator\shell_layout.py">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\PythonScript\LayoutGenerator\spectral_layout.py">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\PythonScript\LayoutGenerator\spring_layout.py">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="AgentSets\" />
+    <Folder Include="AlgoSets\" />
+    <Folder Include="Tasks\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\icon_agent.png" />
+    <Content Include="Resources\icon_animation.png" />
+    <Content Include="Resources\icon_console.png" />
+    <Content Include="Resources\icon_display.png" />
+    <Content Include="Resources\icon_down.png" />
+    <Content Include="Resources\icon_experiment.png" />
+    <Content Include="Resources\icon_fastforward.png" />
+    <Content Include="Resources\icon_graph.png" />
+    <Content Include="Resources\icon_learning.png" />
+    <Content Include="Resources\icon_left.png" />
+    <Content Include="Resources\icon_log.png" />
+    <Content Include="Resources\icon_menu.png" />
+    <Content Include="Resources\icon_minus.png" />
+    <Content Include="Resources\icon_pause.png" />
+    <Content Include="Resources\icon_play.png" />
+    <Content Include="Resources\icon_playstep.png" />
+    <Content Include="Resources\icon_python.png" />
+    <Content Include="Resources\icon_right.png" />
+    <Content Include="Resources\icon_seedplus.png" />
+    <Content Include="Resources\icon_stop.png" />
+    <Content Include="Resources\icon_up.png" />
+    <Content Include="Resources\icon_update.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

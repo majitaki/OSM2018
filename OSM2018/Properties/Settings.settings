@@ -1,7 +1,21 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="OSM2018.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="AnacondaPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G:\ProgramData\Anaconda3\Scripts\activate.bat</Value>
+    </Setting>
+    <Setting Name="AnacondaEnv" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="NetworkGeneratorPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">./Resources/PythonScript/NetworkGenerator/</Value>
+    </Setting>
+    <Setting Name="NetworkOutput" Type="System.String" Scope="User">
+      <Value Profile="(Default)">./Resources/Output/Working/</Value>
+    </Setting>
+    <Setting Name="LayoutGeneratorPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">./Resources/PythonScript/LayoutGenerator/</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>
