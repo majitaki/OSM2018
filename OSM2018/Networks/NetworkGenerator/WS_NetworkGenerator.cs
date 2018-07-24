@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OSM2018.Networks
+namespace OSM2018.Networks.NetworkGenerator
 {
     class WS_NetworkGenerator : A_NetworkGenerator
     {
@@ -25,7 +25,7 @@ namespace OSM2018.Networks
             this.RewireP = p;
             this.MyNetworkEnum = NetworkEnum.WS;
             var path = Properties.Settings.Default.NetworkGeneratorPath + "watts_strogatz_graph.py";
-            this.GeneratePath = "" + path + " " + this.NodeNum + " " + this.K + " " + this.RewireP;
+            this.GeneratePath = path + " " + this.NodeNum + " " + this.K + " " + this.RewireP;
         }
     }
 }

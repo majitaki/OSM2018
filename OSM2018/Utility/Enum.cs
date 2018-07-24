@@ -36,7 +36,7 @@ namespace OSM2018.Utility
         Void
     }
 
-    enum NetworkLayoutEnum
+    enum LayoutEnum
     {
         Circular,
         FruchtermanReingold,

@@ -10,8 +10,9 @@ namespace OSM2018.Interfaces
     interface I_Network
     {
         NetworkEnum MyNetworkEnum { get; }
-        int Seed { get; }
+        int NetworkSeed { get; }
         List<I_Node> NodeList { get; }
         List<I_Edge> EdgeList { get; }
+        I_Layout MyLayout { set; get; }
     }
 }

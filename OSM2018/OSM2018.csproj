@@ -48,7 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstracts\A_LayoutGenerator.cs" />
     <Compile Include="Abstracts\A_NetworkGenerator.cs" />
+    <Compile Include="Factories\LayoutFactory.cs" />
     <Compile Include="Factories\NetworkFactory.cs" />
     <Compile Include="GUIs\AgentGUI.cs">
       <SubType>UserControl</SubType>
@@ -87,14 +89,18 @@
       <DependentUpon>NetworkGUI.cs</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\I_Edge.cs" />
+    <Compile Include="Interfaces\I_Layout.cs" />
+    <Compile Include="Interfaces\I_LayoutGenerator.cs" />
     <Compile Include="Interfaces\I_Network.cs" />
     <Compile Include="Interfaces\I_NetworkGenerator.cs" />
     <Compile Include="Interfaces\I_Node.cs" />
+    <Compile Include="Networks\BaseLayout.cs" />
     <Compile Include="Networks\BaseNetwork.cs" />
     <Compile Include="Networks\Edge.cs" />
+    <Compile Include="Networks\LayoutGenerator\Circular_LayoutGenerator.cs" />
     <Compile Include="Networks\Node.cs" />
-    <Compile Include="Networks\BA_NetworkGenerator.cs" />
-    <Compile Include="Networks\WS_NetworkGenerator.cs" />
+    <Compile Include="Networks\NetworkGenerator\BA_NetworkGenerator.cs" />
+    <Compile Include="Networks\NetworkGenerator\WS_NetworkGenerator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\ConvertNetwork.cs" />

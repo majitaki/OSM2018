@@ -57,10 +57,10 @@ namespace OSM2018.Abstracts
             while (!exist_flag)
             {
                 exist_flag = File.Exists(Properties.Settings.Default.NetworkOutput + "flag");
-                System.Threading.Thread.Sleep(500);
+                System.Threading.Thread.Sleep(100);
                 if (PythonProxy.ErrorFlag)
                 {
-                    System.Threading.Thread.Sleep(500);
+                    System.Threading.Thread.Sleep(100);
                     return false;
                 }
             }
