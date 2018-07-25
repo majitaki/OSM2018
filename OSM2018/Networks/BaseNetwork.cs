@@ -24,5 +24,9 @@ namespace OSM2018.Networks
             this.NetworkSeed = seed;
         }
 
+        public void SetLayout(I_Layout layout)
+        {
+            this.MyLayout = layout;
+        }
     }
 }

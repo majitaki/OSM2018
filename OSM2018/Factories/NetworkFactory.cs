@@ -11,7 +11,7 @@ namespace OSM2018.Factories
 {
     class NetworkFactory
     {
-        public I_Network Create(int node_num, List<string[]> raw_edge_list, NetworkEnum network_enum, int network_seed)
+        public I_Network Generate(int node_num, List<string[]> raw_edge_list, NetworkEnum network_enum, int network_seed)
         {
             var node_list = new List<I_Node>();
             var edge_list = new List<I_Edge>();
@@ -28,6 +28,10 @@ namespace OSM2018.Factories
             for (int i = 0; i < raw_edge_list.Count; i++)
             {
                 var edge = new Edge(i, int.Parse(raw_edge_list[i][1]), int.Parse(raw_edge_list[i][2]));
+                node_list[edge.SourceNodeID].AttachEdgeIDList.Add(edge.EdgeID);
+                node_list[edge.SourceNodeID].NeighborNodeIDList.Add(edge.TargetNodeID);
+                node_list[edge.TargetNodeID].AttachEdgeIDList.Add(edge.EdgeID);
+                node_list[edge.TargetNodeID].NeighborNodeIDList.Add(edge.SourceNodeID);
                 edge_list.Add(edge);
             }
 

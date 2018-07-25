@@ -39,7 +39,7 @@ namespace OSM2018.Abstracts
                     Console.WriteLine("ok Edge: " + raw_edge_list.Count);
                     Console.WriteLine("ok NetworkEnum: " + network_enum.ToString());
                     Console.WriteLine("ok Network Seed: " + network_seed);
-                    var network = new NetworkFactory().Create(node_num, raw_edge_list, network_enum, network_seed);
+                    var network = new NetworkFactory().Generate(node_num, raw_edge_list, network_enum, network_seed);
                     if (network == null) goto default;
 
                     Console.WriteLine("ok Success Network Generation");

@@ -9,15 +9,15 @@ namespace OSM2018.Networks
 {
     class Edge : I_Edge
     {
-        public int ID { get; }
-        public int SourceID { get; }
-        public int TargetID { get; }
+        public int EdgeID { get; }
+        public int SourceNodeID { get; }
+        public int TargetNodeID { get; }
 
         public Edge(int id, int source_id, int target_id)
         {
-            this.ID = id;
-            this.SourceID = source_id;
-            this.TargetID = target_id;
+            this.EdgeID = id;
+            this.SourceNodeID = source_id;
+            this.TargetNodeID = target_id;
         }
     }
 }

@@ -9,11 +9,12 @@ namespace OSM2018.Utility
 
     enum GUIEnum
     {
-        GraphSetting,
-        AgentNetworkSetting,
-        LearningSetting,
-        AnimationSetting,
-        ExperimentSetting
+        AgentGUI,
+        AnimationGUI,
+        ExperimentGUI,
+        LearningGUI,
+        MainFormGUI,
+        NetworkGUI,
     }
 
     enum NetworkEnum
@@ -71,22 +72,34 @@ namespace OSM2018.Utility
     enum InfoEnum
     {
         Undeter,
-        Correct,
-        Incorrect
+        Orange,
+        Blue
     }
 
     enum SeedEnum
     {
+        NetworkSeed,
         AgentSeed,
-        AnimationSeed,
-        LearningSeed
+        PlayStepSeed,
+        RunRoundSeed,
+        ExperimentSeed
     }
 
-    enum TextEnum
+
+    enum AgentInitMode
     {
+        Random,
+        RandomWeakPulledByOpinion,
+        RandomStrongPulledByOpinion,
         Normal,
-        OK,
-        NO,
+        NormalWeakPulledByOpinion,
+        NormalStrongPulledByOpinion
+    }
+
+    enum SetSensorMode
+    {
+        Number,
+        Rate
     }
 
     struct Position

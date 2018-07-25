@@ -8,8 +8,9 @@ namespace OSM2018.Interfaces
 {
     interface I_Node
     {
-        int ID { get; }
-        List<int> NeighborList { get; }
+        int NodeID { get; }
+        List<int> NeighborNodeIDList { get; }
+        List<int> AttachEdgeIDList { set; get; }
 
     }
 }

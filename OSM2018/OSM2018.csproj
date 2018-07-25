@@ -50,6 +50,10 @@
   <ItemGroup>
     <Compile Include="Abstracts\A_LayoutGenerator.cs" />
     <Compile Include="Abstracts\A_NetworkGenerator.cs" />
+    <Compile Include="AgentSets\BaseAgent.cs" />
+    <Compile Include="AgentSets\BaseAgentSet.cs" />
+    <Compile Include="Factories\AgentFactory.cs" />
+    <Compile Include="Factories\AgentSetFactories\Basic_AgentSetFactory.cs" />
     <Compile Include="Factories\LayoutFactory.cs" />
     <Compile Include="Factories\NetworkFactory.cs" />
     <Compile Include="GUIs\AgentGUI.cs">
@@ -88,6 +92,8 @@
     <Compile Include="GUIs\NetworkGUI.Designer.cs">
       <DependentUpon>NetworkGUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\I_Agent.cs" />
+    <Compile Include="Interfaces\I_AgentSet.cs" />
     <Compile Include="Interfaces\I_Edge.cs" />
     <Compile Include="Interfaces\I_Layout.cs" />
     <Compile Include="Interfaces\I_LayoutGenerator.cs" />
@@ -106,6 +112,7 @@
     <Compile Include="Utility\ConvertNetwork.cs" />
     <Compile Include="Utility\Enum.cs" />
     <Compile Include="Utility\PythonProxy.cs" />
+    <Compile Include="Utility\RandomPool.cs" />
     <EmbeddedResource Include="GUIs\AgentGUI.resx">
       <DependentUpon>AgentGUI.cs</DependentUpon>
     </EmbeddedResource>
@@ -205,8 +212,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="AgentSets\" />
-    <Folder Include="AlgoSets\" />
+    <Folder Include="Algorithm\AAT\" />
     <Folder Include="Tasks\" />
   </ItemGroup>
   <ItemGroup>

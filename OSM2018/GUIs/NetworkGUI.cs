@@ -11,6 +11,8 @@ using OSM2018.Interfaces;
 using OSM2018.Networks;
 using OSM2018.Networks.LayoutGenerator;
 using OSM2018.Networks.NetworkGenerator;
+using OSM2018.Factories.AgentSetFactories;
+using OSM2018.Utility;
 
 namespace OSM2018.GUIs
 {
@@ -32,9 +34,14 @@ namespace OSM2018.GUIs
         private void buttonGenerateGraph_Click(object sender, EventArgs e)
         {
             //I_Network network = new WS_NetworkGenerator(100, 6, 0.01).Generate(1);
-            I_Network network = new BA_NetworkGenerator(100, 6).Generate(1);
-            I_Layout layout = new Circular_LayoutGenerator(network).Generate();
-            network.MyLayout = layout;
+            I_Network ba_network = new BA_NetworkGenerator(100, 6).Generate(1);
+            I_Layout layout = new Circular_LayoutGenerator(ba_network).Generate();
+            ba_network.SetLayout(layout);
+
+            I_AgentSet agent_sets = new BasicAgentSetFactory(ba_network, InfoEnum.Undeter, 0.9, 0.1).Generate(1);
+            agent_sets.SetSensors(SetSensorMode.Number, 10);
+
+
         }
     }
 }

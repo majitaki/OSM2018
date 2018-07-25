@@ -32,7 +32,7 @@ namespace OSM2018.Abstracts
 
                     var raw_position_list = ConvertNetwork.GetRawPositionList();
                     if (raw_position_list == null) goto default;
-                    var layout = new LayoutFactory().Create(raw_position_list, this.MyNetwork.NodeList, this.MyLayoutEnum);
+                    var layout = new LayoutFactory().Generate(raw_position_list, this.MyNetwork.NodeList, this.MyLayoutEnum);
                     Console.WriteLine("ok Success Layout Generation");
                     return layout;
                 default:

@@ -13,6 +13,7 @@ namespace OSM2018.Interfaces
         int NetworkSeed { get; }
         List<I_Node> NodeList { get; }
         List<I_Edge> EdgeList { get; }
-        I_Layout MyLayout { set; get; }
+        I_Layout MyLayout { get; }
+        void SetLayout(I_Layout layout);
     }
 }
