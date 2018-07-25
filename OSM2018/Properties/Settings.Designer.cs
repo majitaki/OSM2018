@@ -12,7 +12,7 @@ namespace OSM2018.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.6.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.7.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -25,7 +25,7 @@ namespace OSM2018.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("G:\\ProgramData\\Anaconda3\\Scripts\\activate.bat")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\majitaki\\Anaconda3\\Scripts\\activate.bat")]
         public string AnacondaPath {
             get {
                 return ((string)(this["AnacondaPath"]));
@@ -80,6 +80,30 @@ namespace OSM2018.Properties {
             }
             set {
                 this["LayoutGeneratorPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\majitaki\\Anaconda3\\Scripts\\activate.bat")]
+        public string lab_path {
+            get {
+                return ((string)(this["lab_path"]));
+            }
+            set {
+                this["lab_path"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("G:\\ProgramData\\Anaconda3\\Scripts\\activate.bat")]
+        public string home_path {
+            get {
+                return ((string)(this["home_path"]));
+            }
+            set {
+                this["home_path"] = value;
             }
         }
     }
