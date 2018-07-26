@@ -11,7 +11,7 @@ namespace OSM2018.Factories
 {
     class AgentFactory
     {
-        public I_Agent Generate(I_Node node, InfoEnum init_op, double o_sigma, double b_sigma, AgentInitMode mode)
+        public I_Agent Generate(I_Node node, InfoEnum init_op, double g_sigma, double r_sigma, AgentInitMode mode)
         {
             var node_id = node.NodeID;
             var init_weight_list = new Dictionary<int, double>();
@@ -25,30 +25,30 @@ namespace OSM2018.Factories
             switch (mode)
             {
                 case AgentInitMode.Random:
-                    init_belief = ir.NextDouble(b_sigma, o_sigma);
+                    init_belief = ir.NextDouble(r_sigma, g_sigma);
                     break;
                 case AgentInitMode.RandomWeakPulledByOpinion:
-                    if (init_op == InfoEnum.Orange)
+                    if (init_op == InfoEnum.Green)
                     {
-                        init_belief = ir.NextDouble(0.5, o_sigma);
+                        init_belief = ir.NextDouble(0.5, g_sigma);
                     }
                     else
                     {
-                        init_belief = ir.NextDouble(b_sigma, 0.5);
+                        init_belief = ir.NextDouble(r_sigma, 0.5);
                     }
                     break;
                 case AgentInitMode.RandomStrongPulledByOpinion:
-                    if (init_op == InfoEnum.Orange)
+                    if (init_op == InfoEnum.Green)
                     {
-                        init_belief = ir.NextDouble(o_sigma, 1.0);
+                        init_belief = ir.NextDouble(g_sigma, 1.0);
                     }
                     else
                     {
-                        init_belief = ir.NextDouble(0, b_sigma);
+                        init_belief = ir.NextDouble(0, r_sigma);
                     }
                     break;
                 case AgentInitMode.Normal:
-                    init_belief = ir.NextNormal(0.5, o_sigma);
+                    init_belief = ir.NextNormal(0.5, g_sigma);
                     break;
                 case AgentInitMode.NormalWeakPulledByOpinion:
                     break;
@@ -57,7 +57,7 @@ namespace OSM2018.Factories
                 default:
                     break;
             }
-            return new BaseAgent(node_id, init_belief, init_weight_list, init_op, o_sigma, b_sigma);
+            return new BaseAgent(node_id, init_belief, init_weight_list, init_op, g_sigma, r_sigma);
         }
     }
 }

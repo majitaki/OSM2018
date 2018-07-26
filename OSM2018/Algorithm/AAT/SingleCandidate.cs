@@ -21,22 +21,22 @@ namespace OSM2018.Algorithm.AAT
         public SingleCandidate(int can_index, I_Agent agent)
         {
             this.CanIndex = can_index;
-            this.CanWeight = OpinionUpdater.GetWeightForScale(agent.InitBelief, agent.OrangeSigma, agent.BlueSigma, can_index);
+            this.CanWeight = OpinionUpdater.GetWeightForScale(agent.InitBelief, agent.GreenSigma, agent.RedSigma, can_index);
 
             this.BeliefScaleList = new List<double>();
             this.BeliefScaleList.Add(agent.InitBelief);
 
             var current_belief = agent.InitBelief;
-            while (current_belief < agent.OrangeSigma)
+            while (current_belief < agent.GreenSigma)
             {
-                current_belief = OpinionUpdater.UpdateBelief(current_belief, CanWeight, InfoEnum.Orange);
+                current_belief = OpinionUpdater.UpdateBelief(current_belief, CanWeight, InfoEnum.Green);
                 this.BeliefScaleList.Add(current_belief);
             }
 
             current_belief = agent.InitBelief;
-            while (current_belief > agent.BlueSigma)
+            while (current_belief > agent.RedSigma)
             {
-                current_belief = OpinionUpdater.UpdateBelief(current_belief, CanWeight, InfoEnum.Blue);
+                current_belief = OpinionUpdater.UpdateBelief(current_belief, CanWeight, InfoEnum.Red);
                 this.BeliefScaleList.Add(current_belief);
             }
         }

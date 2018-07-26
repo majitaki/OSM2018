@@ -15,22 +15,22 @@ namespace OSM2018.AgentSets
         public double InitBelief { get; private set; }
         public Dictionary<int, double> WeightList { get; }
         public Dictionary<int, double> InitWeightList { get; private set; }
-        public double OrangeSigma { get; }
-        public double BlueSigma { get; }
+        public double GreenSigma { get; }
+        public double RedSigma { get; }
         public InfoEnum Opinion { get; }
         public InfoEnum InitOpinion { get; private set; }
         public bool IsSensor { get; private set; }
 
 
-        public BaseAgent(int id, double init_belief, Dictionary<int, double> init_weight_list, InfoEnum init_op, double o_sigma, double b_sigma)
+        public BaseAgent(int id, double init_belief, Dictionary<int, double> init_weight_list, InfoEnum init_op, double g_sigma, double r_sigma)
         {
             this.NodeID = id;
             this.Belief = this.InitBelief = init_belief;
             this.WeightList = new Dictionary<int, double>(init_weight_list);
             this.InitWeightList = new Dictionary<int, double>(init_weight_list);
             this.Opinion = this.InitOpinion = init_op;
-            this.OrangeSigma = o_sigma;
-            this.BlueSigma = b_sigma;
+            this.GreenSigma = g_sigma;
+            this.RedSigma = r_sigma;
             this.IsSensor = false;
         }
 

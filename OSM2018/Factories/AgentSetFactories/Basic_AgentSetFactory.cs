@@ -13,15 +13,15 @@ namespace OSM2018.Factories.AgentSetFactories
     {
         I_Network MyNetwork;
         InfoEnum InitOpinion;
-        double OrangeSigma;
-        double BlueSigma;
+        double GreenSigma;
+        double RedSigma;
 
-        public BasicAgentSetFactory(I_Network network, InfoEnum init_op, double o_sigama, double b_sigma)
+        public BasicAgentSetFactory(I_Network network, InfoEnum init_op, double g_sigama, double r_sigma)
         {
             this.MyNetwork = network;
             this.InitOpinion = init_op;
-            this.OrangeSigma = o_sigama;
-            this.BlueSigma = b_sigma;
+            this.GreenSigma = g_sigama;
+            this.RedSigma = r_sigma;
         }
 
         public I_AgentSet Generate(int agent_seed)
@@ -30,7 +30,7 @@ namespace OSM2018.Factories.AgentSetFactories
             RandomPool.Declare(SeedEnum.AgentSeed, agent_seed);
             foreach (var node in this.MyNetwork.NodeList)
             {
-                var agent = new AgentFactory().Generate(node, this.InitOpinion, this.OrangeSigma, this.BlueSigma, AgentInitMode.Random);
+                var agent = new AgentFactory().Generate(node, this.InitOpinion, this.GreenSigma, this.RedSigma, AgentInitMode.Random);
                 agent_list.Add(agent);
             }
             return new BaseAgentSet(agent_list, agent_seed);

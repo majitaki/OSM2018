@@ -72,8 +72,8 @@ namespace OSM2018.Utility
     enum InfoEnum
     {
         Undeter,
-        Orange,
-        Blue
+        Green,
+        Red
     }
 
     enum SeedEnum

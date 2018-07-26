@@ -16,8 +16,8 @@ namespace OSM2018.Interfaces
         InfoEnum InitOpinion { get; }
         Dictionary<int, double> WeightList { get; }
         Dictionary<int, double> InitWeightList { get; }
-        double OrangeSigma { get; }
-        double BlueSigma { get; }
+        double GreenSigma { get; }
+        double RedSigma { get; }
         bool IsSensor { get; }
 
         void SetInitialize(double init_belief, InfoEnum init_op, Dictionary<int, double> init_weight_list);

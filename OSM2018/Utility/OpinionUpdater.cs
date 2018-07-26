@@ -29,11 +29,11 @@ namespace OSM2018.Utility
 
         public static double DecideCupd(InfoEnum opinion, double can_weight)
         {
-            if (opinion == InfoEnum.Orange)
+            if (opinion == InfoEnum.Green)
             {
                 return can_weight;
             }
-            else if (opinion == InfoEnum.Blue)
+            else if (opinion == InfoEnum.Red)
             {
                 return 1 - can_weight;
             }
@@ -49,11 +49,11 @@ namespace OSM2018.Utility
 
             if (scale_index >= 0)
             {
-                opinion = InfoEnum.Orange;
+                opinion = InfoEnum.Green;
             }
             else
             {
-                opinion = InfoEnum.Blue;
+                opinion = InfoEnum.Red;
             }
 
             var diff = 0.00001;
