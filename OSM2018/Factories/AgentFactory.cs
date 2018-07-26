@@ -14,7 +14,11 @@ namespace OSM2018.Factories
         public I_Agent Generate(I_Node node, InfoEnum init_op, double o_sigma, double b_sigma, AgentInitMode mode)
         {
             var node_id = node.NodeID;
-            var init_weight_list = Enumerable.Repeat(1.0, node.NeighborNodeIDList.Count).ToList();
+            var init_weight_list = new Dictionary<int, double>();
+            foreach (var neighbor in node.NeighborNodeIDList)
+            {
+                init_weight_list.Add(neighbor, 1.0);
+            }
             double init_belief = 0;
 
             var ir = RandomPool.Get(SeedEnum.AgentSeed);

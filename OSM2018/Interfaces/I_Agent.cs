@@ -14,13 +14,13 @@ namespace OSM2018.Interfaces
         double InitBelief { get; }
         InfoEnum Opinion { get; }
         InfoEnum InitOpinion { get; }
-        List<double> WeightList { get; }
-        List<double> InitWeightList { get; }
+        Dictionary<int, double> WeightList { get; }
+        Dictionary<int, double> InitWeightList { get; }
         double OrangeSigma { get; }
         double BlueSigma { get; }
         bool IsSensor { get; }
 
-        void SetInitialize(double init_belief, InfoEnum init_op, List<double> init_weight_list);
+        void SetInitialize(double init_belief, InfoEnum init_op, Dictionary<int, double> init_weight_list);
         void SetSensor(bool is_sensor);
     }
 }

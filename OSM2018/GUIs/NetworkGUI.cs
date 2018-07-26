@@ -34,7 +34,7 @@ namespace OSM2018.GUIs
         private void buttonGenerateGraph_Click(object sender, EventArgs e)
         {
             //I_Network network = new WS_NetworkGenerator(100, 6, 0.01).Generate(1);
-            I_Network ba_network = new BA_NetworkGenerator(100, 6).Generate(1);
+            I_Network ba_network = new BA_NetworkGenerator(100, 3).Generate(1);
             I_Layout layout = new Circular_LayoutGenerator(ba_network).Generate();
             ba_network.SetLayout(layout);
 
