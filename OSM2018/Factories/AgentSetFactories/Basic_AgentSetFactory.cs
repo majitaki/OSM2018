@@ -35,6 +35,5 @@ namespace OSM2018.Factories.AgentSetFactories
             }
             return new BaseAgentSet(agent_list, agent_seed);
         }
-
     }
 }
