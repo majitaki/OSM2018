@@ -34,5 +34,25 @@ namespace OSM2018.AgentSets
         {
 
         }
+
+        public void SetInitWeights(List<double> init_weight_list)
+        {
+            if (this.AgentList.Count != init_weight_list.Count) return;
+
+            foreach (var agent in this.AgentList)
+            {
+                agent.SetInitWeight(init_weight_list[agent.NodeID]);
+            }
+        }
+
+        public void SetInitWeights(List<Dictionary<int, double>> init_weight_dictionary_list)
+        {
+            if (this.AgentList.Count != init_weight_dictionary_list.Count) return;
+
+            foreach (var agent in this.AgentList)
+            {
+                agent.SetInitWeightList(init_weight_dictionary_list[agent.NodeID]);
+            }
+        }
     }
 }

@@ -17,6 +17,7 @@ namespace OSM2018.Algorithm.AAT
 
         public CandidateSet(I_Node node, I_Agent agent)
         {
+            this.SingleCandidateList = new List<I_SingleCandidate>();
             for (int can_index = 1; can_index <= node.NeighborNodeIDList.Count; can_index++)
             {
                 this.SingleCandidateList.Add(new SingleCandidate(can_index, agent));
@@ -29,6 +30,11 @@ namespace OSM2018.Algorithm.AAT
          void SetInitSelectCanIndex()
         {
             this.InitSelectCanIndex = this.SingleCandidateList.OrderBy(single_can => single_can.CanWeight).First().CanIndex;
+        }
+
+        public double GetCanWeight(int index)
+        {
+            return this.SingleCandidateList.First(sc => sc.CanIndex == index).CanWeight;
         }
     }
 }

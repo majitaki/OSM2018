@@ -13,6 +13,10 @@ using OSM2018.Networks.LayoutGenerator;
 using OSM2018.Networks.NetworkGenerator;
 using OSM2018.Factories.AgentSetFactories;
 using OSM2018.Utility;
+using OSM2018.Interfaces.Algo;
+using OSM2018.Algorithm.AAT;
+using OSM2018.Algorithm.AAT.GeneCanWeights;
+using OSM2018.Interfaces.Algo.AAT;
 
 namespace OSM2018.GUIs
 {
@@ -33,15 +37,17 @@ namespace OSM2018.GUIs
 
         private void buttonGenerateGraph_Click(object sender, EventArgs e)
         {
-            //I_Network network = new WS_NetworkGenerator(100, 6, 0.01).Generate(1);
-            I_Network ba_network = new BA_NetworkGenerator(100, 3).Generate(1);
-            I_Layout layout = new Circular_LayoutGenerator(ba_network).Generate();
-            ba_network.SetLayout(layout);
+            I_Network network = new WS_NetworkGenerator(100, 6, 0.01).Generate(1);
+            I_Layout layout = new Circular_LayoutGenerator(network).Generate();
+            network.SetLayout(layout);
 
-            I_AgentSet agent_sets = new BasicAgentSetFactory(ba_network, InfoEnum.Undeter, 0.9, 0.1).Generate(1);
+            I_AgentSet agent_sets = new BasicAgentSetFactory(network, InfoEnum.Undeter, 0.9, 0.1).Generate(1);
             agent_sets.SetSensors(SetSensorMode.Number, 10);
 
-
+            I_GeneratingCandidateWeights gcw = new GeneratingCandidateWeights();
+            var canset_list = gcw.Generate(network, agent_sets);
+            var weight_list = canset_list.Select(can => can.GetCanWeight(can.InitSelectCanIndex)).ToList();
+            agent_sets.SetInitWeights(weight_list);
         }
     }
 }
