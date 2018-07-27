@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OSM2018.Interfaces.Algo.AAT
 {
-    interface I_EstimatingAwarenesRates
+    interface I_SelectingWeiStrategies
     {
     }
 }

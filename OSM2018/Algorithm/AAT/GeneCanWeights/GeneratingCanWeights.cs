@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OSM2018.Algorithm.AAT.GeneCanWeights
 {
-    class GeneratingCandidateWeights : I_GeneratingCandidateWeights
+    class GeneratingCanWeights : I_GeneratingCanWeights
     {
         public List<I_CandidateSet> Generate(I_Network network, I_AgentSet agent_set)
         {

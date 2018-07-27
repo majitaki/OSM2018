@@ -7,34 +7,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OSM2018.Algorithm.AAT
-{
-    class AAT_Algo:I_Algo
-    {
-        I_GeneratingCandidateWeights GeneCanWeights;
-        I_EstimatingAwarenesRates EstAwaRates;
-        I_SelectingWeightsStrategies SlctWeightsStrategies;
+namespace OSM2018.Algorithm.AAT {
+  class AAT_Algo : I_Algo {
+    I_GeneratingCanWeights GeneCanWeights;
+    I_EstimatingAwaRates EstAwaRates;
+    I_SelectingWeiStrategies SlctWeiStrategies;
+    public List<I_CandidateSet> CandidateSetList { get; private set; }
 
-        public AAT_Algo(I_GeneratingCandidateWeights gcw, I_EstimatingAwarenesRates ear, I_SelectingWeightsStrategies sws)
-        {
-            this.GeneCanWeights = gcw;
-            this.EstAwaRates = ear;
-            this.SlctWeightsStrategies = sws;
-        }
-
-        public void Initialize(I_Network network, I_AgentSet agent_set)
-        {
-            this.GeneCanWeights.Generate(network, agent_set);
-        }
-
-        public void PlayStep(I_Network network, I_AgentSet agent_set)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void RunRound(I_Network network, I_AgentSet agent_set)
-        {
-
-        }
+    public AAT_Algo(I_GeneratingCanWeights gcw, I_EstimatingAwaRates ear, I_SelectingWeiStrategies sws) {
+      this.GeneCanWeights = gcw;
+      this.EstAwaRates = ear;
+      this.SlctWeiStrategies = sws;
     }
+
+    public void Initialize(I_Network network, I_AgentSet agent_set) {
+      this.CandidateSetList = GeneCanWeights.Generate(network, agent_set);
+      var weight_list = this.CandidateSetList.Select(can => can.GetCanWeight(can.InitSelectCanIndex)).ToList();
+      agent_set.SetInitWeights(weight_list);
+    }
+
+    public void PlayStep(I_Network network, I_AgentSet agent_set) {
+      throw new NotImplementedException();
+    }
+
+    public void RunRound(I_Network network, I_AgentSet agent_set) {
+
+    }
+  }
 }

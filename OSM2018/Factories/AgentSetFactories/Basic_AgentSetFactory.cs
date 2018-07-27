@@ -24,13 +24,13 @@ namespace OSM2018.Factories.AgentSetFactories
             this.RedSigma = r_sigma;
         }
 
-        public I_AgentSet Generate(int agent_seed)
+        public I_AgentSet Generate(int agent_seed, AgentInitMode mode)
         {
             List<I_Agent> agent_list = new List<I_Agent>();
             RandomPool.Declare(SeedEnum.AgentSeed, agent_seed);
             foreach (var node in this.MyNetwork.NodeList)
             {
-                var agent = new AgentFactory().Generate(node, this.InitOpinion, this.GreenSigma, this.RedSigma, AgentInitMode.Random);
+                var agent = new AgentFactory().Generate(node, this.InitOpinion, this.GreenSigma, this.RedSigma, mode);
                 agent_list.Add(agent);
             }
             return new BaseAgentSet(agent_list, agent_seed);

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OSM2018.Interfaces.Algo.AAT
 {
-    interface I_GeneratingCandidateWeights
+    interface I_GeneratingCanWeights
     {
         List<I_CandidateSet> Generate(I_Network network, I_AgentSet agent_set);
       
