@@ -112,6 +112,7 @@
     <Compile Include="Interfaces\I_NetworkGenerator.cs" />
     <Compile Include="Interfaces\I_Node.cs" />
     <Compile Include="Interfaces\Algo\AAT\I_SelectingWeiStrategies.cs" />
+    <Compile Include="Interfaces\I_OSM.cs" />
     <Compile Include="Networks\BaseLayout.cs" />
     <Compile Include="Networks\BaseNetwork.cs" />
     <Compile Include="Networks\Edge.cs" />
@@ -119,6 +120,7 @@
     <Compile Include="Networks\Node.cs" />
     <Compile Include="Networks\NetworkGenerator\BA_NetworkGenerator.cs" />
     <Compile Include="Networks\NetworkGenerator\WS_NetworkGenerator.cs" />
+    <Compile Include="OSM\BaseOSM.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\ConvertNetwork.cs" />

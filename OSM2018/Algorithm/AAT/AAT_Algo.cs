@@ -26,12 +26,12 @@ namespace OSM2018.Algorithm.AAT {
       agent_set.SetInitWeights(weight_list);
     }
 
-    public void PlayStep(I_Network network, I_AgentSet agent_set) {
+    public void PlayOneStep(I_Network network, I_AgentSet agent_set) {
       throw new NotImplementedException();
     }
 
-    public void RunRound(I_Network network, I_AgentSet agent_set) {
-
+    public void RunOneRound(I_Network network, I_AgentSet agent_set, int current_round, int total_rounds) {
+            this.EstAwaRates.Run(agent_set, this.CandidateSetList, current_round, total_rounds);
     }
   }
 }

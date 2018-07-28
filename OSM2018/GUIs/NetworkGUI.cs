@@ -19,31 +19,40 @@ using OSM2018.Algorithm.AAT.GeneCanWeights;
 using OSM2018.Interfaces.Algo.AAT;
 using OSM2018.Algorithm.AAT.EstAwaRates;
 using OSM2018.Algorithm.AAT.SlctWeiStrategies;
+using OSM2018.OSM;
 
-namespace OSM2018.GUIs {
-  public partial class NetworkGUI : UserControl {
-    public NetworkGUI() {
-      InitializeComponent();
-      this.UserInitialize();
+namespace OSM2018.GUIs
+{
+    public partial class NetworkGUI : UserControl
+    {
+        public NetworkGUI()
+        {
+            InitializeComponent();
+            this.UserInitialize();
+        }
+
+        void UserInitialize()
+        {
+            this.comboBoxWS.SelectedIndex = 0;
+            this.comboBoxSF.SelectedIndex = 0;
+            this.comboBoxRandom.SelectedIndex = 0;
+        }
+
+        private void buttonGenerateGraph_Click(object sender, EventArgs e)
+        {
+            I_Network network = new WS_NetworkGenerator(100, 6, 0.01).Generate(1);
+            I_Layout layout = new Circular_LayoutGenerator(network).Generate();
+            network.SetLayout(layout);
+
+            I_AgentSet agent_set = new BasicAgentSetFactory(network, InfoEnum.Undeter, 0.9, 0.1).Generate(1, AgentInitMode.RandomWeakPulledByOpinion);
+            agent_set.SetSensors(SetSensorMode.Number, 10);
+
+            I_Algo algo = new AAT_Algo(new GeneratingCanWeights(), new EstimatingAwaRates(), new SelectingWeiStrategies());
+
+            I_OSM osm = new BaseOSM(network, agent_set, algo);
+            osm.Initialize();
+            osm.RunRounds(100, 1000);
+
+        }
     }
-
-    void UserInitialize() {
-      this.comboBoxWS.SelectedIndex = 0;
-      this.comboBoxSF.SelectedIndex = 0;
-      this.comboBoxRandom.SelectedIndex = 0;
-    }
-
-    private void buttonGenerateGraph_Click(object sender, EventArgs e) {
-      I_Network network = new WS_NetworkGenerator(100, 6, 0.01).Generate(1);
-      I_Layout layout = new Circular_LayoutGenerator(network).Generate();
-      network.SetLayout(layout);
-
-      I_AgentSet agent_set = new BasicAgentSetFactory(network, InfoEnum.Undeter, 0.9, 0.1).Generate(1, AgentInitMode.RandomWeakPulledByOpinion);
-      agent_set.SetSensors(SetSensorMode.Number, 10);
-
-      I_Algo algo = new AAT_Algo(new GeneratingCanWeights(), new EstimatingAwaRates(), new SelectingWeiStrategies());
-      algo.Initialize(network, agent_set);
-
-    }
-  }
 }
