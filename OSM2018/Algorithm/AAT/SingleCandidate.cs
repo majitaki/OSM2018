@@ -13,7 +13,7 @@ namespace OSM2018.Algorithm.AAT
     {
         public int CanIndex { get; }
         public double CanWeight { get; }
-        public double AwaRate { get; }
+        public double AwaRate { get; set; }
         public List<double> BeliefScaleList { get; }
         public int OpinionFormedSuccessCounts { get; }
         public int OpinionFormedFailureCounts { get; }

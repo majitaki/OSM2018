@@ -44,12 +44,6 @@ namespace OSM2018.GUIs {
       I_Algo algo = new AAT_Algo(new GeneratingCanWeights(), new EstimatingAwaRates(), new SelectingWeiStrategies());
       algo.Initialize(network, agent_set);
 
-      /*
-      I_GeneratingCanWeights gcw = new GeneratingCanWeights();
-      var canset_list = gcw.Generate(network, agent_set);
-      var weight_list = canset_list.Select(can => can.GetCanWeight(can.InitSelectCanIndex)).ToList();
-      agent_set.SetInitWeights(weight_list);
-      */
     }
   }
 }

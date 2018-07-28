@@ -20,7 +20,8 @@ namespace OSM2018.AgentSets
         public InfoEnum Opinion { get; }
         public InfoEnum InitOpinion { get; private set; }
         public bool IsSensor { get; private set; }
-
+        public int ReceiveGreenCounts { get; }
+        public int ReceiveRedCounts { get; }
 
         public BaseAgent(int id, double init_belief, Dictionary<int, double> init_weight_list, InfoEnum init_op, double g_sigma, double r_sigma)
         {
@@ -32,6 +33,7 @@ namespace OSM2018.AgentSets
             this.GreenSigma = g_sigma;
             this.RedSigma = r_sigma;
             this.IsSensor = false;
+            this.ReceiveGreenCounts = this.ReceiveRedCounts = 0;
         }
 
         public void SetInitialize(double init_belief, InfoEnum init_op, Dictionary<int, double> init_weight_list)

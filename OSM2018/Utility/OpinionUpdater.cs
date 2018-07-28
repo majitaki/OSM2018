@@ -75,5 +75,26 @@ namespace OSM2018.Utility
 
             return can_weight;
         }
+
+        public static int GetU(double init_belief, double g_sigma, double r_sigma, double weight)
+        {
+            var current_belief = init_belief;
+            int g_count = 0;
+            int r_count = 0;
+
+            while (current_belief < g_sigma)
+            {
+                current_belief = OpinionUpdater.UpdateBelief(current_belief, weight, InfoEnum.Green);
+                g_count++;
+            }
+
+            while (current_belief > r_sigma)
+            {
+                current_belief = OpinionUpdater.UpdateBelief(current_belief, weight, InfoEnum.Red);
+                r_count++;
+            }
+
+            return (g_count <= r_count) ? g_count : r_count;
+        }
     }
 }

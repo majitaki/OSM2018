@@ -19,10 +19,14 @@ namespace OSM2018.Interfaces
         double GreenSigma { get; }
         double RedSigma { get; }
         bool IsSensor { get; }
+        int ReceiveGreenCounts { get; }
+        int ReceiveRedCounts { get; }
+
 
         void SetInitialize(double init_belief, InfoEnum init_op, Dictionary<int, double> init_weight_list);
         void SetSensor(bool is_sensor);
         void SetInitWeight(double weight);
         void SetInitWeightList(Dictionary<int ,double> weight_list);
+
     }
 }

@@ -8,5 +8,6 @@ namespace OSM2018.Interfaces.Algo.AAT
 {
     interface I_SelectingWeiStrategies
     {
+        void Run();
     }
 }

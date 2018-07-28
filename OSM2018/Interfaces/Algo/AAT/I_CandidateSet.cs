@@ -13,5 +13,6 @@ namespace OSM2018.Interfaces.Algo.AAT
         int SelectCanIndex { get; }
         List<int> DeterminedRoundList { get; }
         double GetCanWeight(int index);
+        I_SingleCandidate GetCandidate(int can_index);
     }
 }
