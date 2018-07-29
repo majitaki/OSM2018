@@ -11,8 +11,8 @@ namespace OSM2018.Interfaces
     {
         int AgentSeed { get; }
         List<I_Agent> AgentList { get; }
-        void SetSensors(SetSensorMode mode , int num);
-        void SetSensors(SetSensorMode mode , double rate);
+        void SetSensors(SetSensorMode mode , int num, double sensor_acc);
+        void SetSensors(SetSensorMode mode , double rate, double sensor_acc);
         void SetInitWeights(List<double> init_weight_list);
         void SetInitWeights(List<Dictionary<int, double>> init_weight_dictionary_list);
     }

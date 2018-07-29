@@ -58,6 +58,9 @@
     <Compile Include="Algorithm\AAT\GeneCanWeights\GeneratingCanWeights.cs" />
     <Compile Include="Algorithm\AAT\SingleCandidate.cs" />
     <Compile Include="Algorithm\AAT\SlctWeiStrategies\SelectingWeiStrategies.cs" />
+    <Compile Include="Algorithm\Common\Message.cs" />
+    <Compile Include="Algorithm\Common\PlayOneStep.cs" />
+    <Compile Include="Algorithm\Common\SendOpinion.cs" />
     <Compile Include="Factories\AgentFactory.cs" />
     <Compile Include="Factories\AgentSetFactories\Basic_AgentSetFactory.cs" />
     <Compile Include="Factories\LayoutFactory.cs" />
@@ -101,6 +104,11 @@
     <Compile Include="Interfaces\Algo\AAT\I_CandidateSet.cs" />
     <Compile Include="Interfaces\Algo\AAT\I_SingleCandidate.cs" />
     <Compile Include="Interfaces\Algo\I_Algo.cs" />
+    <Compile Include="Interfaces\Algo\I_FormOpinion.cs" />
+    <Compile Include="Interfaces\Algo\I_PlayOneStep.cs" />
+    <Compile Include="Interfaces\Algo\I_ReceiveOpinion.cs" />
+    <Compile Include="Interfaces\Algo\I_SendOpinion.cs" />
+    <Compile Include="Interfaces\Algo\I_UpdateBelief.cs" />
     <Compile Include="Interfaces\I_Agent.cs" />
     <Compile Include="Interfaces\I_AgentSet.cs" />
     <Compile Include="Interfaces\I_Edge.cs" />
@@ -108,6 +116,7 @@
     <Compile Include="Interfaces\Algo\AAT\I_GeneratingCanWeights.cs" />
     <Compile Include="Interfaces\I_Layout.cs" />
     <Compile Include="Interfaces\I_LayoutGenerator.cs" />
+    <Compile Include="Interfaces\I_Message.cs" />
     <Compile Include="Interfaces\I_Network.cs" />
     <Compile Include="Interfaces\I_NetworkGenerator.cs" />
     <Compile Include="Interfaces\I_Node.cs" />
@@ -227,7 +236,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Algorithm\Common\" />
     <Folder Include="Tasks\" />
   </ItemGroup>
   <ItemGroup>

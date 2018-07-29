@@ -1,5 +1,6 @@
 ﻿using OSM2018.Interfaces;
 using OSM2018.Interfaces.Algo;
+using OSM2018.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,13 +27,18 @@ namespace OSM2018.OSM
             this.MyAlgo.Initialize(this.MyNetwork, this.MyAgentSet);
         }
 
-        public void PlaySteps(int steps)
+        public void PlaySteps(int steps, int playstep_seed)
         {
-            throw new NotImplementedException();
+            RandomPool.Declare(SeedEnum.PlayStepSeed, playstep_seed);
+            for (int i = 0; i < steps; i++)
+            {
+                this.MyAlgo.PlayOneStep(this.MyNetwork, this.MyAgentSet);
+            }
         }
 
-        public void RunRounds(int total_rounds, int round_steps)
+        public void RunRounds(int total_rounds, int round_steps, int runround_seed)
         {
+            RandomPool.Declare(SeedEnum.RunRoundSeed, runround_seed);
             for (int current_round = 1; current_round <= total_rounds; current_round++)
             {
                 this.MyAlgo.RunOneRound(this.MyNetwork, this.MyAgentSet, current_round, total_rounds);

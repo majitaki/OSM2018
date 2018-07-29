@@ -9,7 +9,7 @@ namespace OSM2018.Interfaces
     interface I_OSM
     {
         void Initialize();
-        void PlaySteps(int steps);
-        void RunRounds(int rounds, int round_steps);
+        void PlaySteps(int steps, int playstep_seed);
+        void RunRounds(int rounds, int round_steps, int runround_seed);
     }
 }

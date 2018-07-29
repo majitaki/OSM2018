@@ -20,6 +20,7 @@ using OSM2018.Interfaces.Algo.AAT;
 using OSM2018.Algorithm.AAT.EstAwaRates;
 using OSM2018.Algorithm.AAT.SlctWeiStrategies;
 using OSM2018.OSM;
+using OSM2018.Algorithm.Common;
 
 namespace OSM2018.GUIs
 {
@@ -45,13 +46,13 @@ namespace OSM2018.GUIs
             network.SetLayout(layout);
 
             I_AgentSet agent_set = new BasicAgentSetFactory(network, InfoEnum.Undeter, 0.9, 0.1).Generate(1, AgentInitMode.RandomWeakPulledByOpinion);
-            agent_set.SetSensors(SetSensorMode.Number, 10);
+            agent_set.SetSensors(SetSensorMode.Number, 10, 0.55);
 
-            I_Algo algo = new AAT_Algo(new GeneratingCanWeights(), new EstimatingAwaRates(), new SelectingWeiStrategies());
+            I_Algo algo = new AAT_Algo(new GeneratingCanWeights(), new EstimatingAwaRates(), new SelectingWeiStrategies(), new PlayOneStep());
 
             I_OSM osm = new BaseOSM(network, agent_set, algo);
             osm.Initialize();
-            osm.RunRounds(100, 1000);
+            osm.RunRounds(100, 1000, 1);
 
         }
     }

@@ -19,7 +19,7 @@ namespace OSM2018.AgentSets
             this.AgentSeed = agent_seed;
         }
 
-        public void SetSensors(SetSensorMode mode, int num)
+        public void SetSensors(SetSensorMode mode, int num, double sensor_acc)
         {
             if (mode != SetSensorMode.Number) return;
 
@@ -27,10 +27,10 @@ namespace OSM2018.AgentSets
             var list = this.AgentList.Select(agent => agent.NodeID).OrderBy(id => ir.Next()).Take(num)
                 .ToList();
 
-            this.AgentList.Where(agent => list.Contains(agent.NodeID)).ToList().ForEach(agent => agent.SetSensor(true));
+            this.AgentList.Where(agent => list.Contains(agent.NodeID)).ToList().ForEach(agent => agent.SetSensor(true, sensor_acc));
         }
 
-        public void SetSensors(SetSensorMode mode, double rate)
+        public void SetSensors(SetSensorMode mode, double rate, double sensor_acc)
         {
 
         }

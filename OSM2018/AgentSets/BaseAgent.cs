@@ -22,6 +22,9 @@ namespace OSM2018.AgentSets
         public bool IsSensor { get; private set; }
         public int ReceiveGreenCounts { get; }
         public int ReceiveRedCounts { get; }
+        public double SensorAccuracy { get; private set; }
+        public Queue<I_Message> SendReadyMessageQueue { get; set; }
+        public Queue<I_Message> ReceiveReadyMessageQueue { get; set; }
 
         public BaseAgent(int id, double init_belief, Dictionary<int, double> init_weight_list, InfoEnum init_op, double g_sigma, double r_sigma)
         {
@@ -33,7 +36,10 @@ namespace OSM2018.AgentSets
             this.GreenSigma = g_sigma;
             this.RedSigma = r_sigma;
             this.IsSensor = false;
+            this.SensorAccuracy = 0;
             this.ReceiveGreenCounts = this.ReceiveRedCounts = 0;
+            this.SendReadyMessageQueue = new Queue<I_Message>();
+            this.ReceiveReadyMessageQueue = new Queue<I_Message>();
         }
 
         public void SetInitialize(double init_belief, InfoEnum init_op, Dictionary<int, double> init_weight_list)
@@ -43,9 +49,10 @@ namespace OSM2018.AgentSets
             this.InitWeightDic = new Dictionary<int, double>(init_weight_list);
         }
 
-        public void SetSensor(bool is_sensor)
+        public void SetSensor(bool is_sensor, double sensor_acc)
         {
             this.IsSensor = is_sensor;
+            this.SensorAccuracy = sensor_acc;
         }
 
         public void SetInitWeight(double init_weight)

@@ -21,10 +21,13 @@ namespace OSM2018.Interfaces
         bool IsSensor { get; }
         int ReceiveGreenCounts { get; }
         int ReceiveRedCounts { get; }
+        double SensorAccuracy { get; }
+        Queue<I_Message> SendReadyMessageQueue { get; }
+        Queue<I_Message> ReceiveReadyMessageQueue { get; }
 
 
         void SetInitialize(double init_belief, InfoEnum init_op, Dictionary<int, double> init_weight_list);
-        void SetSensor(bool is_sensor);
+        void SetSensor(bool is_sensor, double sensor_acc);
         void SetInitWeight(double weight);
         void SetInitWeightList(Dictionary<int ,double> weight_list);
 
