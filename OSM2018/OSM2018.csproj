@@ -133,6 +133,10 @@
     <Compile Include="Networks\BaseNetwork.cs" />
     <Compile Include="Networks\Edge.cs" />
     <Compile Include="Networks\LayoutGenerator\Circular_LayoutGenerator.cs" />
+    <Compile Include="Networks\NetworkGenerator\PC_NetworkGenerator.cs" />
+    <Compile Include="Networks\NetworkGenerator\ConnectedWS_NetworkGenerator.cs" />
+    <Compile Include="Networks\NetworkGenerator\NewmanWS_NetworkGenerator.cs" />
+    <Compile Include="Networks\NetworkGenerator\ER_NetworkGenerator.cs" />
     <Compile Include="Networks\Node.cs" />
     <Compile Include="Networks\NetworkGenerator\BA_NetworkGenerator.cs" />
     <Compile Include="Networks\NetworkGenerator\WS_NetworkGenerator.cs" />

@@ -37,13 +37,16 @@
             this.label9 = new System.Windows.Forms.Label();
             this.buttonGenerateGraph = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.radioButtonSmallWorld = new System.Windows.Forms.RadioButton();
+            this.radioButtonScaleFree = new System.Windows.Forms.RadioButton();
+            this.radioButtonRandom = new System.Windows.Forms.RadioButton();
+            this.comboBoxRandom = new System.Windows.Forms.ComboBox();
+            this.comboBoxScaleFree = new System.Windows.Forms.ComboBox();
+            this.comboBoxSmallWorld = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.comboBoxWS = new System.Windows.Forms.ComboBox();
-            this.comboBoxSF = new System.Windows.Forms.ComboBox();
-            this.comboBoxRandom = new System.Windows.Forms.ComboBox();
             this.groupBoxWSproperty = new System.Windows.Forms.GroupBox();
             this.numericUpDownWSdegree = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownWSrewirep = new System.Windows.Forms.NumericUpDown();
@@ -57,9 +60,9 @@
             this.label19 = new System.Windows.Forms.Label();
             this.numericUpDownPCrndEdge = new System.Windows.Forms.NumericUpDown();
             this.label15 = new System.Windows.Forms.Label();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.numericUpDownEdgeCreationP = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGraphSeed)).BeginInit();
@@ -73,6 +76,8 @@
             this.groupBoxPCproperty.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPCaddTriP)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPCrndEdge)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEdgeCreationP)).BeginInit();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -82,9 +87,10 @@
             this.flowLayoutPanel1.Controls.Add(this.groupBoxWSproperty);
             this.flowLayoutPanel1.Controls.Add(this.groupBoxBAproperty);
             this.flowLayoutPanel1.Controls.Add(this.groupBoxPCproperty);
+            this.flowLayoutPanel1.Controls.Add(this.groupBox1);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(542, 612);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(682, 668);
             this.flowLayoutPanel1.TabIndex = 3;
             // 
             // groupBox2
@@ -193,24 +199,88 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.radioButton1);
-            this.groupBox3.Controls.Add(this.radioButton3);
-            this.groupBox3.Controls.Add(this.radioButton2);
+            this.groupBox3.Controls.Add(this.radioButtonSmallWorld);
+            this.groupBox3.Controls.Add(this.radioButtonScaleFree);
+            this.groupBox3.Controls.Add(this.radioButtonRandom);
             this.groupBox3.Controls.Add(this.comboBoxRandom);
-            this.groupBox3.Controls.Add(this.comboBoxSF);
-            this.groupBox3.Controls.Add(this.comboBoxWS);
+            this.groupBox3.Controls.Add(this.comboBoxScaleFree);
+            this.groupBox3.Controls.Add(this.comboBoxSmallWorld);
             this.groupBox3.Controls.Add(this.label14);
             this.groupBox3.Controls.Add(this.label13);
             this.groupBox3.Controls.Add(this.label12);
             this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupBox3.Location = new System.Drawing.Point(3, 128);
+            this.groupBox3.Location = new System.Drawing.Point(268, 3);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(365, 163);
             this.groupBox3.TabIndex = 14;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Graph List";
+            // 
+            // radioButtonSmallWorld
+            // 
+            this.radioButtonSmallWorld.AutoSize = true;
+            this.radioButtonSmallWorld.Checked = true;
+            this.radioButtonSmallWorld.Location = new System.Drawing.Point(10, 60);
+            this.radioButtonSmallWorld.Name = "radioButtonSmallWorld";
+            this.radioButtonSmallWorld.Size = new System.Drawing.Size(14, 13);
+            this.radioButtonSmallWorld.TabIndex = 29;
+            this.radioButtonSmallWorld.TabStop = true;
+            this.radioButtonSmallWorld.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonScaleFree
+            // 
+            this.radioButtonScaleFree.AutoSize = true;
+            this.radioButtonScaleFree.Location = new System.Drawing.Point(10, 127);
+            this.radioButtonScaleFree.Name = "radioButtonScaleFree";
+            this.radioButtonScaleFree.Size = new System.Drawing.Size(14, 13);
+            this.radioButtonScaleFree.TabIndex = 28;
+            this.radioButtonScaleFree.TabStop = true;
+            this.radioButtonScaleFree.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonRandom
+            // 
+            this.radioButtonRandom.AutoSize = true;
+            this.radioButtonRandom.Location = new System.Drawing.Point(193, 60);
+            this.radioButtonRandom.Name = "radioButtonRandom";
+            this.radioButtonRandom.Size = new System.Drawing.Size(14, 13);
+            this.radioButtonRandom.TabIndex = 27;
+            this.radioButtonRandom.TabStop = true;
+            this.radioButtonRandom.UseVisualStyleBackColor = true;
+            // 
+            // comboBoxRandom
+            // 
+            this.comboBoxRandom.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.comboBoxRandom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBoxRandom.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.comboBoxRandom.FormattingEnabled = true;
+            this.comboBoxRandom.Location = new System.Drawing.Point(212, 54);
+            this.comboBoxRandom.Name = "comboBoxRandom";
+            this.comboBoxRandom.Size = new System.Drawing.Size(147, 27);
+            this.comboBoxRandom.TabIndex = 25;
+            // 
+            // comboBoxScaleFree
+            // 
+            this.comboBoxScaleFree.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.comboBoxScaleFree.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBoxScaleFree.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.comboBoxScaleFree.FormattingEnabled = true;
+            this.comboBoxScaleFree.Location = new System.Drawing.Point(28, 121);
+            this.comboBoxScaleFree.Name = "comboBoxScaleFree";
+            this.comboBoxScaleFree.Size = new System.Drawing.Size(147, 27);
+            this.comboBoxScaleFree.TabIndex = 24;
+            // 
+            // comboBoxSmallWorld
+            // 
+            this.comboBoxSmallWorld.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.comboBoxSmallWorld.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBoxSmallWorld.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.comboBoxSmallWorld.FormattingEnabled = true;
+            this.comboBoxSmallWorld.Location = new System.Drawing.Point(28, 54);
+            this.comboBoxSmallWorld.Name = "comboBoxSmallWorld";
+            this.comboBoxSmallWorld.Size = new System.Drawing.Size(147, 27);
+            this.comboBoxSmallWorld.TabIndex = 23;
             // 
             // label14
             // 
@@ -248,48 +318,6 @@
             this.label11.TabIndex = 3;
             this.label11.Text = "Small World";
             // 
-            // comboBoxWS
-            // 
-            this.comboBoxWS.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.comboBoxWS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBoxWS.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.comboBoxWS.FormattingEnabled = true;
-            this.comboBoxWS.Items.AddRange(new object[] {
-            "WS",
-            "Newman WS",
-            "Connected WS"});
-            this.comboBoxWS.Location = new System.Drawing.Point(28, 54);
-            this.comboBoxWS.Name = "comboBoxWS";
-            this.comboBoxWS.Size = new System.Drawing.Size(147, 27);
-            this.comboBoxWS.TabIndex = 23;
-            // 
-            // comboBoxSF
-            // 
-            this.comboBoxSF.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.comboBoxSF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBoxSF.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.comboBoxSF.FormattingEnabled = true;
-            this.comboBoxSF.Items.AddRange(new object[] {
-            "BA",
-            "PowerLawCluster"});
-            this.comboBoxSF.Location = new System.Drawing.Point(28, 121);
-            this.comboBoxSF.Name = "comboBoxSF";
-            this.comboBoxSF.Size = new System.Drawing.Size(147, 27);
-            this.comboBoxSF.TabIndex = 24;
-            // 
-            // comboBoxRandom
-            // 
-            this.comboBoxRandom.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.comboBoxRandom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBoxRandom.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.comboBoxRandom.FormattingEnabled = true;
-            this.comboBoxRandom.Items.AddRange(new object[] {
-            "ER"});
-            this.comboBoxRandom.Location = new System.Drawing.Point(212, 54);
-            this.comboBoxRandom.Name = "comboBoxRandom";
-            this.comboBoxRandom.Size = new System.Drawing.Size(147, 27);
-            this.comboBoxRandom.TabIndex = 25;
-            // 
             // groupBoxWSproperty
             // 
             this.groupBoxWSproperty.Controls.Add(this.numericUpDownWSdegree);
@@ -298,7 +326,7 @@
             this.groupBoxWSproperty.Controls.Add(this.label18);
             this.groupBoxWSproperty.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxWSproperty.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupBoxWSproperty.Location = new System.Drawing.Point(3, 297);
+            this.groupBoxWSproperty.Location = new System.Drawing.Point(3, 172);
             this.groupBoxWSproperty.Name = "groupBoxWSproperty";
             this.groupBoxWSproperty.Size = new System.Drawing.Size(298, 92);
             this.groupBoxWSproperty.TabIndex = 18;
@@ -382,7 +410,7 @@
             this.groupBoxBAproperty.Controls.Add(this.label16);
             this.groupBoxBAproperty.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxBAproperty.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupBoxBAproperty.Location = new System.Drawing.Point(3, 395);
+            this.groupBoxBAproperty.Location = new System.Drawing.Point(307, 172);
             this.groupBoxBAproperty.Name = "groupBoxBAproperty";
             this.groupBoxBAproperty.Size = new System.Drawing.Size(298, 64);
             this.groupBoxBAproperty.TabIndex = 17;
@@ -427,7 +455,7 @@
             this.groupBoxPCproperty.Controls.Add(this.label15);
             this.groupBoxPCproperty.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxPCproperty.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupBoxPCproperty.Location = new System.Drawing.Point(3, 465);
+            this.groupBoxPCproperty.Location = new System.Drawing.Point(3, 270);
             this.groupBoxPCproperty.Name = "groupBoxPCproperty";
             this.groupBoxPCproperty.Size = new System.Drawing.Size(298, 98);
             this.groupBoxPCproperty.TabIndex = 19;
@@ -500,36 +528,59 @@
             this.label15.TabIndex = 5;
             this.label15.Text = "Rnd Edge Num:";
             // 
-            // radioButton2
+            // groupBox1
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(193, 60);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(14, 13);
-            this.radioButton2.TabIndex = 27;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.groupBox1.Controls.Add(this.numericUpDownEdgeCreationP);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.groupBox1.Location = new System.Drawing.Point(307, 270);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(298, 64);
+            this.groupBox1.TabIndex = 20;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "ER Property";
             // 
-            // radioButton3
+            // numericUpDownEdgeCreationP
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(10, 127);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(14, 13);
-            this.radioButton3.TabIndex = 28;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.numericUpDownEdgeCreationP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.numericUpDownEdgeCreationP.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.numericUpDownEdgeCreationP.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.numericUpDownEdgeCreationP.DecimalPlaces = 3;
+            this.numericUpDownEdgeCreationP.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.numericUpDownEdgeCreationP.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.numericUpDownEdgeCreationP.Location = new System.Drawing.Point(217, 33);
+            this.numericUpDownEdgeCreationP.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDownEdgeCreationP.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.numericUpDownEdgeCreationP.Name = "numericUpDownEdgeCreationP";
+            this.numericUpDownEdgeCreationP.Size = new System.Drawing.Size(69, 22);
+            this.numericUpDownEdgeCreationP.TabIndex = 7;
+            this.numericUpDownEdgeCreationP.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
             // 
-            // radioButton1
+            // label2
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(10, 60);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(14, 13);
-            this.radioButton1.TabIndex = 29;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 32);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(144, 19);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Edge Creation P";
             // 
             // NetworkGUI
             // 
@@ -539,7 +590,7 @@
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "NetworkGUI";
-            this.Size = new System.Drawing.Size(542, 612);
+            this.Size = new System.Drawing.Size(685, 671);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -558,6 +609,9 @@
             this.groupBoxPCproperty.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPCaddTriP)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPCrndEdge)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEdgeCreationP)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -573,13 +627,13 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button buttonGenerateGraph;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.ComboBox comboBoxWS;
+        private System.Windows.Forms.ComboBox comboBoxSmallWorld;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox comboBoxRandom;
-        private System.Windows.Forms.ComboBox comboBoxSF;
+        private System.Windows.Forms.ComboBox comboBoxScaleFree;
         private System.Windows.Forms.GroupBox groupBoxWSproperty;
         private System.Windows.Forms.NumericUpDown numericUpDownWSdegree;
         private System.Windows.Forms.NumericUpDown numericUpDownWSrewirep;
@@ -593,8 +647,11 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.NumericUpDown numericUpDownPCrndEdge;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButtonScaleFree;
+        private System.Windows.Forms.RadioButton radioButtonRandom;
+        private System.Windows.Forms.RadioButton radioButtonSmallWorld;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.NumericUpDown numericUpDownEdgeCreationP;
+        private System.Windows.Forms.Label label2;
     }
 }

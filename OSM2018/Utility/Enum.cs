@@ -30,7 +30,7 @@ namespace OSM2018.Utility
         ER,
         Binomial,
         RandomRegular,
-        PC,
+        PowerLawCluster,
         RandomKernel,
         RandomLobster,
         Custom,

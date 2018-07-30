@@ -346,6 +346,8 @@ namespace OSM2018.GUIs
 
                 e.Graphics.FillPie(this.MyDrawSetting.LightGrayBrush, -r_outer / 2, -r_outer / 2, r_outer, r_outer, zeroDeg, 180);
                 e.Graphics.FillPie(this.MyDrawSetting.GrayBrush, -r_outer / 2, -r_outer / 2, r_outer, r_outer, sigmaLeftDeg, sigmaSweepDeg);
+                e.Graphics.FillPie(this.MyDrawSetting.RedSigmaBlush, -r_outer / 2, -r_outer / 2, r_outer, r_outer, zeroDeg, r_sigma * 180f);
+                e.Graphics.FillPie(this.MyDrawSetting.GreenSigmaBlush, -r_outer / 2, -r_outer / 2, r_outer, r_outer, sigmaRightDeg, r_sigma * 180f);
             }
 
             //外枠の円
@@ -359,18 +361,18 @@ namespace OSM2018.GUIs
             e.Graphics.DrawLine(this.MyPen,
                 0,
                 0,
-                (float)0.6 * r3 * (float)Math.Cos(Math.PI * my_belief + Math.PI),
-                (float)0.6 * r3 * (float)Math.Sin(Math.PI * my_belief + Math.PI)
+                (float)r2 * (float)Math.Cos(Math.PI * my_belief + Math.PI),
+                (float)r2 * (float)Math.Sin(Math.PI * my_belief + Math.PI)
                 );
 
             //init belief
             this.MyPen = (Pen)this.MyDrawSetting.MeterPen.Clone();
             this.MyPen.Width /= this.ViewScale;
             e.Graphics.DrawLine(this.MyPen,
-                (float)0.4 * r3 * (float)Math.Cos(Math.PI * my_init_belief + Math.PI),
-                (float)0.4 * r3 * (float)Math.Sin(Math.PI * my_init_belief + Math.PI),
-                (float)0.6 * r3 * (float)Math.Cos(Math.PI * my_init_belief + Math.PI),
-                (float)0.6 * r3 * (float)Math.Sin(Math.PI * my_init_belief + Math.PI)
+                (float)0.5 * r3 * (float)Math.Cos(Math.PI * my_init_belief + Math.PI),
+                (float)0.5 * r3 * (float)Math.Sin(Math.PI * my_init_belief + Math.PI),
+                (float)0.55 * r3 * (float)Math.Cos(Math.PI * my_init_belief + Math.PI),
+                (float)0.55 * r3 * (float)Math.Sin(Math.PI * my_init_belief + Math.PI)
                 );
 
         }
@@ -403,9 +405,6 @@ namespace OSM2018.GUIs
                 this.MyDrawSetting.OpinionBrush.Color = this.MyDrawSetting.OpUndeterColor;
             }
 
-            //信念によってブラシの色を変更
-            //this.MyDrawSetting.BeliefBrush.Color = StaticColor.ConvertHSBtoARGB(this.MyDrawSetting.Hue, 1f - my_belief, (1 - this.MyDrawSetting.Voffset) * my_belief + this.MyDrawSetting.Voffset);
-
             //意見の円
             e.Graphics.FillEllipse(this.MyDrawSetting.OpinionBrush, -r_outer / 2, -r_outer / 2, r_outer, r_outer);
 
@@ -419,6 +418,8 @@ namespace OSM2018.GUIs
 
                 e.Graphics.FillPie(this.MyDrawSetting.LightGrayBrush, -r_outer / 2, -r_outer / 2, r_outer, r_outer, zeroDeg, 180);
                 e.Graphics.FillPie(this.MyDrawSetting.GrayBrush, -r_outer / 2, -r_outer / 2, r_outer, r_outer, sigmaLeftDeg, sigmaSweepDeg);
+                e.Graphics.FillPie(this.MyDrawSetting.RedSigmaBlush, -r_outer / 2, -r_outer / 2, r_outer, r_outer, zeroDeg, r_sigma * 180f);
+                e.Graphics.FillPie(this.MyDrawSetting.GreenSigmaBlush, -r_outer / 2, -r_outer / 2, r_outer, r_outer, sigmaRightDeg, r_sigma * 180f);
             }
 
             //目盛り作成
@@ -432,26 +433,28 @@ namespace OSM2018.GUIs
                 foreach (var scale in scale_list)
                 {
                     e.Graphics.DrawLine(this.MyPen,
-                             0,
-                             0,
+                              r_outer / 3 * (float)Math.Cos(Math.PI * scale + Math.PI),
+                              r_outer / 3 * (float)Math.Sin(Math.PI * scale + Math.PI),
                               r_outer / 2 * (float)Math.Cos(Math.PI * scale + Math.PI),
-                              r_outer / 2 * (float)Math.Sin(Math.PI * scale + Math.PI));
+                              r_outer / 2 * (float)Math.Sin(Math.PI * scale + Math.PI)
+                              );
                 }
-
-                if (agent.IsSensor)
-                {
-                    this.MyPen = (Pen)MyDrawSetting.SensorPen.Clone();
-                    this.MyPen.Width /= this.ViewScale;
-
-                    e.Graphics.DrawEllipse(this.MyPen, -r4 / 2, -r4 / 2, r4, r4);
-                }
-
-
             }
 
             //外枠の円
-            this.MyPen = (Pen)this.MyDrawSetting.PriorBeliefPen.Clone();
-            this.MyPen.Width /= this.ViewScale;
+            if (agent.IsSensor)
+            {
+                this.MyPen = (Pen)MyDrawSetting.SensorPen.Clone();
+                this.MyPen.Width /= this.ViewScale;
+                //e.Graphics.DrawEllipse(this.MyPen, -r4 / 2, -r4 / 2, r4, r4);
+                e.Graphics.DrawEllipse(this.MyPen, -r_outer / 2, -r_outer / 2, r_outer, r_outer);
+            }
+            else
+            {
+                this.MyPen = (Pen)this.MyDrawSetting.PriorBeliefPen.Clone();
+                this.MyPen.Width /= this.ViewScale;
+            }
+
             e.Graphics.DrawEllipse(this.MyPen, -r_outer / 2, -r_outer / 2, r_outer, r_outer);
             //信念のmeter
             this.MyPen = (Pen)this.MyDrawSetting.MeterPen.Clone();
@@ -459,20 +462,20 @@ namespace OSM2018.GUIs
             e.Graphics.DrawLine(this.MyPen,
                 0,
                 0,
-                (float)0.6 * r3 * (float)Math.Cos(Math.PI * my_belief + Math.PI),
-                (float)0.6 * r3 * (float)Math.Sin(Math.PI * my_belief + Math.PI));
+                (float)0.5 * r3 * (float)Math.Cos(Math.PI * my_belief + Math.PI),
+                (float)0.5 * r3 * (float)Math.Sin(Math.PI * my_belief + Math.PI));
 
             //信念の円
             //e.Graphics.FillEllipse(this.MyDrawSetting.BeliefBrush, -r / 2, -r / 2, r2 / 2, r2 / 2);
 
             //init belief
-            this.MyPen = (Pen)this.MyDrawSetting.MeterPen.Clone();
+            this.MyPen = (Pen)this.MyDrawSetting.InitMeterPen.Clone();
             this.MyPen.Width /= this.ViewScale;
             e.Graphics.DrawLine(this.MyPen,
-                (float)0.4 * r3 * (float)Math.Cos(Math.PI * my_init_belief + Math.PI),
-                (float)0.4 * r3 * (float)Math.Sin(Math.PI * my_init_belief + Math.PI),
-                (float)0.6 * r3 * (float)Math.Cos(Math.PI * my_init_belief + Math.PI),
-                (float)0.6 * r3 * (float)Math.Sin(Math.PI * my_init_belief + Math.PI)
+                (float)0.5 * r3 * (float)Math.Cos(Math.PI * my_init_belief + Math.PI),
+                (float)0.5 * r3 * (float)Math.Sin(Math.PI * my_init_belief + Math.PI),
+                (float)0.55 * r3 * (float)Math.Cos(Math.PI * my_init_belief + Math.PI),
+                (float)0.55 * r3 * (float)Math.Sin(Math.PI * my_init_belief + Math.PI)
                 );
         }
 

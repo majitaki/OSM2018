@@ -37,7 +37,14 @@ namespace OSM2018.Algorithm.Common
                 var message_op = message.MessageOpinion;
 
                 //belief update
-                target_agent.Belief = OpinionBeliefUpdater.UpdateBelief(belief, wei, message_op);
+                if (target_agent.IsSensor)
+                {
+                    target_agent.Belief = OpinionBeliefUpdater.UpdateBelief(belief, target_agent.SensorAccuracy, message_op);
+                }
+                else
+                {
+                    target_agent.Belief = OpinionBeliefUpdater.UpdateBelief(belief, wei, message_op);
+                }
                 if (message_op == InfoEnum.Green) target_agent.ReceiveGreenCounts++;
                 if (message_op == InfoEnum.Red) target_agent.ReceiveRedCounts++;
 

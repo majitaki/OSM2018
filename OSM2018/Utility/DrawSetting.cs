@@ -33,6 +33,7 @@ namespace OSM2018.Utility
         public Pen SensorNetworkPen;
         public Pen RedPen;
         public Pen MeterPen;
+        public Pen InitMeterPen;
 
         //ブラシ
         public SolidBrush RedBrush;
@@ -40,6 +41,8 @@ namespace OSM2018.Utility
         public SolidBrush LightGrayBrush;
         public SolidBrush BeliefBrush;
         public SolidBrush OpinionBrush;
+        public SolidBrush GreenSigmaBlush;
+        public SolidBrush RedSigmaBlush;
 
         public DrawSetting()
         {
@@ -48,9 +51,9 @@ namespace OSM2018.Utility
             //this.OpCorrectColor = StaticColor.ConvertHSBtoARGB(this.Hue, 1f - 1f, 1f);
             //this.OpIncorrectColor = StaticColor.ConvertHSBtoARGB(this.Hue, 1f - 0f, this.Voffset);
             //this.OpUndeterColor = StaticColor.ConvertHSBtoARGB(this.Hue, 1f - 0.5f, (1f - this.Voffset) * 0.5f + this.Voffset);
-            this.OpCorrectColor = Color.LightGreen;
-            this.OpIncorrectColor = Color.PaleVioletRed;
-            this.OpUndeterColor = Color.Silver;
+            this.OpCorrectColor = Color.ForestGreen;
+            this.OpIncorrectColor = Color.Firebrick;
+            this.OpUndeterColor = Color.DarkGray;
             this.OrangeColor = StaticColor.ConvertHSBtoARGB(40F, 0.9F, 0.9F);
             //this.GreenColor = StaticColor.ConvertHSBtoARGB(91F, 0.62F, 0.80F);
             this.GreenColor = Color.GreenYellow;
@@ -70,9 +73,9 @@ namespace OSM2018.Utility
             this.SelectedLinkPen.Width = 3f;
             this.SelectedPen = new Pen(Color.DarkRed);
             this.SelectedPen.Width = 3f;
-            this.SensorPen = new Pen(Color.Gold);
+            this.SensorPen = new Pen(Color.OrangeRed);
             //this.SensorPen = new Pen(Color.MediumBlue);
-            this.SensorPen.Width = 5f;
+            this.SensorPen.Width = 3f;
             this.SensorNetworkPen = new Pen(OrangeColor);
             this.SensorNetworkPen.Width = 10;
             this.RedPen = new Pen(Color.Red);
@@ -80,11 +83,17 @@ namespace OSM2018.Utility
             this.MeterPen = new Pen(StaticColor.ConvertHSBtoARGB(this.Hue, 1f - 0f, this.Voffset));
             this.MeterPen.Width = 4; //2
             this.MeterPen.StartCap = this.MeterPen.EndCap = LineCap.Round;
+            this.InitMeterPen = new Pen(Color.Indigo);
+            this.InitMeterPen.Width = 6; 
+            this.InitMeterPen.StartCap = this.MeterPen.EndCap = LineCap.Round;
+
             this.RedBrush = new SolidBrush(Color.Red);
             this.GrayBrush = new SolidBrush(Color.Gray);
             this.LightGrayBrush = new SolidBrush(Color.LightGray);
             this.BeliefBrush = new SolidBrush(StaticColor.ConvertHSBtoARGB(100F, 0.9F, 0.8F));
             this.OpinionBrush = new SolidBrush(StaticColor.ConvertHSBtoARGB(0F, 0F, 1F));
+            this.GreenSigmaBlush = new SolidBrush(Color.DarkGreen);
+            this.RedSigmaBlush = new SolidBrush(Color.DarkRed);
 
         }
     }
