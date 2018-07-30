@@ -11,20 +11,20 @@ namespace OSM2018.AgentSets
     class BaseAgent : I_Agent
     {
         public int NodeID { get; }
-        public double Belief { get; }
+        public double Belief { get; set; }
         public double InitBelief { get; private set; }
         public Dictionary<int, double> WeightDic { get; private set; }
         public Dictionary<int, double> InitWeightDic { get; private set; }
         public double GreenSigma { get; }
         public double RedSigma { get; }
-        public InfoEnum Opinion { get; }
+        public InfoEnum Opinion { get; set; }
         public InfoEnum InitOpinion { get; private set; }
         public bool IsSensor { get; private set; }
-        public int ReceiveGreenCounts { get; }
-        public int ReceiveRedCounts { get; }
+        public int ReceiveGreenCounts { get; set; }
+        public int ReceiveRedCounts { get; set; }
         public double SensorAccuracy { get; private set; }
+        public bool IsChanged { get; set; }
         public Queue<I_Message> SendReadyMessageQueue { get; set; }
-        public Queue<I_Message> ReceiveReadyMessageQueue { get; set; }
 
         public BaseAgent(int id, double init_belief, Dictionary<int, double> init_weight_list, InfoEnum init_op, double g_sigma, double r_sigma)
         {
@@ -38,8 +38,18 @@ namespace OSM2018.AgentSets
             this.IsSensor = false;
             this.SensorAccuracy = 0;
             this.ReceiveGreenCounts = this.ReceiveRedCounts = 0;
+            this.IsChanged = false;
             this.SendReadyMessageQueue = new Queue<I_Message>();
-            this.ReceiveReadyMessageQueue = new Queue<I_Message>();
+        }
+
+        public void Initialize()
+        {
+            this.Belief = this.InitBelief;
+            this.Opinion = this.InitOpinion;
+            this.WeightDic = this.InitWeightDic;
+            this.ReceiveGreenCounts = this.ReceiveRedCounts = 0;
+            this.IsChanged = false;
+            this.SendReadyMessageQueue = new Queue<I_Message>();
         }
 
         public void SetInitialize(double init_belief, InfoEnum init_op, Dictionary<int, double> init_weight_list)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OSM2018.Utility;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace OSM2018.Interfaces.Algo
 {
     interface I_PlayOneStep
     {
-        void Run(I_Network network, I_AgentSet agent_set, bool env_send);
+        void Run(I_Network network, I_AgentSet agent_set, bool env_send, InfoEnum correct, InfoEnum incorrect);
     }
 }

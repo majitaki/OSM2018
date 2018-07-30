@@ -28,9 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.checkBoxMenu = new System.Windows.Forms.CheckBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
+            this.radioButtonPlayStop = new System.Windows.Forms.RadioButton();
+            this.radioButtonSeedPlus = new System.Windows.Forms.RadioButton();
+            this.radioButtonPlay = new System.Windows.Forms.RadioButton();
+            this.radioButtonPlayStep = new System.Windows.Forms.RadioButton();
+            this.radioButtonMultiplePlay = new System.Windows.Forms.RadioButton();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.panel4 = new System.Windows.Forms.Panel();
             this.buttonGraphShow = new System.Windows.Forms.Button();
@@ -40,20 +47,15 @@
             this.labelStep = new System.Windows.Forms.Label();
             this.labelRound = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.radioButtonNullSetting = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButtonLogSetting = new System.Windows.Forms.RadioButton();
             this.radioButtonNetworkGUI = new System.Windows.Forms.RadioButton();
             this.radioButtonAgentGUI = new System.Windows.Forms.RadioButton();
             this.radioButtonLearningGUI = new System.Windows.Forms.RadioButton();
+            this.radioButtonNullSetting = new System.Windows.Forms.RadioButton();
             this.radioButtonAnimationGUI = new System.Windows.Forms.RadioButton();
             this.radioButtonExperimentGUI = new System.Windows.Forms.RadioButton();
-            this.checkBoxMenu = new System.Windows.Forms.CheckBox();
-            this.radioButtonPlayStop = new System.Windows.Forms.RadioButton();
-            this.radioButtonSeedPlus = new System.Windows.Forms.RadioButton();
-            this.radioButtonPlay = new System.Windows.Forms.RadioButton();
-            this.radioButtonPlayStep = new System.Windows.Forms.RadioButton();
-            this.radioButtonMultiplePlay = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radioButtonLogSetting = new System.Windows.Forms.RadioButton();
+            this.timerAnimation = new System.Windows.Forms.Timer(this.components);
             this.flowLayoutPanel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.flowLayoutPanel4.SuspendLayout();
@@ -78,6 +80,21 @@
             this.flowLayoutPanel2.TabIndex = 7;
             this.flowLayoutPanel2.WrapContents = false;
             // 
+            // checkBoxMenu
+            // 
+            this.checkBoxMenu.Appearance = System.Windows.Forms.Appearance.Button;
+            this.checkBoxMenu.FlatAppearance.BorderSize = 0;
+            this.checkBoxMenu.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.checkBoxMenu.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.checkBoxMenu.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark;
+            this.checkBoxMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.checkBoxMenu.Image = global::OSM2018.Properties.Resources.icon_menu;
+            this.checkBoxMenu.Location = new System.Drawing.Point(3, 3);
+            this.checkBoxMenu.Name = "checkBoxMenu";
+            this.checkBoxMenu.Size = new System.Drawing.Size(42, 110);
+            this.checkBoxMenu.TabIndex = 8;
+            this.checkBoxMenu.UseVisualStyleBackColor = true;
+            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.flowLayoutPanel4);
@@ -98,6 +115,97 @@
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
             this.flowLayoutPanel4.Size = new System.Drawing.Size(302, 66);
             this.flowLayoutPanel4.TabIndex = 13;
+            // 
+            // radioButtonPlayStop
+            // 
+            this.radioButtonPlayStop.Appearance = System.Windows.Forms.Appearance.Button;
+            this.radioButtonPlayStop.AutoSize = true;
+            this.radioButtonPlayStop.BackColor = System.Drawing.Color.Transparent;
+            this.radioButtonPlayStop.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark;
+            this.radioButtonPlayStop.FlatAppearance.BorderSize = 0;
+            this.radioButtonPlayStop.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.ControlDark;
+            this.radioButtonPlayStop.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.radioButtonPlayStop.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark;
+            this.radioButtonPlayStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.radioButtonPlayStop.Image = global::OSM2018.Properties.Resources.icon_stop;
+            this.radioButtonPlayStop.Location = new System.Drawing.Point(3, 3);
+            this.radioButtonPlayStop.Name = "radioButtonPlayStop";
+            this.radioButtonPlayStop.Size = new System.Drawing.Size(54, 54);
+            this.radioButtonPlayStop.TabIndex = 10;
+            this.radioButtonPlayStop.TabStop = true;
+            this.radioButtonPlayStop.UseVisualStyleBackColor = false;
+            // 
+            // radioButtonSeedPlus
+            // 
+            this.radioButtonSeedPlus.Appearance = System.Windows.Forms.Appearance.Button;
+            this.radioButtonSeedPlus.AutoSize = true;
+            this.radioButtonSeedPlus.BackColor = System.Drawing.Color.Transparent;
+            this.radioButtonSeedPlus.FlatAppearance.BorderSize = 0;
+            this.radioButtonSeedPlus.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.ControlDark;
+            this.radioButtonSeedPlus.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.radioButtonSeedPlus.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark;
+            this.radioButtonSeedPlus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.radioButtonSeedPlus.Image = global::OSM2018.Properties.Resources.icon_seedplus;
+            this.radioButtonSeedPlus.Location = new System.Drawing.Point(63, 3);
+            this.radioButtonSeedPlus.Name = "radioButtonSeedPlus";
+            this.radioButtonSeedPlus.Size = new System.Drawing.Size(54, 54);
+            this.radioButtonSeedPlus.TabIndex = 11;
+            this.radioButtonSeedPlus.TabStop = true;
+            this.radioButtonSeedPlus.UseVisualStyleBackColor = false;
+            // 
+            // radioButtonPlay
+            // 
+            this.radioButtonPlay.Appearance = System.Windows.Forms.Appearance.Button;
+            this.radioButtonPlay.AutoSize = true;
+            this.radioButtonPlay.BackColor = System.Drawing.Color.Transparent;
+            this.radioButtonPlay.FlatAppearance.BorderSize = 0;
+            this.radioButtonPlay.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.ControlDark;
+            this.radioButtonPlay.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.radioButtonPlay.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark;
+            this.radioButtonPlay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.radioButtonPlay.Image = global::OSM2018.Properties.Resources.icon_play;
+            this.radioButtonPlay.Location = new System.Drawing.Point(123, 3);
+            this.radioButtonPlay.Name = "radioButtonPlay";
+            this.radioButtonPlay.Size = new System.Drawing.Size(54, 54);
+            this.radioButtonPlay.TabIndex = 8;
+            this.radioButtonPlay.TabStop = true;
+            this.radioButtonPlay.UseVisualStyleBackColor = false;
+            // 
+            // radioButtonPlayStep
+            // 
+            this.radioButtonPlayStep.Appearance = System.Windows.Forms.Appearance.Button;
+            this.radioButtonPlayStep.AutoSize = true;
+            this.radioButtonPlayStep.BackColor = System.Drawing.Color.Transparent;
+            this.radioButtonPlayStep.FlatAppearance.BorderSize = 0;
+            this.radioButtonPlayStep.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.ControlDark;
+            this.radioButtonPlayStep.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.radioButtonPlayStep.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark;
+            this.radioButtonPlayStep.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.radioButtonPlayStep.Image = global::OSM2018.Properties.Resources.icon_playstep;
+            this.radioButtonPlayStep.Location = new System.Drawing.Point(183, 3);
+            this.radioButtonPlayStep.Name = "radioButtonPlayStep";
+            this.radioButtonPlayStep.Size = new System.Drawing.Size(54, 54);
+            this.radioButtonPlayStep.TabIndex = 7;
+            this.radioButtonPlayStep.TabStop = true;
+            this.radioButtonPlayStep.UseVisualStyleBackColor = false;
+            // 
+            // radioButtonMultiplePlay
+            // 
+            this.radioButtonMultiplePlay.Appearance = System.Windows.Forms.Appearance.Button;
+            this.radioButtonMultiplePlay.AutoSize = true;
+            this.radioButtonMultiplePlay.BackColor = System.Drawing.Color.Transparent;
+            this.radioButtonMultiplePlay.FlatAppearance.BorderSize = 0;
+            this.radioButtonMultiplePlay.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.ControlDark;
+            this.radioButtonMultiplePlay.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.radioButtonMultiplePlay.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark;
+            this.radioButtonMultiplePlay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.radioButtonMultiplePlay.Image = global::OSM2018.Properties.Resources.icon_fastforward;
+            this.radioButtonMultiplePlay.Location = new System.Drawing.Point(243, 3);
+            this.radioButtonMultiplePlay.Name = "radioButtonMultiplePlay";
+            this.radioButtonMultiplePlay.Size = new System.Drawing.Size(54, 54);
+            this.radioButtonMultiplePlay.TabIndex = 9;
+            this.radioButtonMultiplePlay.TabStop = true;
+            this.radioButtonMultiplePlay.UseVisualStyleBackColor = false;
             // 
             // trackBar1
             // 
@@ -204,56 +312,6 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(61, 551);
             this.flowLayoutPanel1.TabIndex = 8;
             // 
-            // radioButtonNullSetting
-            // 
-            this.radioButtonNullSetting.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioButtonNullSetting.BackColor = System.Drawing.Color.Transparent;
-            this.radioButtonNullSetting.Enabled = false;
-            this.radioButtonNullSetting.FlatAppearance.BorderSize = 0;
-            this.radioButtonNullSetting.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.ControlDark;
-            this.radioButtonNullSetting.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.radioButtonNullSetting.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark;
-            this.radioButtonNullSetting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.radioButtonNullSetting.Location = new System.Drawing.Point(3, 165);
-            this.radioButtonNullSetting.Name = "radioButtonNullSetting";
-            this.radioButtonNullSetting.Size = new System.Drawing.Size(48, 48);
-            this.radioButtonNullSetting.TabIndex = 5;
-            this.radioButtonNullSetting.TabStop = true;
-            this.radioButtonNullSetting.UseVisualStyleBackColor = false;
-            // 
-            // radioButton3
-            // 
-            this.radioButton3.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioButton3.BackColor = System.Drawing.Color.Transparent;
-            this.radioButton3.Enabled = false;
-            this.radioButton3.FlatAppearance.BorderSize = 0;
-            this.radioButton3.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.ControlDark;
-            this.radioButton3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.radioButton3.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark;
-            this.radioButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.radioButton3.Location = new System.Drawing.Point(3, 327);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(48, 48);
-            this.radioButton3.TabIndex = 10;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.UseVisualStyleBackColor = false;
-            // 
-            // radioButtonLogSetting
-            // 
-            this.radioButtonLogSetting.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioButtonLogSetting.BackColor = System.Drawing.Color.Transparent;
-            this.radioButtonLogSetting.FlatAppearance.BorderSize = 0;
-            this.radioButtonLogSetting.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.ControlDark;
-            this.radioButtonLogSetting.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.radioButtonLogSetting.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark;
-            this.radioButtonLogSetting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.radioButtonLogSetting.Location = new System.Drawing.Point(3, 381);
-            this.radioButtonLogSetting.Name = "radioButtonLogSetting";
-            this.radioButtonLogSetting.Size = new System.Drawing.Size(48, 48);
-            this.radioButtonLogSetting.TabIndex = 9;
-            this.radioButtonLogSetting.TabStop = true;
-            this.radioButtonLogSetting.UseVisualStyleBackColor = false;
-            // 
             // radioButtonNetworkGUI
             // 
             this.radioButtonNetworkGUI.Appearance = System.Windows.Forms.Appearance.Button;
@@ -308,6 +366,23 @@
             this.radioButtonLearningGUI.UseVisualStyleBackColor = false;
             this.radioButtonLearningGUI.CheckedChanged += new System.EventHandler(this.radioButtonSetting_CheckedChanged);
             // 
+            // radioButtonNullSetting
+            // 
+            this.radioButtonNullSetting.Appearance = System.Windows.Forms.Appearance.Button;
+            this.radioButtonNullSetting.BackColor = System.Drawing.Color.Transparent;
+            this.radioButtonNullSetting.Enabled = false;
+            this.radioButtonNullSetting.FlatAppearance.BorderSize = 0;
+            this.radioButtonNullSetting.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.ControlDark;
+            this.radioButtonNullSetting.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.radioButtonNullSetting.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark;
+            this.radioButtonNullSetting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.radioButtonNullSetting.Location = new System.Drawing.Point(3, 165);
+            this.radioButtonNullSetting.Name = "radioButtonNullSetting";
+            this.radioButtonNullSetting.Size = new System.Drawing.Size(48, 48);
+            this.radioButtonNullSetting.TabIndex = 5;
+            this.radioButtonNullSetting.TabStop = true;
+            this.radioButtonNullSetting.UseVisualStyleBackColor = false;
+            // 
             // radioButtonAnimationGUI
             // 
             this.radioButtonAnimationGUI.Appearance = System.Windows.Forms.Appearance.Button;
@@ -344,111 +419,43 @@
             this.radioButtonExperimentGUI.UseVisualStyleBackColor = false;
             this.radioButtonExperimentGUI.CheckedChanged += new System.EventHandler(this.radioButtonSetting_CheckedChanged);
             // 
-            // checkBoxMenu
+            // radioButton3
             // 
-            this.checkBoxMenu.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBoxMenu.FlatAppearance.BorderSize = 0;
-            this.checkBoxMenu.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.checkBoxMenu.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.checkBoxMenu.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark;
-            this.checkBoxMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.checkBoxMenu.Image = global::OSM2018.Properties.Resources.icon_menu;
-            this.checkBoxMenu.Location = new System.Drawing.Point(3, 3);
-            this.checkBoxMenu.Name = "checkBoxMenu";
-            this.checkBoxMenu.Size = new System.Drawing.Size(42, 110);
-            this.checkBoxMenu.TabIndex = 8;
-            this.checkBoxMenu.UseVisualStyleBackColor = true;
+            this.radioButton3.Appearance = System.Windows.Forms.Appearance.Button;
+            this.radioButton3.BackColor = System.Drawing.Color.Transparent;
+            this.radioButton3.Enabled = false;
+            this.radioButton3.FlatAppearance.BorderSize = 0;
+            this.radioButton3.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.ControlDark;
+            this.radioButton3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.radioButton3.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark;
+            this.radioButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.radioButton3.Location = new System.Drawing.Point(3, 327);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(48, 48);
+            this.radioButton3.TabIndex = 10;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.UseVisualStyleBackColor = false;
             // 
-            // radioButtonPlayStop
+            // radioButtonLogSetting
             // 
-            this.radioButtonPlayStop.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioButtonPlayStop.AutoSize = true;
-            this.radioButtonPlayStop.BackColor = System.Drawing.Color.Transparent;
-            this.radioButtonPlayStop.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark;
-            this.radioButtonPlayStop.FlatAppearance.BorderSize = 0;
-            this.radioButtonPlayStop.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.ControlDark;
-            this.radioButtonPlayStop.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.radioButtonPlayStop.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark;
-            this.radioButtonPlayStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.radioButtonPlayStop.Image = global::OSM2018.Properties.Resources.icon_stop;
-            this.radioButtonPlayStop.Location = new System.Drawing.Point(3, 3);
-            this.radioButtonPlayStop.Name = "radioButtonPlayStop";
-            this.radioButtonPlayStop.Size = new System.Drawing.Size(54, 54);
-            this.radioButtonPlayStop.TabIndex = 10;
-            this.radioButtonPlayStop.TabStop = true;
-            this.radioButtonPlayStop.UseVisualStyleBackColor = false;
+            this.radioButtonLogSetting.Appearance = System.Windows.Forms.Appearance.Button;
+            this.radioButtonLogSetting.BackColor = System.Drawing.Color.Transparent;
+            this.radioButtonLogSetting.FlatAppearance.BorderSize = 0;
+            this.radioButtonLogSetting.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.ControlDark;
+            this.radioButtonLogSetting.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.radioButtonLogSetting.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark;
+            this.radioButtonLogSetting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.radioButtonLogSetting.Location = new System.Drawing.Point(3, 381);
+            this.radioButtonLogSetting.Name = "radioButtonLogSetting";
+            this.radioButtonLogSetting.Size = new System.Drawing.Size(48, 48);
+            this.radioButtonLogSetting.TabIndex = 9;
+            this.radioButtonLogSetting.TabStop = true;
+            this.radioButtonLogSetting.UseVisualStyleBackColor = false;
             // 
-            // radioButtonSeedPlus
+            // timerAnimation
             // 
-            this.radioButtonSeedPlus.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioButtonSeedPlus.AutoSize = true;
-            this.radioButtonSeedPlus.BackColor = System.Drawing.Color.Transparent;
-            this.radioButtonSeedPlus.FlatAppearance.BorderSize = 0;
-            this.radioButtonSeedPlus.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.ControlDark;
-            this.radioButtonSeedPlus.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.radioButtonSeedPlus.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark;
-            this.radioButtonSeedPlus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.radioButtonSeedPlus.Image = global::OSM2018.Properties.Resources.icon_seedplus;
-            this.radioButtonSeedPlus.Location = new System.Drawing.Point(63, 3);
-            this.radioButtonSeedPlus.Name = "radioButtonSeedPlus";
-            this.radioButtonSeedPlus.Size = new System.Drawing.Size(54, 54);
-            this.radioButtonSeedPlus.TabIndex = 11;
-            this.radioButtonSeedPlus.TabStop = true;
-            this.radioButtonSeedPlus.UseVisualStyleBackColor = false;
-            // 
-            // radioButtonPlay
-            // 
-            this.radioButtonPlay.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioButtonPlay.AutoSize = true;
-            this.radioButtonPlay.BackColor = System.Drawing.Color.Transparent;
-            this.radioButtonPlay.FlatAppearance.BorderSize = 0;
-            this.radioButtonPlay.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.ControlDark;
-            this.radioButtonPlay.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.radioButtonPlay.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark;
-            this.radioButtonPlay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.radioButtonPlay.Image = global::OSM2018.Properties.Resources.icon_play;
-            this.radioButtonPlay.Location = new System.Drawing.Point(123, 3);
-            this.radioButtonPlay.Name = "radioButtonPlay";
-            this.radioButtonPlay.Size = new System.Drawing.Size(54, 54);
-            this.radioButtonPlay.TabIndex = 8;
-            this.radioButtonPlay.TabStop = true;
-            this.radioButtonPlay.UseVisualStyleBackColor = false;
-            // 
-            // radioButtonPlayStep
-            // 
-            this.radioButtonPlayStep.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioButtonPlayStep.AutoSize = true;
-            this.radioButtonPlayStep.BackColor = System.Drawing.Color.Transparent;
-            this.radioButtonPlayStep.FlatAppearance.BorderSize = 0;
-            this.radioButtonPlayStep.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.ControlDark;
-            this.radioButtonPlayStep.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.radioButtonPlayStep.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark;
-            this.radioButtonPlayStep.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.radioButtonPlayStep.Image = global::OSM2018.Properties.Resources.icon_playstep;
-            this.radioButtonPlayStep.Location = new System.Drawing.Point(183, 3);
-            this.radioButtonPlayStep.Name = "radioButtonPlayStep";
-            this.radioButtonPlayStep.Size = new System.Drawing.Size(54, 54);
-            this.radioButtonPlayStep.TabIndex = 7;
-            this.radioButtonPlayStep.TabStop = true;
-            this.radioButtonPlayStep.UseVisualStyleBackColor = false;
-            // 
-            // radioButtonMultiplePlay
-            // 
-            this.radioButtonMultiplePlay.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioButtonMultiplePlay.AutoSize = true;
-            this.radioButtonMultiplePlay.BackColor = System.Drawing.Color.Transparent;
-            this.radioButtonMultiplePlay.FlatAppearance.BorderSize = 0;
-            this.radioButtonMultiplePlay.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.ControlDark;
-            this.radioButtonMultiplePlay.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.radioButtonMultiplePlay.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark;
-            this.radioButtonMultiplePlay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.radioButtonMultiplePlay.Image = global::OSM2018.Properties.Resources.icon_fastforward;
-            this.radioButtonMultiplePlay.Location = new System.Drawing.Point(243, 3);
-            this.radioButtonMultiplePlay.Name = "radioButtonMultiplePlay";
-            this.radioButtonMultiplePlay.Size = new System.Drawing.Size(54, 54);
-            this.radioButtonMultiplePlay.TabIndex = 9;
-            this.radioButtonMultiplePlay.TabStop = true;
-            this.radioButtonMultiplePlay.UseVisualStyleBackColor = false;
+            this.timerAnimation.Interval = 1;
+            this.timerAnimation.Tick += new System.EventHandler(this.timerAnimation_Tick);
             // 
             // MainForm
             // 
@@ -504,6 +511,7 @@
         private System.Windows.Forms.RadioButton radioButtonExperimentGUI;
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.RadioButton radioButtonLogSetting;
+        private System.Windows.Forms.Timer timerAnimation;
     }
 }
 

@@ -52,19 +52,6 @@ namespace OSM2018.Utility
     enum AlgoEnum
     {
         AAT,
-        AATinit,
-        AATtu,
-        AATrm,
-        AATque,
-        AATit,
-        AATir,
-        AATiq,
-        AATitr,
-        AATitq,
-        AATirq,
-        AATitrq,
-        AATD,
-        AATwithoutH,
         Custom,
         Fool
     }

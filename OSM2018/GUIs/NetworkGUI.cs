@@ -26,10 +26,13 @@ namespace OSM2018.GUIs
 {
     public partial class NetworkGUI : UserControl
     {
-        public NetworkGUI()
+        AnimationForm MyAnimationForm;
+
+        public NetworkGUI(AnimationForm anime_form)
         {
             InitializeComponent();
             this.UserInitialize();
+            this.MyAnimationForm = anime_form;
         }
 
         void UserInitialize()
@@ -45,15 +48,23 @@ namespace OSM2018.GUIs
             I_Layout layout = new Circular_LayoutGenerator(network).Generate();
             network.SetLayout(layout);
 
-            I_AgentSet agent_set = new BasicAgentSetFactory(network, InfoEnum.Undeter, 0.9, 0.1).Generate(1, AgentInitMode.RandomWeakPulledByOpinion);
-            agent_set.SetSensors(SetSensorMode.Number, 10, 0.55);
+            I_AgentSet agent_set = new BasicAgentSetFactory(network, InfoEnum.Red, 0.9, 0.1).Generate(1, AgentInitMode.Random);
+            agent_set.SetSensors(SetSensorMode.Number, 20, 0.75);
 
-            I_Algo algo = new AAT_Algo(new GeneratingCanWeights(), new EstimatingAwaRates(), new SelectingWeiStrategies(), new PlayOneStep());
+            this.MyAnimationForm.MyNetwork = network;
+            this.MyAnimationForm.MyAgentSet = agent_set;
+            var pos = new PlayOneStep(new SendOpinion(0.1), new ReceiveOpinion());
+            I_Algo algo = new AAT_Algo(new GeneratingCanWeights(), new EstimatingAwaRates(), new SelectingWeiStrategies(), pos);
+            this.MyAnimationForm.MyAlgo = algo;
 
             I_OSM osm = new BaseOSM(network, agent_set, algo);
             osm.Initialize();
-            osm.RunRounds(100, 1000, 1);
+            osm.PlaySteps(10000, 1);
+            this.MyAnimationForm.UpdatePictureBox();
 
+            return;
+            osm.RunRounds(100, 1000, 1);
+            osm.PlaySteps(1000, 1);
         }
     }
 }

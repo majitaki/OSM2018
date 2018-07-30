@@ -41,5 +41,10 @@ namespace OSM2018.Algorithm.AAT
         {
             return this.SingleCandidateList.First(can => can.CanIndex == can_index);
         }
+
+        public I_SingleCandidate GetSelectCandidate()
+        {
+            return this.SingleCandidateList.First(can => can.CanIndex == this.SelectCanIndex);
+        }
     }
 }

@@ -21,6 +21,7 @@ namespace OSM2018
         LearningGUI MyLearningGUI;
         AnimationGUI MyAnimationGUI;
         ExperimentGUI MyExperimentGUI;
+        AnimationForm MyAnimationForm;
 
         public MainForm()
         {
@@ -39,7 +40,12 @@ namespace OSM2018
         {
             this.SettingGUIList = new List<UserControl>();
 
-            this.MyNetworkGUI = new NetworkGUI();
+            this.MyAnimationForm = new AnimationForm();
+            this.MyAnimationForm.Show();
+            this.MyAnimationForm.Left = this.Right;
+            this.DoubleBuffered = true;
+
+            this.MyNetworkGUI = new NetworkGUI(this.MyAnimationForm);
             this.MyNetworkGUI.Dock = DockStyle.Fill;
             this.MyNetworkGUI.Name = "NetworkGUI";
             this.Controls.Add(this.MyNetworkGUI);
@@ -117,5 +123,10 @@ namespace OSM2018
 
 
         #endregion
+
+        private void timerAnimation_Tick(object sender, EventArgs e)
+        {
+
+        }
     }
 }

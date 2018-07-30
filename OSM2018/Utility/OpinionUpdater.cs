@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OSM2018.Utility
 {
-    static class OpinionUpdater
+    static class OpinionBeliefUpdater
     {
         public static double UpdateBelief(double prior_belief, double can_weight, InfoEnum opinion)
         {
@@ -84,17 +84,25 @@ namespace OSM2018.Utility
 
             while (current_belief < g_sigma)
             {
-                current_belief = OpinionUpdater.UpdateBelief(current_belief, weight, InfoEnum.Green);
+                current_belief = OpinionBeliefUpdater.UpdateBelief(current_belief, weight, InfoEnum.Green);
                 g_count++;
             }
 
             while (current_belief > r_sigma)
             {
-                current_belief = OpinionUpdater.UpdateBelief(current_belief, weight, InfoEnum.Red);
+                current_belief = OpinionBeliefUpdater.UpdateBelief(current_belief, weight, InfoEnum.Red);
                 r_count++;
             }
 
             return (g_count <= r_count) ? g_count : r_count;
         }
+
+        public static InfoEnum UpdateOpinion(InfoEnum pre_op, double new_belief, double g_sigma, double r_sigma)
+        {
+            if (new_belief >= g_sigma) return InfoEnum.Green;
+            if (new_belief <= r_sigma) return InfoEnum.Red;
+            return pre_op;
+        }
+
     }
 }

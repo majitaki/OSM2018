@@ -14,19 +14,21 @@ namespace OSM2018.Algorithm.Common
         I_SendOpinion SendOpinion { get; }
         I_ReceiveOpinion ReceiveOpinion { get; }
 
+
         public PlayOneStep(I_SendOpinion send_op, I_ReceiveOpinion rec_op)
         {
             this.SendOpinion = send_op;
             this.ReceiveOpinion = rec_op;
         }
 
-        public void Run(I_Network network, I_AgentSet agent_set, bool env_send)
+        public void Run(I_Network network, I_AgentSet agent_set, bool env_send, InfoEnum correct, InfoEnum incorrect)
         {
-            this.SendOpinion.Run(network, agent_set, env_send);
-            var send_message_list = this.SendOpinion.SendMessageList;
+            this.SendOpinion.Run(network, agent_set, env_send, correct, incorrect);
+            var send_message_queue = this.SendOpinion.SendMessageQueue;
 
-            this.ReceiveOpinion.ReceiveMessageList = send_message_list;
+            this.ReceiveOpinion.ReceiveMessageQueue = send_message_queue;
             this.ReceiveOpinion.Run(network, agent_set);
         }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using OSM2018.Interfaces;
+﻿using OSM2018.GUIs;
+using OSM2018.Interfaces;
 using OSM2018.Interfaces.Algo;
 using OSM2018.Utility;
 using System;
@@ -32,7 +33,7 @@ namespace OSM2018.OSM
             RandomPool.Declare(SeedEnum.PlayStepSeed, playstep_seed);
             for (int i = 0; i < steps; i++)
             {
-                this.MyAlgo.PlayOneStep(this.MyNetwork, this.MyAgentSet);
+                this.MyAlgo.PlayOneStep(this.MyNetwork, this.MyAgentSet, InfoEnum.Green, InfoEnum.Red);
             }
         }
 
@@ -44,5 +45,6 @@ namespace OSM2018.OSM
                 this.MyAlgo.RunOneRound(this.MyNetwork, this.MyAgentSet, current_round, total_rounds);
             }
         }
+
     }
 }

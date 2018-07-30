@@ -21,7 +21,7 @@ namespace OSM2018.Algorithm.AAT
         public SingleCandidate(int can_index, I_Agent agent)
         {
             this.CanIndex = can_index;
-            this.CanWeight = OpinionUpdater.GetWeightForScale(agent.InitBelief, agent.GreenSigma, agent.RedSigma, can_index);
+            this.CanWeight = OpinionBeliefUpdater.GetWeightForScale(agent.InitBelief, agent.GreenSigma, agent.RedSigma, can_index);
 
             this.BeliefScaleList = new List<double>();
             this.BeliefScaleList.Add(agent.InitBelief);
@@ -29,14 +29,14 @@ namespace OSM2018.Algorithm.AAT
             var current_belief = agent.InitBelief;
             while (current_belief < agent.GreenSigma)
             {
-                current_belief = OpinionUpdater.UpdateBelief(current_belief, CanWeight, InfoEnum.Green);
+                current_belief = OpinionBeliefUpdater.UpdateBelief(current_belief, CanWeight, InfoEnum.Green);
                 this.BeliefScaleList.Add(current_belief);
             }
 
             current_belief = agent.InitBelief;
             while (current_belief > agent.RedSigma)
             {
-                current_belief = OpinionUpdater.UpdateBelief(current_belief, CanWeight, InfoEnum.Red);
+                current_belief = OpinionBeliefUpdater.UpdateBelief(current_belief, CanWeight, InfoEnum.Red);
                 this.BeliefScaleList.Add(current_belief);
             }
         }
