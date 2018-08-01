@@ -17,6 +17,7 @@ namespace OSM2018.Abstracts
 
         public I_Network Generate(int network_seed)
         {
+            RandomPool.Declare(SeedEnum.LayoutSeed, network_seed);
             var state = 0;
             switch (state)
             {

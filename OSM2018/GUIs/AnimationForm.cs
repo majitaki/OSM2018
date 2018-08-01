@@ -1,6 +1,7 @@
 ﻿using OSM2018.Algorithm.AAT;
 using OSM2018.Interfaces;
 using OSM2018.Interfaces.Algo;
+using OSM2018.Networks.LayoutGenerator;
 using OSM2018.Utility;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,7 @@ namespace OSM2018.GUIs
             {
                 this.X = x;
                 this.Y = y;
-                this.R = (int)(r * Math.Log(d));
+                this.R = (float)(r * Math.Log(d));
                 if (this.R == 0) this.R = 1;
                 this.R *= radius_scale;
                 this.ID = id;
@@ -96,9 +97,25 @@ namespace OSM2018.GUIs
             }
         }
 
-        internal I_Network MyNetwork;
+        I_Network _network;
+        internal I_Network MyNetwork
+        {
+            get
+            {
+                return this._network;
+            }
+            set
+            {
+                this._network = value;
+                this.UpdateLayout();
+            }
+        }
+
         internal I_AgentSet MyAgentSet;
         internal I_Algo MyAlgo;
+        internal I_Layout MyLayout;
+
+        bool IsLayoutChange;
 
         DrawSetting MyDrawSetting;
         Pen MyPen;
@@ -151,11 +168,62 @@ namespace OSM2018.GUIs
 
             this.MouseWheel += new MouseEventHandler(this.pictureboxAnimation_MouseWheel);
 
-            this.buttonUpdateAnimationView.Enabled = false;
-
             this.ZoomValue = 0;
             this.MoveValue = 0;
+            this.IsLayoutChange = false;
 
+            this.comboBoxLayout.SelectedIndex = 0;
+        }
+
+
+        string GetLayoutText()
+        {
+            string layout_str = null;
+
+            if (this.comboBoxLayout.IsDisposed) return null;
+            if (this.comboBoxLayout.InvokeRequired)
+            {
+                this.Invoke((MethodInvoker)delegate { layout_str = GetLayoutText(); });
+            }
+            else
+            {
+                layout_str = this.comboBoxLayout.Text;
+            }
+
+            return layout_str;
+        }
+
+        public void UpdateLayout()
+        {
+            if (this.MyNetwork == null) { return; }
+            var layout_str = this.GetLayoutText();
+            I_Layout layout = null;
+
+            switch ((LayoutEnum)Enum.Parse(typeof(LayoutEnum), layout_str, true))
+            {
+                case LayoutEnum.Circular:
+                    layout = new Circular_LayoutGenerator(this.MyNetwork).Generate();
+                    break;
+                case LayoutEnum.FruchtermanReingold:
+                    layout = new FR_LayoutGenerator(this.MyNetwork).Generate();
+                    break;
+                case LayoutEnum.KamadaKawai:
+                    layout = new KK_LayoutGenerator(this.MyNetwork).Generate();
+                    break;
+                case LayoutEnum.Random:
+                    layout = new Random_LayoutGenerator(this.MyNetwork).Generate();
+                    break;
+                case LayoutEnum.Shell:
+                    layout = new Shell_LayoutGenerator(this.MyNetwork).Generate();
+                    break;
+                case LayoutEnum.Spectral:
+                    layout = new Spectral_LayoutGenerator(this.MyNetwork).Generate();
+                    break;
+                case LayoutEnum.Spring:
+                    layout = new Spring_LayoutGenerator(this.MyNetwork).Generate();
+                    break;
+            }
+            this.MyNetwork.SetLayout(layout);
         }
 
         public void UpdatePictureBox()
@@ -261,6 +329,29 @@ namespace OSM2018.GUIs
 
         void UpdateAgent(PaintEventArgs e, Matrix base_matrix)
         {
+            //エージェント表示簡易版
+            if (this.MyAgentSet == null)
+            {
+                foreach (var node in this.MyNetwork.NodeList)
+                {
+                    int node_id = node.NodeID;
+                    float r = this.AgentViewList[node_id].R;
+                    float r2 = r * 2;
+                    float r3 = r * 3;
+                    float r4 = r * 4;
+                    float r5 = r * 5;
+                    float r_outer = r3;
+                    Matrix agentMatrix = base_matrix.Clone();
+
+                    //エージェントの位置に移動
+                    agentMatrix.Translate(this.AgentViewList[node_id].X, this.AgentViewList[node_id].Y);
+                    e.Graphics.Transform = agentMatrix.Clone();
+
+                    this.DrawNullNode(e, r_outer);
+                }
+                return;
+            }
+
             foreach (var agent in this.MyAgentSet.AgentList)
             {
                 int node_id = agent.NodeID;
@@ -276,12 +367,7 @@ namespace OSM2018.GUIs
                 //エージェントの位置に移動
                 agentMatrix.Translate(this.AgentViewList[node_id].X, this.AgentViewList[node_id].Y);
                 e.Graphics.Transform = agentMatrix.Clone();
-                //エージェント表示簡易版
-                if (this.MyAgentSet == null)
-                {
-                    this.DrawNullNode(e, r_outer);
-                    continue;
-                }
+
 
                 if (this.MyAlgo == null)
                 {
@@ -687,6 +773,12 @@ namespace OSM2018.GUIs
         {
             this.NodeSizeScale = this.trackBarRadius.Value;
             this.Invoke(new Action(this.UpdatePictureBox));
+        }
+
+        private void buttonUpdateLayout_Click(object sender, EventArgs e)
+        {
+            this.UpdateLayout();
+            this.ResetView();
         }
     }
 }

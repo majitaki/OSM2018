@@ -66,6 +66,7 @@ namespace OSM2018.Utility
     enum SeedEnum
     {
         NetworkSeed,
+        LayoutSeed,
         AgentSeed,
         PlayStepSeed,
         RunRoundSeed,

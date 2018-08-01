@@ -35,9 +35,9 @@
             this.checkBoxZoomOut = new System.Windows.Forms.CheckBox();
             this.checkBoxZoomIn = new System.Windows.Forms.CheckBox();
             this.pictureBoxAnimation = new System.Windows.Forms.PictureBox();
-            this.buttonUpdateAnimationView = new System.Windows.Forms.Button();
             this.comboBoxLayout = new System.Windows.Forms.ComboBox();
             this.trackBarRadius = new System.Windows.Forms.TrackBar();
+            this.buttonUpdateLayout = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAnimation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarRadius)).BeginInit();
             this.SuspendLayout();
@@ -161,20 +161,6 @@
             this.pictureBoxAnimation.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBoxAnimation_MouseMove);
             this.pictureBoxAnimation.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBoxAnimation_MouseUp);
             // 
-            // buttonUpdateAnimationView
-            // 
-            this.buttonUpdateAnimationView.AutoSize = true;
-            this.buttonUpdateAnimationView.BackColor = System.Drawing.Color.Transparent;
-            this.buttonUpdateAnimationView.BackgroundImage = global::OSM2018.Properties.Resources.icon_update;
-            this.buttonUpdateAnimationView.FlatAppearance.BorderSize = 0;
-            this.buttonUpdateAnimationView.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.buttonUpdateAnimationView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonUpdateAnimationView.Location = new System.Drawing.Point(0, 2);
-            this.buttonUpdateAnimationView.Name = "buttonUpdateAnimationView";
-            this.buttonUpdateAnimationView.Size = new System.Drawing.Size(48, 48);
-            this.buttonUpdateAnimationView.TabIndex = 35;
-            this.buttonUpdateAnimationView.UseVisualStyleBackColor = false;
-            // 
             // comboBoxLayout
             // 
             this.comboBoxLayout.BackColor = System.Drawing.SystemColors.ControlDarkDark;
@@ -200,14 +186,29 @@
             this.trackBarRadius.Value = 1;
             this.trackBarRadius.Scroll += new System.EventHandler(this.trackBarRadius_Scroll);
             // 
+            // buttonUpdateLayout
+            // 
+            this.buttonUpdateLayout.AutoSize = true;
+            this.buttonUpdateLayout.BackColor = System.Drawing.Color.Transparent;
+            this.buttonUpdateLayout.BackgroundImage = global::OSM2018.Properties.Resources.icon_update;
+            this.buttonUpdateLayout.FlatAppearance.BorderSize = 0;
+            this.buttonUpdateLayout.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.buttonUpdateLayout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonUpdateLayout.Location = new System.Drawing.Point(0, 2);
+            this.buttonUpdateLayout.Name = "buttonUpdateLayout";
+            this.buttonUpdateLayout.Size = new System.Drawing.Size(48, 48);
+            this.buttonUpdateLayout.TabIndex = 35;
+            this.buttonUpdateLayout.UseVisualStyleBackColor = false;
+            this.buttonUpdateLayout.Click += new System.EventHandler(this.buttonUpdateLayout_Click);
+            // 
             // AnimationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(806, 563);
+            this.Controls.Add(this.buttonUpdateLayout);
             this.Controls.Add(this.trackBarRadius);
-            this.Controls.Add(this.buttonUpdateAnimationView);
             this.Controls.Add(this.comboBoxLayout);
             this.Controls.Add(this.checkBoxLeft);
             this.Controls.Add(this.checkBoxDown);
@@ -234,8 +235,8 @@
         private System.Windows.Forms.CheckBox checkBoxZoomOut;
         private System.Windows.Forms.CheckBox checkBoxZoomIn;
         private System.Windows.Forms.PictureBox pictureBoxAnimation;
-        private System.Windows.Forms.Button buttonUpdateAnimationView;
         private System.Windows.Forms.ComboBox comboBoxLayout;
         private System.Windows.Forms.TrackBar trackBarRadius;
+        private System.Windows.Forms.Button buttonUpdateLayout;
     }
 }

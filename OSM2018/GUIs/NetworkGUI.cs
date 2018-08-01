@@ -50,9 +50,9 @@ namespace OSM2018.GUIs
             this.comboBoxRandom.SelectedIndex = 0;
         }
 
-        private void buttonGenerateGraph_Click(object sender, EventArgs e)
+        async private void buttonGenerateGraph_Click(object sender, EventArgs e)
         {
-            I_Network network;
+            I_NetworkGenerator network_generator = null;
             int node_num = (int)this.numericUpDownNodeNum.Value;
             int network_seed = (int)this.numericUpDownGraphSeed.Value;
             double rewire_p = (double)this.numericUpDownWSrewirep.Value;
@@ -62,43 +62,49 @@ namespace OSM2018.GUIs
             double triangle_p = (double)this.numericUpDownPCaddTriP.Value;
             double edge_creation_p = (double)this.numericUpDownEdgeCreationP.Value;
 
-
             if (this.radioButtonSmallWorld.Checked)
             {
                 switch ((NetworkEnum)Enum.Parse(typeof(NetworkEnum), this.comboBoxSmallWorld.Text, true))
                 {
                     case NetworkEnum.WS:
-                        network = new WS_NetworkGenerator(node_num, degree, rewire_p).Generate(network_seed);
+                        network_generator = new WS_NetworkGenerator(node_num, degree, rewire_p);
                         break;
                     case NetworkEnum.NewmanWS:
-                        network = new NewmanWS_NetworkGenerator(node_num, degree, rewire_p).Generate(network_seed);
+                        network_generator = new NewmanWS_NetworkGenerator(node_num, degree, rewire_p);
                         break;
                     case NetworkEnum.ConnectedWS:
-                        network = new ConnectedWS_NetworkGenerator(node_num, degree, rewire_p).Generate(network_seed);
+                        network_generator = new ConnectedWS_NetworkGenerator(node_num, degree, rewire_p);
                         break;
                 }
             }
             else if (this.radioButtonScaleFree.Checked)
             {
-                switch ((NetworkEnum)Enum.ToObject(typeof(NetworkEnum), this.comboBoxSmallWorld.Text))
+                switch ((NetworkEnum)Enum.Parse(typeof(NetworkEnum), this.comboBoxScaleFree.Text, true))
                 {
                     case NetworkEnum.BA:
-                        network = new BA_NetworkGenerator(node_num, attach_edge_num).Generate(network_seed);
+                        network_generator = new BA_NetworkGenerator(node_num, attach_edge_num);
                         break;
                     case NetworkEnum.PowerLawCluster:
-                        network = new PC_NetworkGenerator(node_num, rnd_edge_num, triangle_p).Generate(network_seed);
+                        network_generator = new PC_NetworkGenerator(node_num, rnd_edge_num, triangle_p);
                         break;
                 }
             }
             else if (this.radioButtonRandom.Checked)
             {
-                switch ((NetworkEnum)Enum.ToObject(typeof(NetworkEnum), this.comboBoxSmallWorld.Text))
+                switch ((NetworkEnum)Enum.Parse(typeof(NetworkEnum), this.comboBoxRandom.Text, true))
                 {
                     case NetworkEnum.ER:
-                        network = new ER_NetworkGenerator(node_num, edge_creation_p).Generate(network_seed);
+                        network_generator = new ER_NetworkGenerator(node_num, edge_creation_p);
                         break;
                 }
             }
+
+            await Task.Run(() =>
+            {
+                this.MyNetwork = network_generator.Generate(network_seed);
+                this.MyAnimationForm.MyNetwork = this.MyNetwork;
+                this.MyAnimationForm.UpdatePictureBox();
+            });
 
 
             /*
