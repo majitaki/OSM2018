@@ -13,7 +13,7 @@ namespace OSM2018.AgentSets
         public int NodeID { get; }
         public double Belief { get; set; }
         public double InitBelief { get; private set; }
-        public Dictionary<int, double> WeightDic { get; private set; }
+        public Dictionary<int, double> WeightDic { get; set; }
         public Dictionary<int, double> InitWeightDic { get; private set; }
         public double GreenSigma { get; }
         public double RedSigma { get; }
@@ -46,7 +46,7 @@ namespace OSM2018.AgentSets
         {
             this.Belief = this.InitBelief;
             this.Opinion = this.InitOpinion;
-            this.WeightDic = this.InitWeightDic;
+            this.WeightDic = new Dictionary<int, double>(this.InitWeightDic);
             this.ReceiveGreenCounts = this.ReceiveRedCounts = 0;
             this.IsChanged = false;
             this.SendReadyMessageQueue = new Queue<I_Message>();

@@ -26,13 +26,19 @@ namespace OSM2018.Algorithm.AAT
             this.EstAwaRates = ear;
             this.SlctWeiStrategies = sws;
             this.MyPlayOneStep = pos;
-            this.MyAlgoEnum = AlgoEnum.AAT;
+            this.MyAlgoEnum = AlgoEnum.OriginalAAT;
         }
 
         public void Initialize(I_Network network, I_AgentSet agent_set)
         {
+            agent_set.InitBelief();
+            agent_set.InitOpinion();
+            this.MyPlayOneStep.Initialize();
+
             this.CandidateSetList = GeneCanWeights.Generate(network, agent_set);
             var weight_list = this.CandidateSetList.Select(can => can.GetCanWeight(can.InitSelectCanIndex)).ToList();
+            //weight_list = weight_list.Select(w => 0.7).ToList();
+
             agent_set.SetInitWeights(weight_list);
         }
 

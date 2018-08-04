@@ -19,21 +19,15 @@ namespace OSM2018.AgentSets
             this.AgentSeed = agent_seed;
         }
 
-        public void SetSensors(SetSensorMode mode, int num, double sensor_acc)
+        public void SetSensors(int num, double sensor_acc)
         {
-            if (mode != SetSensorMode.Number) return;
-
             var ir = RandomPool.Get(SeedEnum.AgentSeed);
+
             var list = this.AgentList.Select(agent => agent.NodeID).OrderBy(id => ir.Next()).Take(num)
                 .ToList();
-
             this.AgentList.Where(agent => list.Contains(agent.NodeID)).ToList().ForEach(agent => agent.SetSensor(true, sensor_acc));
         }
 
-        public void SetSensors(SetSensorMode mode, double rate, double sensor_acc)
-        {
-
-        }
 
         public void SetInitWeights(List<double> init_weight_list)
         {
@@ -43,6 +37,7 @@ namespace OSM2018.AgentSets
             {
                 agent.SetInitWeight(init_weight_list[agent.NodeID]);
             }
+
         }
 
         public void SetInitWeights(List<Dictionary<int, double>> init_weight_dictionary_list)
@@ -54,5 +49,39 @@ namespace OSM2018.AgentSets
                 agent.SetInitWeightList(init_weight_dictionary_list[agent.NodeID]);
             }
         }
+
+        public void InitBelief()
+        {
+            foreach (var agent in this.AgentList)
+            {
+                agent.Belief = agent.InitBelief;
+            }
+        }
+
+        public void InitOpinion()
+        {
+            foreach (var agent in this.AgentList)
+            {
+                agent.Opinion = agent.InitOpinion;
+            }
+        }
+
+        public void InitWeight()
+        {
+            foreach (var agent in this.AgentList)
+            {
+                agent.WeightDic = new Dictionary<int, double>(agent.InitWeightDic);
+            }
+        }
+
+        public void InitCounts()
+        {
+            foreach (var agent in this.AgentList)
+            {
+                agent.ReceiveGreenCounts = agent.ReceiveRedCounts = 0;
+                agent.SendReadyMessageQueue = new Queue<I_Message>();
+            }
+        }
+
     }
 }

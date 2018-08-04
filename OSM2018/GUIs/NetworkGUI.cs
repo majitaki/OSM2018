@@ -27,7 +27,7 @@ namespace OSM2018.GUIs
     public partial class NetworkGUI : UserControl
     {
         AnimationForm MyAnimationForm;
-        internal I_Network MyNetwork;
+        internal I_OSM MyOSM;
 
         public NetworkGUI(AnimationForm anime_form)
         {
@@ -50,9 +50,18 @@ namespace OSM2018.GUIs
             this.comboBoxRandom.SelectedIndex = 0;
         }
 
+        internal void SetOSM(I_OSM osm)
+        {
+            this.MyOSM = osm;
+        }
+
         async private void buttonGenerateGraph_Click(object sender, EventArgs e)
         {
             I_NetworkGenerator network_generator = null;
+            this.MyOSM.MyNetwork = null;
+            this.MyOSM.MyAgentSet = null;
+            this.MyOSM.MyAlgo = null;
+
             int node_num = (int)this.numericUpDownNodeNum.Value;
             int network_seed = (int)this.numericUpDownGraphSeed.Value;
             double rewire_p = (double)this.numericUpDownWSrewirep.Value;
@@ -101,8 +110,7 @@ namespace OSM2018.GUIs
 
             await Task.Run(() =>
             {
-                this.MyNetwork = network_generator.Generate(network_seed);
-                this.MyAnimationForm.MyNetwork = this.MyNetwork;
+                this.MyOSM.MyNetwork = network_generator.Generate(network_seed);
                 this.MyAnimationForm.UpdatePictureBox();
             });
 

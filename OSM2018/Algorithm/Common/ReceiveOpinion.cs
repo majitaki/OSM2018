@@ -13,6 +13,11 @@ namespace OSM2018.Algorithm.Common
     {
         public Queue<I_Message> ReceiveMessageQueue { get; set; }
 
+        public void Initialize()
+        {
+            this.ReceiveMessageQueue = new Queue<I_Message>();
+        }
+
         public void Run(I_Network network, I_AgentSet agent_set)
         {
             if (this.ReceiveMessageQueue.Count == 0) return;

@@ -12,6 +12,8 @@ namespace OSM2018.Interfaces.Algo
         Queue<I_Message> SendMessageQueue { get; }
         int EnvOpinionCounts { get; }
         double OpinionIntroductionRate { get; }
+        int OpinionIntroductionDuration { get; }
+        void Initialize();
         void Run(I_Network network, I_AgentSet agent_set, bool env_send, InfoEnum correct, InfoEnum incorrect);
 
     }

@@ -1,4 +1,6 @@
 ﻿using OSM2018.GUIs;
+using OSM2018.Interfaces;
+using OSM2018.OSM;
 using OSM2018.Utility;
 using System;
 using System.Collections.Generic;
@@ -22,9 +24,11 @@ namespace OSM2018
         AnimationGUI MyAnimationGUI;
         ExperimentGUI MyExperimentGUI;
         AnimationForm MyAnimationForm;
+        I_OSM MyOSM;
 
         public MainForm()
         {
+            this.MyOSM = new BaseOSM();
             this.UserInitializeComponent();
             InitializeComponent();
             this.UserInitialize();
@@ -41,18 +45,21 @@ namespace OSM2018
             this.SettingGUIList = new List<UserControl>();
 
             this.MyAnimationForm = new AnimationForm();
+            this.MyAnimationForm.SetOSM(this.MyOSM);
             this.MyAnimationForm.Show();
             this.MyAnimationForm.Left = this.Right;
             this.DoubleBuffered = true;
 
             this.MyNetworkGUI = new NetworkGUI(this.MyAnimationForm);
+            this.MyNetworkGUI.SetOSM(this.MyOSM);
             this.MyNetworkGUI.Dock = DockStyle.Fill;
             this.MyNetworkGUI.Name = "NetworkGUI";
             this.Controls.Add(this.MyNetworkGUI);
             this.SettingGUIList.Add(this.MyNetworkGUI);
             this.MyNetworkGUI.Visible = true;
 
-            this.MyAgentGUI = new AgentGUI();
+            this.MyAgentGUI = new AgentGUI(this.MyNetworkGUI, this.MyAnimationForm);
+            this.MyAgentGUI.SetOSM(this.MyOSM);
             this.MyAgentGUI.Dock = DockStyle.Fill;
             this.MyAgentGUI.Name = "AgentGUI";
             this.Controls.Add(this.MyAgentGUI);
@@ -124,9 +131,69 @@ namespace OSM2018
 
         #endregion
 
-        private void timerAnimation_Tick(object sender, EventArgs e)
+        void ControlChange()
         {
 
+        }
+
+        void PlayStop()
+        {
+            int round_num = 0;
+            int step_num = 0;
+
+            this.labelRoundNum.Text = round_num.ToString();
+            this.labelStepNum.Text = step_num.ToString();
+            if (this.MyOSM == null || this.MyOSM.MyNetwork == null || this.MyOSM.MyAgentSet == null) return;
+            this.timerAnimation.Enabled = false;
+            this.MyOSM.Initialize();
+            this.MyAnimationForm.UpdatePictureBox();
+        }
+
+        void PlaySeedStop()
+        {
+            this.PlayStop();
+            this.numericUpDownPlayStepSeed.Value++;
+        }
+
+        void PlayOneStep()
+        {
+            // if (!this.radioButtonPlay.Checked || !this.radioButtonPlayStep.Checked) return;
+
+            var playstep_seed = (int)this.numericUpDownPlayStepSeed.Value;
+            playstep_seed += int.Parse(this.labelStepNum.Text);
+            var osm = this.MyAgentGUI.MyOSM;
+            if (osm == null) return;
+
+            osm.PlaySteps(1, playstep_seed);
+            this.labelStepNum.Text = (int.Parse(this.labelStepNum.Text) + 1).ToString();
+
+            this.MyAnimationForm.UpdatePictureBox();
+        }
+
+        private void timerAnimation_Tick(object sender, EventArgs e)
+        {
+            this.PlayOneStep();
+        }
+
+        private void radioButtonPlayStop_Click(object sender, EventArgs e)
+        {
+            this.PlayStop();
+        }
+
+        private void radioButtonSeedPlus_Click(object sender, EventArgs e)
+        {
+            this.PlaySeedStop();
+        }
+
+        private void radioButtonPlay_Click(object sender, EventArgs e)
+        {
+            if (this.radioButtonPlay.Checked) this.timerAnimation.Enabled = true;
+
+        }
+
+        private void radioButtonPlayStep_Click(object sender, EventArgs e)
+        {
+            this.PlayOneStep();
         }
     }
 }

@@ -97,23 +97,7 @@ namespace OSM2018.GUIs
             }
         }
 
-        I_Network _network;
-        internal I_Network MyNetwork
-        {
-            get
-            {
-                return this._network;
-            }
-            set
-            {
-                this._network = value;
-                this.UpdateLayout();
-            }
-        }
-
-        internal I_AgentSet MyAgentSet;
-        internal I_Algo MyAlgo;
-        internal I_Layout MyLayout;
+        internal I_OSM MyOSM;
 
         bool IsLayoutChange;
 
@@ -143,6 +127,12 @@ namespace OSM2018.GUIs
         {
             InitializeComponent();
             this.UserInitialize();
+            this.InitializeNetwork();
+        }
+
+        internal void SetOSM(I_OSM osm)
+        {
+            this.MyOSM = osm;
         }
 
         void UserInitialize()
@@ -162,10 +152,6 @@ namespace OSM2018.GUIs
             this.ViewOriginY = 0;
             this.NodeSizeScale = this.trackBarRadius.Value;
 
-            this.SelectedAgentList = new List<int>();
-            this.SelectedEdgeList = new List<int>();
-            this.NeighborAgentList = new List<int>();
-
             this.MouseWheel += new MouseEventHandler(this.pictureboxAnimation_MouseWheel);
 
             this.ZoomValue = 0;
@@ -175,6 +161,12 @@ namespace OSM2018.GUIs
             this.comboBoxLayout.SelectedIndex = 0;
         }
 
+        void InitializeNetwork()
+        {
+            this.SelectedAgentList = new List<int>();
+            this.SelectedEdgeList = new List<int>();
+            this.NeighborAgentList = new List<int>();
+        }
 
         string GetLayoutText()
         {
@@ -195,35 +187,35 @@ namespace OSM2018.GUIs
 
         public void UpdateLayout()
         {
-            if (this.MyNetwork == null) { return; }
+            if (this.MyOSM.MyNetwork == null) { return; }
             var layout_str = this.GetLayoutText();
             I_Layout layout = null;
 
             switch ((LayoutEnum)Enum.Parse(typeof(LayoutEnum), layout_str, true))
             {
                 case LayoutEnum.Circular:
-                    layout = new Circular_LayoutGenerator(this.MyNetwork).Generate();
+                    layout = new Circular_LayoutGenerator(this.MyOSM.MyNetwork).Generate();
                     break;
                 case LayoutEnum.FruchtermanReingold:
-                    layout = new FR_LayoutGenerator(this.MyNetwork).Generate();
+                    layout = new FR_LayoutGenerator(this.MyOSM.MyNetwork).Generate();
                     break;
                 case LayoutEnum.KamadaKawai:
-                    layout = new KK_LayoutGenerator(this.MyNetwork).Generate();
+                    layout = new KK_LayoutGenerator(this.MyOSM.MyNetwork).Generate();
                     break;
                 case LayoutEnum.Random:
-                    layout = new Random_LayoutGenerator(this.MyNetwork).Generate();
+                    layout = new Random_LayoutGenerator(this.MyOSM.MyNetwork).Generate();
                     break;
                 case LayoutEnum.Shell:
-                    layout = new Shell_LayoutGenerator(this.MyNetwork).Generate();
+                    layout = new Shell_LayoutGenerator(this.MyOSM.MyNetwork).Generate();
                     break;
                 case LayoutEnum.Spectral:
-                    layout = new Spectral_LayoutGenerator(this.MyNetwork).Generate();
+                    layout = new Spectral_LayoutGenerator(this.MyOSM.MyNetwork).Generate();
                     break;
                 case LayoutEnum.Spring:
-                    layout = new Spring_LayoutGenerator(this.MyNetwork).Generate();
+                    layout = new Spring_LayoutGenerator(this.MyOSM.MyNetwork).Generate();
                     break;
             }
-            this.MyNetwork.SetLayout(layout);
+            this.MyOSM.MyNetwork.SetLayout(layout);
         }
 
         public void UpdatePictureBox()
@@ -251,8 +243,8 @@ namespace OSM2018.GUIs
         internal void SetAgentViewList(I_Network network)
         {
             this.AgentViewList = new List<AgentView>();
-            var layout = network.MyLayout;
 
+            var layout = network.MyLayout;
             var ori_min_x = layout.PosList.Select(pos => pos.X).Min();
             var ori_max_x = layout.PosList.Select(pos => pos.X).Max();
             var ori_min_y = layout.PosList.Select(pos => pos.Y).Min();
@@ -330,9 +322,9 @@ namespace OSM2018.GUIs
         void UpdateAgent(PaintEventArgs e, Matrix base_matrix)
         {
             //エージェント表示簡易版
-            if (this.MyAgentSet == null)
+            if (this.MyOSM.MyAgentSet == null)
             {
-                foreach (var node in this.MyNetwork.NodeList)
+                foreach (var node in this.MyOSM.MyNetwork.NodeList)
                 {
                     int node_id = node.NodeID;
                     float r = this.AgentViewList[node_id].R;
@@ -352,7 +344,7 @@ namespace OSM2018.GUIs
                 return;
             }
 
-            foreach (var agent in this.MyAgentSet.AgentList)
+            foreach (var agent in this.MyOSM.MyAgentSet.AgentList)
             {
                 int node_id = agent.NodeID;
                 float r = this.AgentViewList[node_id].R;
@@ -369,17 +361,18 @@ namespace OSM2018.GUIs
                 e.Graphics.Transform = agentMatrix.Clone();
 
 
-                if (this.MyAlgo == null)
+                if (this.MyOSM.MyAlgo == null)
                 {
                     this.DrawNullAgent(e, agent, r_outer);
                     continue;
                 }
 
 
-                switch (this.MyAlgo.MyAlgoEnum)
+                switch (this.MyOSM.MyAlgo.MyAlgoEnum)
                 {
-                    case AlgoEnum.AAT:
+                    case AlgoEnum.OriginalAAT:
                         this.DrawAATAgent(e, agent, r);
+                        //this.DrawNullAgent(e, agent, r);
                         break;
                 }
 
@@ -471,7 +464,7 @@ namespace OSM2018.GUIs
             float r5 = r * 5;
             float r_outer = r3;
 
-            var algo = this.MyAlgo as AAT_Algo;
+            var algo = this.MyOSM.MyAlgo as AAT_Algo;
             var my_opinion = agent.Opinion;
             var my_belief = (float)agent.Belief;
             var my_init_belief = (float)agent.InitBelief;
@@ -567,7 +560,7 @@ namespace OSM2018.GUIs
 
         bool NullCheck()
         {
-            return (this.MyNetwork == null) ? true : false;
+            return (this.MyOSM.MyNetwork == null) ? true : false;
         }
 
         void ResetView()
@@ -609,9 +602,10 @@ namespace OSM2018.GUIs
 
         private void pictureBoxAnimation_Paint(object sender, PaintEventArgs e)
         {
-            if (this.MyNetwork == null) return;
+            if (this.MyOSM == null || this.MyOSM.MyNetwork == null) { return; }
+            if (this.MyOSM.MyNetwork.MyLayout == null) this.UpdateLayout();
 
-            var base_matrix = this.GetBaseMatrix(this.MyNetwork);
+            var base_matrix = this.GetBaseMatrix(this.MyOSM.MyNetwork);
             e.Graphics.Transform = base_matrix;
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
@@ -632,7 +626,7 @@ namespace OSM2018.GUIs
         {
             if (this.NullCheck()) return;
 
-            Matrix baseMatrix = this.GetBaseMatrix(this.MyNetwork);
+            Matrix baseMatrix = this.GetBaseMatrix(this.MyOSM.MyNetwork);
             //if (baseMatrix == null) return;
 
             //Matrix agentMatrix = baseMatrix.Clone(); ;
@@ -690,7 +684,7 @@ namespace OSM2018.GUIs
             }
 
             this.NeighborAgentList.Clear();
-            foreach (var node in this.MyNetwork.NodeList)
+            foreach (var node in this.MyOSM.MyNetwork.NodeList)
             {
                 if (this.SelectedAgentList.Contains(node.NodeID))
                 {

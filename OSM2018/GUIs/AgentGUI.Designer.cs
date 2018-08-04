@@ -36,42 +36,48 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.buttonGenerateAgentNetwork = new System.Windows.Forms.Button();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.groupBoxAgent = new System.Windows.Forms.GroupBox();
-            this.checkBoxAATSensorRateEnabled = new System.Windows.Forms.CheckBox();
-            this.numericUpDownAATSensorRate = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownRedSigma = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
+            this.checkBoxSensorRateEnabled = new System.Windows.Forms.CheckBox();
+            this.numericUpDownSensorRate = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownSensorAccuracy = new System.Windows.Forms.NumericUpDown();
             this.label15 = new System.Windows.Forms.Label();
-            this.numericUpDownAATObaserverSelect = new System.Windows.Forms.NumericUpDown();
-            this.labelAATObserverSelect = new System.Windows.Forms.Label();
-            this.numericUpDownAATSigma = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownOpinionIntroRate = new System.Windows.Forms.NumericUpDown();
+            this.labelOpinionIntroRate = new System.Windows.Forms.Label();
+            this.numericUpDownGreenSigma = new System.Windows.Forms.NumericUpDown();
             this.labelAATSigma = new System.Windows.Forms.Label();
             this.labelAATSensorNum = new System.Windows.Forms.Label();
-            this.numericUpDownAATSensorNum = new System.Windows.Forms.NumericUpDown();
-            this.comboBoxAAT = new System.Windows.Forms.ComboBox();
-            this.comboBoxOtherAlgo = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.numericUpDownSensorNum = new System.Windows.Forms.NumericUpDown();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.radioButtonGA = new System.Windows.Forms.RadioButton();
+            this.radioButtonOther = new System.Windows.Forms.RadioButton();
+            this.radioButtonAAT = new System.Windows.Forms.RadioButton();
             this.comboBoxGA = new System.Windows.Forms.ComboBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.label4 = new System.Windows.Forms.Label();
+            this.comboBoxOtherAlgo = new System.Windows.Forms.ComboBox();
+            this.comboBoxAAT = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
+            this.numericUpDownOpinionIntroDuration = new System.Windows.Forms.NumericUpDown();
+            this.label6 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAgentSeed)).BeginInit();
-            this.groupBox3.SuspendLayout();
             this.groupBoxAgent.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAATSensorRate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRedSigma)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSensorRate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSensorAccuracy)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAATObaserverSelect)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAATSigma)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAATSensorNum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOpinionIntroRate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGreenSigma)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSensorNum)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOpinionIntroDuration)).BeginInit();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -121,10 +127,6 @@
             this.comboBoxInitOpinion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBoxInitOpinion.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.comboBoxInitOpinion.FormattingEnabled = true;
-            this.comboBoxInitOpinion.Items.AddRange(new object[] {
-            "Undeter",
-            "Correct",
-            "Incorrect"});
             this.comboBoxInitOpinion.Location = new System.Drawing.Point(149, 57);
             this.comboBoxInitOpinion.Name = "comboBoxInitOpinion";
             this.comboBoxInitOpinion.Size = new System.Drawing.Size(107, 27);
@@ -168,98 +170,100 @@
             this.buttonGenerateAgentNetwork.TabIndex = 0;
             this.buttonGenerateAgentNetwork.Text = "Generate";
             this.buttonGenerateAgentNetwork.UseVisualStyleBackColor = false;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.radioButton3);
-            this.groupBox3.Controls.Add(this.radioButton2);
-            this.groupBox3.Controls.Add(this.radioButton1);
-            this.groupBox3.Controls.Add(this.comboBoxGA);
-            this.groupBox3.Controls.Add(this.label4);
-            this.groupBox3.Controls.Add(this.comboBoxOtherAlgo);
-            this.groupBox3.Controls.Add(this.comboBoxAAT);
-            this.groupBox3.Controls.Add(this.label3);
-            this.groupBox3.Controls.Add(this.label11);
-            this.groupBox3.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupBox3.Location = new System.Drawing.Point(3, 312);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(375, 149);
-            this.groupBox3.TabIndex = 17;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Algo List";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(214, 22);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(54, 19);
-            this.label3.TabIndex = 36;
-            this.label3.Text = "Other";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(27, 22);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(36, 19);
-            this.label11.TabIndex = 3;
-            this.label11.Text = "AAT";
+            this.buttonGenerateAgentNetwork.Click += new System.EventHandler(this.buttonGenerateAgentNetwork_Click);
             // 
             // groupBoxAgent
             // 
             this.groupBoxAgent.AutoSize = true;
             this.groupBoxAgent.BackColor = System.Drawing.Color.Transparent;
-            this.groupBoxAgent.Controls.Add(this.checkBoxAATSensorRateEnabled);
-            this.groupBoxAgent.Controls.Add(this.numericUpDownAATSensorRate);
+            this.groupBoxAgent.Controls.Add(this.numericUpDownOpinionIntroDuration);
+            this.groupBoxAgent.Controls.Add(this.label6);
+            this.groupBoxAgent.Controls.Add(this.numericUpDownRedSigma);
+            this.groupBoxAgent.Controls.Add(this.label5);
+            this.groupBoxAgent.Controls.Add(this.checkBoxSensorRateEnabled);
+            this.groupBoxAgent.Controls.Add(this.numericUpDownSensorRate);
             this.groupBoxAgent.Controls.Add(this.numericUpDownSensorAccuracy);
             this.groupBoxAgent.Controls.Add(this.label15);
-            this.groupBoxAgent.Controls.Add(this.numericUpDownAATObaserverSelect);
-            this.groupBoxAgent.Controls.Add(this.labelAATObserverSelect);
-            this.groupBoxAgent.Controls.Add(this.numericUpDownAATSigma);
+            this.groupBoxAgent.Controls.Add(this.numericUpDownOpinionIntroRate);
+            this.groupBoxAgent.Controls.Add(this.labelOpinionIntroRate);
+            this.groupBoxAgent.Controls.Add(this.numericUpDownGreenSigma);
             this.groupBoxAgent.Controls.Add(this.labelAATSigma);
             this.groupBoxAgent.Controls.Add(this.labelAATSensorNum);
-            this.groupBoxAgent.Controls.Add(this.numericUpDownAATSensorNum);
+            this.groupBoxAgent.Controls.Add(this.numericUpDownSensorNum);
             this.groupBoxAgent.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxAgent.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.groupBoxAgent.Location = new System.Drawing.Point(3, 125);
             this.groupBoxAgent.Name = "groupBoxAgent";
             this.groupBoxAgent.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.groupBoxAgent.Size = new System.Drawing.Size(427, 181);
+            this.groupBoxAgent.Size = new System.Drawing.Size(455, 250);
             this.groupBoxAgent.TabIndex = 18;
             this.groupBoxAgent.TabStop = false;
             this.groupBoxAgent.Text = "Agent Property";
             // 
-            // checkBoxAATSensorRateEnabled
+            // numericUpDownRedSigma
             // 
-            this.checkBoxAATSensorRateEnabled.AutoSize = true;
-            this.checkBoxAATSensorRateEnabled.Location = new System.Drawing.Point(291, 31);
-            this.checkBoxAATSensorRateEnabled.Name = "checkBoxAATSensorRateEnabled";
-            this.checkBoxAATSensorRateEnabled.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxAATSensorRateEnabled.TabIndex = 18;
-            this.checkBoxAATSensorRateEnabled.UseVisualStyleBackColor = true;
-            // 
-            // numericUpDownAATSensorRate
-            // 
-            this.numericUpDownAATSensorRate.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.numericUpDownAATSensorRate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.numericUpDownAATSensorRate.DecimalPlaces = 2;
-            this.numericUpDownAATSensorRate.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.numericUpDownAATSensorRate.Increment = new decimal(new int[] {
+            this.numericUpDownRedSigma.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.numericUpDownRedSigma.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.numericUpDownRedSigma.DecimalPlaces = 2;
+            this.numericUpDownRedSigma.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.numericUpDownRedSigma.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            131072});
+            this.numericUpDownRedSigma.Location = new System.Drawing.Point(198, 131);
+            this.numericUpDownRedSigma.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            this.numericUpDownRedSigma.Name = "numericUpDownRedSigma";
+            this.numericUpDownRedSigma.Size = new System.Drawing.Size(107, 26);
+            this.numericUpDownRedSigma.TabIndex = 20;
+            this.numericUpDownRedSigma.Value = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            this.numericUpDownAATSensorRate.Location = new System.Drawing.Point(312, 23);
-            this.numericUpDownAATSensorRate.Maximum = new decimal(new int[] {
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(9, 133);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(90, 19);
+            this.label5.TabIndex = 19;
+            this.label5.Text = "Red Sigma";
+            // 
+            // checkBoxSensorRateEnabled
+            // 
+            this.checkBoxSensorRateEnabled.AutoSize = true;
+            this.checkBoxSensorRateEnabled.Location = new System.Drawing.Point(319, 32);
+            this.checkBoxSensorRateEnabled.Name = "checkBoxSensorRateEnabled";
+            this.checkBoxSensorRateEnabled.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxSensorRateEnabled.TabIndex = 18;
+            this.checkBoxSensorRateEnabled.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDownSensorRate
+            // 
+            this.numericUpDownSensorRate.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.numericUpDownSensorRate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.numericUpDownSensorRate.DecimalPlaces = 2;
+            this.numericUpDownSensorRate.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.numericUpDownSensorRate.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numericUpDownSensorRate.Location = new System.Drawing.Point(340, 24);
+            this.numericUpDownSensorRate.Maximum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDownAATSensorRate.Name = "numericUpDownAATSensorRate";
-            this.numericUpDownAATSensorRate.Size = new System.Drawing.Size(107, 26);
-            this.numericUpDownAATSensorRate.TabIndex = 17;
+            this.numericUpDownSensorRate.Name = "numericUpDownSensorRate";
+            this.numericUpDownSensorRate.Size = new System.Drawing.Size(107, 26);
+            this.numericUpDownSensorRate.TabIndex = 17;
             // 
             // numericUpDownSensorAccuracy
             // 
@@ -272,7 +276,7 @@
             0,
             0,
             131072});
-            this.numericUpDownSensorAccuracy.Location = new System.Drawing.Point(170, 61);
+            this.numericUpDownSensorAccuracy.Location = new System.Drawing.Point(198, 62);
             this.numericUpDownSensorAccuracy.Maximum = new decimal(new int[] {
             1,
             0,
@@ -296,67 +300,67 @@
             this.label15.TabIndex = 12;
             this.label15.Text = "Sensor Accuracy";
             // 
-            // numericUpDownAATObaserverSelect
+            // numericUpDownOpinionIntroRate
             // 
-            this.numericUpDownAATObaserverSelect.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.numericUpDownAATObaserverSelect.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.numericUpDownAATObaserverSelect.DecimalPlaces = 2;
-            this.numericUpDownAATObaserverSelect.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.numericUpDownAATObaserverSelect.Increment = new decimal(new int[] {
+            this.numericUpDownOpinionIntroRate.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.numericUpDownOpinionIntroRate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.numericUpDownOpinionIntroRate.DecimalPlaces = 2;
+            this.numericUpDownOpinionIntroRate.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.numericUpDownOpinionIntroRate.Increment = new decimal(new int[] {
             5,
             0,
             0,
             131072});
-            this.numericUpDownAATObaserverSelect.Location = new System.Drawing.Point(170, 133);
-            this.numericUpDownAATObaserverSelect.Maximum = new decimal(new int[] {
+            this.numericUpDownOpinionIntroRate.Location = new System.Drawing.Point(198, 166);
+            this.numericUpDownOpinionIntroRate.Maximum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDownAATObaserverSelect.Name = "numericUpDownAATObaserverSelect";
-            this.numericUpDownAATObaserverSelect.Size = new System.Drawing.Size(107, 26);
-            this.numericUpDownAATObaserverSelect.TabIndex = 11;
-            this.numericUpDownAATObaserverSelect.Value = new decimal(new int[] {
+            this.numericUpDownOpinionIntroRate.Name = "numericUpDownOpinionIntroRate";
+            this.numericUpDownOpinionIntroRate.Size = new System.Drawing.Size(107, 26);
+            this.numericUpDownOpinionIntroRate.TabIndex = 11;
+            this.numericUpDownOpinionIntroRate.Value = new decimal(new int[] {
             1,
             0,
             0,
             65536});
             // 
-            // labelAATObserverSelect
+            // labelOpinionIntroRate
             // 
-            this.labelAATObserverSelect.AutoSize = true;
-            this.labelAATObserverSelect.Location = new System.Drawing.Point(9, 136);
-            this.labelAATObserverSelect.Name = "labelAATObserverSelect";
-            this.labelAATObserverSelect.Size = new System.Drawing.Size(144, 19);
-            this.labelAATObserverSelect.TabIndex = 10;
-            this.labelAATObserverSelect.Text = "Observer Select";
+            this.labelOpinionIntroRate.AutoSize = true;
+            this.labelOpinionIntroRate.Location = new System.Drawing.Point(9, 168);
+            this.labelOpinionIntroRate.Name = "labelOpinionIntroRate";
+            this.labelOpinionIntroRate.Size = new System.Drawing.Size(171, 19);
+            this.labelOpinionIntroRate.TabIndex = 10;
+            this.labelOpinionIntroRate.Text = "Opinion Intro Rate";
             // 
-            // numericUpDownAATSigma
+            // numericUpDownGreenSigma
             // 
-            this.numericUpDownAATSigma.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.numericUpDownAATSigma.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.numericUpDownAATSigma.DecimalPlaces = 2;
-            this.numericUpDownAATSigma.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.numericUpDownAATSigma.Increment = new decimal(new int[] {
+            this.numericUpDownGreenSigma.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.numericUpDownGreenSigma.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.numericUpDownGreenSigma.DecimalPlaces = 2;
+            this.numericUpDownGreenSigma.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.numericUpDownGreenSigma.Increment = new decimal(new int[] {
             5,
             0,
             0,
             131072});
-            this.numericUpDownAATSigma.Location = new System.Drawing.Point(170, 99);
-            this.numericUpDownAATSigma.Maximum = new decimal(new int[] {
+            this.numericUpDownGreenSigma.Location = new System.Drawing.Point(198, 95);
+            this.numericUpDownGreenSigma.Maximum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDownAATSigma.Minimum = new decimal(new int[] {
+            this.numericUpDownGreenSigma.Minimum = new decimal(new int[] {
             5,
             0,
             0,
             65536});
-            this.numericUpDownAATSigma.Name = "numericUpDownAATSigma";
-            this.numericUpDownAATSigma.Size = new System.Drawing.Size(107, 26);
-            this.numericUpDownAATSigma.TabIndex = 3;
-            this.numericUpDownAATSigma.Value = new decimal(new int[] {
+            this.numericUpDownGreenSigma.Name = "numericUpDownGreenSigma";
+            this.numericUpDownGreenSigma.Size = new System.Drawing.Size(107, 26);
+            this.numericUpDownGreenSigma.TabIndex = 3;
+            this.numericUpDownGreenSigma.Value = new decimal(new int[] {
             9,
             0,
             0,
@@ -365,11 +369,11 @@
             // labelAATSigma
             // 
             this.labelAATSigma.AutoSize = true;
-            this.labelAATSigma.Location = new System.Drawing.Point(9, 102);
+            this.labelAATSigma.Location = new System.Drawing.Point(9, 97);
             this.labelAATSigma.Name = "labelAATSigma";
-            this.labelAATSigma.Size = new System.Drawing.Size(54, 19);
+            this.labelAATSigma.Size = new System.Drawing.Size(108, 19);
             this.labelAATSigma.TabIndex = 2;
-            this.labelAATSigma.Text = "Sigma";
+            this.labelAATSigma.Text = "Green Sigma";
             // 
             // labelAATSensorNum
             // 
@@ -380,61 +384,74 @@
             this.labelAATSensorNum.TabIndex = 7;
             this.labelAATSensorNum.Text = "Sensor Num";
             // 
-            // numericUpDownAATSensorNum
+            // numericUpDownSensorNum
             // 
-            this.numericUpDownAATSensorNum.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.numericUpDownAATSensorNum.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.numericUpDownAATSensorNum.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.numericUpDownAATSensorNum.Location = new System.Drawing.Point(170, 23);
-            this.numericUpDownAATSensorNum.Maximum = new decimal(new int[] {
+            this.numericUpDownSensorNum.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.numericUpDownSensorNum.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.numericUpDownSensorNum.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.numericUpDownSensorNum.Location = new System.Drawing.Point(198, 24);
+            this.numericUpDownSensorNum.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
-            this.numericUpDownAATSensorNum.Name = "numericUpDownAATSensorNum";
-            this.numericUpDownAATSensorNum.Size = new System.Drawing.Size(107, 26);
-            this.numericUpDownAATSensorNum.TabIndex = 6;
-            this.numericUpDownAATSensorNum.Value = new decimal(new int[] {
+            this.numericUpDownSensorNum.Name = "numericUpDownSensorNum";
+            this.numericUpDownSensorNum.Size = new System.Drawing.Size(107, 26);
+            this.numericUpDownSensorNum.TabIndex = 6;
+            this.numericUpDownSensorNum.Value = new decimal(new int[] {
             10,
             0,
             0,
             0});
             // 
-            // comboBoxAAT
+            // groupBox3
             // 
-            this.comboBoxAAT.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.comboBoxAAT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBoxAAT.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.comboBoxAAT.FormattingEnabled = true;
-            this.comboBoxAAT.Items.AddRange(new object[] {
-            "Original AAT",
-            "AATD"});
-            this.comboBoxAAT.Location = new System.Drawing.Point(31, 44);
-            this.comboBoxAAT.Name = "comboBoxAAT";
-            this.comboBoxAAT.Size = new System.Drawing.Size(147, 27);
-            this.comboBoxAAT.TabIndex = 38;
+            this.groupBox3.Controls.Add(this.radioButtonGA);
+            this.groupBox3.Controls.Add(this.radioButtonOther);
+            this.groupBox3.Controls.Add(this.radioButtonAAT);
+            this.groupBox3.Controls.Add(this.comboBoxGA);
+            this.groupBox3.Controls.Add(this.label4);
+            this.groupBox3.Controls.Add(this.comboBoxOtherAlgo);
+            this.groupBox3.Controls.Add(this.comboBoxAAT);
+            this.groupBox3.Controls.Add(this.label3);
+            this.groupBox3.Controls.Add(this.label11);
+            this.groupBox3.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.groupBox3.Location = new System.Drawing.Point(3, 381);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(375, 149);
+            this.groupBox3.TabIndex = 17;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Algo List";
             // 
-            // comboBoxOtherAlgo
+            // radioButtonGA
             // 
-            this.comboBoxOtherAlgo.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.comboBoxOtherAlgo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBoxOtherAlgo.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.comboBoxOtherAlgo.FormattingEnabled = true;
-            this.comboBoxOtherAlgo.Items.AddRange(new object[] {
-            "Fool"});
-            this.comboBoxOtherAlgo.Location = new System.Drawing.Point(218, 44);
-            this.comboBoxOtherAlgo.Name = "comboBoxOtherAlgo";
-            this.comboBoxOtherAlgo.Size = new System.Drawing.Size(147, 27);
-            this.comboBoxOtherAlgo.TabIndex = 39;
+            this.radioButtonGA.AutoSize = true;
+            this.radioButtonGA.Location = new System.Drawing.Point(13, 108);
+            this.radioButtonGA.Name = "radioButtonGA";
+            this.radioButtonGA.Size = new System.Drawing.Size(14, 13);
+            this.radioButtonGA.TabIndex = 44;
+            this.radioButtonGA.UseVisualStyleBackColor = true;
             // 
-            // label4
+            // radioButtonOther
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(27, 80);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(27, 19);
-            this.label4.TabIndex = 40;
-            this.label4.Text = "GA";
+            this.radioButtonOther.AutoSize = true;
+            this.radioButtonOther.Location = new System.Drawing.Point(198, 50);
+            this.radioButtonOther.Name = "radioButtonOther";
+            this.radioButtonOther.Size = new System.Drawing.Size(14, 13);
+            this.radioButtonOther.TabIndex = 43;
+            this.radioButtonOther.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonAAT
+            // 
+            this.radioButtonAAT.AutoSize = true;
+            this.radioButtonAAT.Checked = true;
+            this.radioButtonAAT.Location = new System.Drawing.Point(13, 50);
+            this.radioButtonAAT.Name = "radioButtonAAT";
+            this.radioButtonAAT.Size = new System.Drawing.Size(14, 13);
+            this.radioButtonAAT.TabIndex = 42;
+            this.radioButtonAAT.TabStop = true;
+            this.radioButtonAAT.UseVisualStyleBackColor = true;
             // 
             // comboBoxGA
             // 
@@ -449,34 +466,56 @@
             this.comboBoxGA.Size = new System.Drawing.Size(147, 27);
             this.comboBoxGA.TabIndex = 41;
             // 
-            // radioButton1
+            // label4
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(13, 50);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(14, 13);
-            this.radioButton1.TabIndex = 42;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(27, 80);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(27, 19);
+            this.label4.TabIndex = 40;
+            this.label4.Text = "GA";
             // 
-            // radioButton2
+            // comboBoxOtherAlgo
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(198, 50);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(14, 13);
-            this.radioButton2.TabIndex = 43;
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.comboBoxOtherAlgo.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.comboBoxOtherAlgo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBoxOtherAlgo.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.comboBoxOtherAlgo.FormattingEnabled = true;
+            this.comboBoxOtherAlgo.Items.AddRange(new object[] {
+            "Fool"});
+            this.comboBoxOtherAlgo.Location = new System.Drawing.Point(218, 44);
+            this.comboBoxOtherAlgo.Name = "comboBoxOtherAlgo";
+            this.comboBoxOtherAlgo.Size = new System.Drawing.Size(147, 27);
+            this.comboBoxOtherAlgo.TabIndex = 39;
             // 
-            // radioButton3
+            // comboBoxAAT
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(13, 108);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(14, 13);
-            this.radioButton3.TabIndex = 44;
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.comboBoxAAT.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.comboBoxAAT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBoxAAT.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.comboBoxAAT.FormattingEnabled = true;
+            this.comboBoxAAT.Location = new System.Drawing.Point(31, 44);
+            this.comboBoxAAT.Name = "comboBoxAAT";
+            this.comboBoxAAT.Size = new System.Drawing.Size(147, 27);
+            this.comboBoxAAT.TabIndex = 38;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(214, 22);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(54, 19);
+            this.label3.TabIndex = 36;
+            this.label3.Text = "Other";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(27, 22);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(36, 19);
+            this.label11.TabIndex = 3;
+            this.label11.Text = "AAT";
             // 
             // groupBox2
             // 
@@ -486,7 +525,7 @@
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupBox2.Location = new System.Drawing.Point(3, 467);
+            this.groupBox2.Location = new System.Drawing.Point(3, 536);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.groupBox2.Size = new System.Drawing.Size(285, 75);
@@ -534,6 +573,40 @@
             this.label7.TabIndex = 8;
             this.label7.Text = "h_target";
             // 
+            // numericUpDownOpinionIntroDuration
+            // 
+            this.numericUpDownOpinionIntroDuration.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.numericUpDownOpinionIntroDuration.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.numericUpDownOpinionIntroDuration.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.numericUpDownOpinionIntroDuration.Location = new System.Drawing.Point(198, 202);
+            this.numericUpDownOpinionIntroDuration.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericUpDownOpinionIntroDuration.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDownOpinionIntroDuration.Name = "numericUpDownOpinionIntroDuration";
+            this.numericUpDownOpinionIntroDuration.Size = new System.Drawing.Size(107, 26);
+            this.numericUpDownOpinionIntroDuration.TabIndex = 22;
+            this.numericUpDownOpinionIntroDuration.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(9, 204);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(171, 19);
+            this.label6.TabIndex = 21;
+            this.label6.Text = "Opinion Intro Dura";
+            // 
             // AgentGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -548,18 +621,20 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAgentSeed)).EndInit();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.groupBoxAgent.ResumeLayout(false);
             this.groupBoxAgent.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAATSensorRate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRedSigma)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSensorRate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSensorAccuracy)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAATObaserverSelect)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAATSigma)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAATSensorNum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOpinionIntroRate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGreenSigma)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSensorNum)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOpinionIntroDuration)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -578,25 +653,29 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.GroupBox groupBoxAgent;
-        private System.Windows.Forms.CheckBox checkBoxAATSensorRateEnabled;
-        private System.Windows.Forms.NumericUpDown numericUpDownAATSensorRate;
+        private System.Windows.Forms.CheckBox checkBoxSensorRateEnabled;
+        private System.Windows.Forms.NumericUpDown numericUpDownSensorRate;
         private System.Windows.Forms.NumericUpDown numericUpDownSensorAccuracy;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.NumericUpDown numericUpDownAATObaserverSelect;
-        private System.Windows.Forms.Label labelAATObserverSelect;
-        private System.Windows.Forms.NumericUpDown numericUpDownAATSigma;
+        private System.Windows.Forms.NumericUpDown numericUpDownOpinionIntroRate;
+        private System.Windows.Forms.Label labelOpinionIntroRate;
+        private System.Windows.Forms.NumericUpDown numericUpDownGreenSigma;
         private System.Windows.Forms.Label labelAATSigma;
         private System.Windows.Forms.Label labelAATSensorNum;
-        private System.Windows.Forms.NumericUpDown numericUpDownAATSensorNum;
+        private System.Windows.Forms.NumericUpDown numericUpDownSensorNum;
         private System.Windows.Forms.ComboBox comboBoxAAT;
         private System.Windows.Forms.ComboBox comboBoxGA;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboBoxOtherAlgo;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButtonGA;
+        private System.Windows.Forms.RadioButton radioButtonOther;
+        private System.Windows.Forms.RadioButton radioButtonAAT;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.NumericUpDown numericUpDown4;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.NumericUpDown numericUpDownRedSigma;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.NumericUpDown numericUpDownOpinionIntroDuration;
+        private System.Windows.Forms.Label label6;
     }
 }

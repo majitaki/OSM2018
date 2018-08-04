@@ -146,7 +146,6 @@
             // 
             // pictureBoxAnimation
             // 
-            this.pictureBoxAnimation.BackColor = System.Drawing.SystemColors.ControlDark;
             this.pictureBoxAnimation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxAnimation.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxAnimation.Name = "pictureBoxAnimation";

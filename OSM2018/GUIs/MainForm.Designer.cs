@@ -42,8 +42,10 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.buttonGraphShow = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
-            this.numericUpDownAnimationSeed = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownPlayStepSeed = new System.Windows.Forms.NumericUpDown();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.labelRoundNum = new System.Windows.Forms.Label();
+            this.labelStepNum = new System.Windows.Forms.Label();
             this.labelStep = new System.Windows.Forms.Label();
             this.labelRound = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -61,7 +63,7 @@
             this.flowLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAnimationSeed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPlayStepSeed)).BeginInit();
             this.panel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -134,6 +136,7 @@
             this.radioButtonPlayStop.TabIndex = 10;
             this.radioButtonPlayStop.TabStop = true;
             this.radioButtonPlayStop.UseVisualStyleBackColor = false;
+            this.radioButtonPlayStop.Click += new System.EventHandler(this.radioButtonPlayStop_Click);
             // 
             // radioButtonSeedPlus
             // 
@@ -152,6 +155,7 @@
             this.radioButtonSeedPlus.TabIndex = 11;
             this.radioButtonSeedPlus.TabStop = true;
             this.radioButtonSeedPlus.UseVisualStyleBackColor = false;
+            this.radioButtonSeedPlus.Click += new System.EventHandler(this.radioButtonSeedPlus_Click);
             // 
             // radioButtonPlay
             // 
@@ -170,6 +174,7 @@
             this.radioButtonPlay.TabIndex = 8;
             this.radioButtonPlay.TabStop = true;
             this.radioButtonPlay.UseVisualStyleBackColor = false;
+            this.radioButtonPlay.Click += new System.EventHandler(this.radioButtonPlay_Click);
             // 
             // radioButtonPlayStep
             // 
@@ -188,6 +193,7 @@
             this.radioButtonPlayStep.TabIndex = 7;
             this.radioButtonPlayStep.TabStop = true;
             this.radioButtonPlayStep.UseVisualStyleBackColor = false;
+            this.radioButtonPlayStep.Click += new System.EventHandler(this.radioButtonPlayStep_Click);
             // 
             // radioButtonMultiplePlay
             // 
@@ -218,7 +224,7 @@
             // 
             this.panel4.Controls.Add(this.buttonGraphShow);
             this.panel4.Controls.Add(this.label17);
-            this.panel4.Controls.Add(this.numericUpDownAnimationSeed);
+            this.panel4.Controls.Add(this.numericUpDownPlayStepSeed);
             this.panel4.Location = new System.Drawing.Point(365, 3);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(139, 112);
@@ -247,24 +253,26 @@
             this.label17.TabIndex = 21;
             this.label17.Text = "Seed";
             // 
-            // numericUpDownAnimationSeed
+            // numericUpDownPlayStepSeed
             // 
-            this.numericUpDownAnimationSeed.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.numericUpDownAnimationSeed.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.numericUpDownAnimationSeed.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.numericUpDownAnimationSeed.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.numericUpDownAnimationSeed.Location = new System.Drawing.Point(62, 74);
-            this.numericUpDownAnimationSeed.Maximum = new decimal(new int[] {
+            this.numericUpDownPlayStepSeed.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.numericUpDownPlayStepSeed.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.numericUpDownPlayStepSeed.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.numericUpDownPlayStepSeed.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.numericUpDownPlayStepSeed.Location = new System.Drawing.Point(62, 74);
+            this.numericUpDownPlayStepSeed.Maximum = new decimal(new int[] {
             1000,
             0,
             0,
             0});
-            this.numericUpDownAnimationSeed.Name = "numericUpDownAnimationSeed";
-            this.numericUpDownAnimationSeed.Size = new System.Drawing.Size(70, 25);
-            this.numericUpDownAnimationSeed.TabIndex = 20;
+            this.numericUpDownPlayStepSeed.Name = "numericUpDownPlayStepSeed";
+            this.numericUpDownPlayStepSeed.Size = new System.Drawing.Size(70, 25);
+            this.numericUpDownPlayStepSeed.TabIndex = 20;
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.labelRoundNum);
+            this.panel2.Controls.Add(this.labelStepNum);
             this.panel2.Controls.Add(this.labelStep);
             this.panel2.Controls.Add(this.labelRound);
             this.panel2.Location = new System.Drawing.Point(510, 3);
@@ -272,27 +280,49 @@
             this.panel2.Size = new System.Drawing.Size(215, 112);
             this.panel2.TabIndex = 0;
             // 
+            // labelRoundNum
+            // 
+            this.labelRoundNum.AutoSize = true;
+            this.labelRoundNum.Font = new System.Drawing.Font("メイリオ", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.labelRoundNum.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.labelRoundNum.Location = new System.Drawing.Point(126, 12);
+            this.labelRoundNum.Name = "labelRoundNum";
+            this.labelRoundNum.Size = new System.Drawing.Size(36, 41);
+            this.labelRoundNum.TabIndex = 3;
+            this.labelRoundNum.Text = "0";
+            // 
+            // labelStepNum
+            // 
+            this.labelStepNum.AutoSize = true;
+            this.labelStepNum.Font = new System.Drawing.Font("メイリオ", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.labelStepNum.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.labelStepNum.Location = new System.Drawing.Point(126, 58);
+            this.labelStepNum.Name = "labelStepNum";
+            this.labelStepNum.Size = new System.Drawing.Size(36, 41);
+            this.labelStepNum.TabIndex = 2;
+            this.labelStepNum.Text = "0";
+            // 
             // labelStep
             // 
             this.labelStep.AutoSize = true;
             this.labelStep.Font = new System.Drawing.Font("メイリオ", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.labelStep.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.labelStep.Location = new System.Drawing.Point(30, 60);
+            this.labelStep.Location = new System.Drawing.Point(3, 60);
             this.labelStep.Name = "labelStep";
-            this.labelStep.Size = new System.Drawing.Size(120, 41);
+            this.labelStep.Size = new System.Drawing.Size(93, 41);
             this.labelStep.TabIndex = 1;
-            this.labelStep.Text = "Step: 0";
+            this.labelStep.Text = "Step:";
             // 
             // labelRound
             // 
             this.labelRound.AutoSize = true;
             this.labelRound.Font = new System.Drawing.Font("メイリオ", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.labelRound.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.labelRound.Location = new System.Drawing.Point(3, 12);
+            this.labelRound.Location = new System.Drawing.Point(0, 12);
             this.labelRound.Name = "labelRound";
-            this.labelRound.Size = new System.Drawing.Size(147, 41);
+            this.labelRound.Size = new System.Drawing.Size(120, 41);
             this.labelRound.TabIndex = 0;
-            this.labelRound.Text = "Round: 0";
+            this.labelRound.Text = "Round:";
             // 
             // flowLayoutPanel1
             // 
@@ -475,7 +505,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAnimationSeed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPlayStepSeed)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
@@ -498,7 +528,7 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button buttonGraphShow;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.NumericUpDown numericUpDownAnimationSeed;
+        private System.Windows.Forms.NumericUpDown numericUpDownPlayStepSeed;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label labelStep;
         private System.Windows.Forms.Label labelRound;
@@ -512,6 +542,8 @@
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.RadioButton radioButtonLogSetting;
         private System.Windows.Forms.Timer timerAnimation;
+        private System.Windows.Forms.Label labelRoundNum;
+        private System.Windows.Forms.Label labelStepNum;
     }
 }
 

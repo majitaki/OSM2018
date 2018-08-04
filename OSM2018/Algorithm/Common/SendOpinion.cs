@@ -13,11 +13,22 @@ namespace OSM2018.Algorithm.Common
     {
         public Queue<I_Message> SendMessageQueue { get; private set; }
         public int EnvOpinionCounts { get; private set; }
+        public int OpinionIntroCounts { get; private set; }
         public double OpinionIntroductionRate { get; }
+        public int OpinionIntroductionDuration { get; }
 
-        public SendOpinion(double op_intro_rate)
+        public SendOpinion(double op_intro_rate, int op_intro_counts)
         {
             this.OpinionIntroductionRate = op_intro_rate;
+            this.OpinionIntroductionDuration = op_intro_counts;
+            this.Initialize();
+        }
+
+        public void Initialize()
+        {
+            this.SendMessageQueue = new Queue<I_Message>();
+            this.EnvOpinionCounts = 0;
+            this.OpinionIntroCounts = 0;
         }
 
         public void Run(I_Network network, I_AgentSet agent_set, bool env_send, InfoEnum correct, InfoEnum incorrect)
@@ -31,7 +42,10 @@ namespace OSM2018.Algorithm.Common
 
         void SendEnvMessage(I_Network network, I_AgentSet agent_set, InfoEnum correct, InfoEnum incorrect, double op_intro_rate)
         {
+            this.OpinionIntroCounts++;
+            if (this.OpinionIntroCounts < this.OpinionIntroductionDuration) return;
             if (RandomPool.Get(SeedEnum.PlayStepSeed).NextDouble() > op_intro_rate) return;
+            this.OpinionIntroCounts = 0;
             this.EnvOpinionCounts++;
 
             var correct_opinion = correct;
@@ -41,7 +55,7 @@ namespace OSM2018.Algorithm.Common
             {
                 if (!(agent.IsSensor)) continue;
                 var env_info = InfoEnum.Undeter;
-                if (RandomPool.Get(SeedEnum.PlayStepSeed).NextDouble() <= agent.SensorAccuracy)
+                if (RandomPool.Get(SeedEnum.PlayStepSeed).NextDouble() < agent.SensorAccuracy)
                 {
                     env_info = correct_opinion;
                 }
@@ -68,5 +82,6 @@ namespace OSM2018.Algorithm.Common
 
             }
         }
+
     }
 }

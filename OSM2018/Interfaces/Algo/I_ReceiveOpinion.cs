@@ -9,6 +9,7 @@ namespace OSM2018.Interfaces.Algo
     interface I_ReceiveOpinion
     {
         Queue<I_Message> ReceiveMessageQueue { get; set; }
+        void Initialize();
         void Run(I_Network network, I_AgentSet agent_set);
     }
 }

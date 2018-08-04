@@ -14,7 +14,7 @@ namespace OSM2018.Interfaces
         double InitBelief { get; }
         InfoEnum Opinion { get; set; }
         InfoEnum InitOpinion { get; }
-        Dictionary<int, double> WeightDic { get; }
+        Dictionary<int, double> WeightDic { get; set; }
         Dictionary<int, double> InitWeightDic { get; }
         double GreenSigma { get; }
         double RedSigma { get; }
@@ -31,6 +31,5 @@ namespace OSM2018.Interfaces
         void SetSensor(bool is_sensor, double sensor_acc);
         void SetInitWeight(double weight);
         void SetInitWeightList(Dictionary<int, double> weight_list);
-
     }
 }

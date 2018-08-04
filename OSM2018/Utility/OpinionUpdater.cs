@@ -56,7 +56,7 @@ namespace OSM2018.Utility
                 opinion = InfoEnum.Red;
             }
 
-            var diff = 0.00001;
+            var diff = 0.001;
             var init_can_weight = 0.500 + diff;
             double can_weight = 0;
             for (can_weight = init_can_weight; can_weight < 1; can_weight += diff)

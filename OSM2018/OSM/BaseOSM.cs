@@ -12,15 +12,15 @@ namespace OSM2018.OSM
 {
     class BaseOSM : I_OSM
     {
-        I_Network MyNetwork;
-        I_AgentSet MyAgentSet;
-        I_Algo MyAlgo;
+        public I_Network MyNetwork { get; set; }
+        public I_AgentSet MyAgentSet { get; set; }
+        public I_Algo MyAlgo { get; set; }
 
-        public BaseOSM(I_Network network, I_AgentSet agent_set, I_Algo algo)
+        public BaseOSM()
         {
-            this.MyNetwork = network;
-            this.MyAgentSet = agent_set;
-            this.MyAlgo = algo;
+            this.MyNetwork = null;
+            this.MyAgentSet = null;
+            this.MyAlgo = null;
         }
 
         public void Initialize()

@@ -19,6 +19,7 @@ namespace OSM2018.Algorithm.Common
         {
             this.SendOpinion = send_op;
             this.ReceiveOpinion = rec_op;
+            this.Initialize();
         }
 
         public void Run(I_Network network, I_AgentSet agent_set, bool env_send, InfoEnum correct, InfoEnum incorrect)
@@ -30,5 +31,10 @@ namespace OSM2018.Algorithm.Common
             this.ReceiveOpinion.Run(network, agent_set);
         }
 
+        public void Initialize()
+        {
+            this.SendOpinion.Initialize();
+            this.ReceiveOpinion.Initialize();
+        }
     }
 }
