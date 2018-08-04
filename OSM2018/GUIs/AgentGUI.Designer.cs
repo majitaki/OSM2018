@@ -64,6 +64,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.numericUpDownOpinionIntroDuration = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
+            this.numericUpDownTargetH = new System.Windows.Forms.NumericUpDown();
+            this.label8 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAgentSeed)).BeginInit();
@@ -78,6 +80,7 @@
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOpinionIntroDuration)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTargetH)).BeginInit();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -176,6 +179,8 @@
             // 
             this.groupBoxAgent.AutoSize = true;
             this.groupBoxAgent.BackColor = System.Drawing.Color.Transparent;
+            this.groupBoxAgent.Controls.Add(this.numericUpDownTargetH);
+            this.groupBoxAgent.Controls.Add(this.label8);
             this.groupBoxAgent.Controls.Add(this.numericUpDownOpinionIntroDuration);
             this.groupBoxAgent.Controls.Add(this.label6);
             this.groupBoxAgent.Controls.Add(this.numericUpDownRedSigma);
@@ -195,7 +200,7 @@
             this.groupBoxAgent.Location = new System.Drawing.Point(3, 125);
             this.groupBoxAgent.Name = "groupBoxAgent";
             this.groupBoxAgent.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.groupBoxAgent.Size = new System.Drawing.Size(455, 250);
+            this.groupBoxAgent.Size = new System.Drawing.Size(455, 282);
             this.groupBoxAgent.TabIndex = 18;
             this.groupBoxAgent.TabStop = false;
             this.groupBoxAgent.Text = "Agent Property";
@@ -417,7 +422,7 @@
             this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupBox3.Location = new System.Drawing.Point(3, 381);
+            this.groupBox3.Location = new System.Drawing.Point(3, 413);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(375, 149);
             this.groupBox3.TabIndex = 17;
@@ -525,7 +530,7 @@
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupBox2.Location = new System.Drawing.Point(3, 536);
+            this.groupBox2.Location = new System.Drawing.Point(3, 568);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.groupBox2.Size = new System.Drawing.Size(285, 75);
@@ -607,6 +612,41 @@
             this.label6.TabIndex = 21;
             this.label6.Text = "Opinion Intro Dura";
             // 
+            // numericUpDownTargetH
+            // 
+            this.numericUpDownTargetH.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.numericUpDownTargetH.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.numericUpDownTargetH.DecimalPlaces = 2;
+            this.numericUpDownTargetH.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.numericUpDownTargetH.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            131072});
+            this.numericUpDownTargetH.Location = new System.Drawing.Point(198, 234);
+            this.numericUpDownTargetH.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDownTargetH.Name = "numericUpDownTargetH";
+            this.numericUpDownTargetH.Size = new System.Drawing.Size(107, 26);
+            this.numericUpDownTargetH.TabIndex = 24;
+            this.numericUpDownTargetH.Value = new decimal(new int[] {
+            90,
+            0,
+            0,
+            131072});
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(9, 236);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(81, 19);
+            this.label8.TabIndex = 23;
+            this.label8.Text = "Target h";
+            // 
             // AgentGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -635,6 +675,7 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOpinionIntroDuration)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTargetH)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -677,5 +718,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.NumericUpDown numericUpDownOpinionIntroDuration;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.NumericUpDown numericUpDownTargetH;
+        private System.Windows.Forms.Label label8;
     }
 }

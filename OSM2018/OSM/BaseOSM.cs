@@ -40,9 +40,11 @@ namespace OSM2018.OSM
         public void RunRounds(int total_rounds, int round_steps, int runround_seed)
         {
             RandomPool.Declare(SeedEnum.RunRoundSeed, runround_seed);
+            RandomPool.Declare(SeedEnum.PlayStepSeed, runround_seed);
+
             for (int current_round = 1; current_round <= total_rounds; current_round++)
             {
-                this.MyAlgo.RunOneRound(this.MyNetwork, this.MyAgentSet, current_round, total_rounds);
+                this.MyAlgo.RunOneRound(this.MyNetwork, this.MyAgentSet, current_round, total_rounds, round_steps);
             }
         }
 

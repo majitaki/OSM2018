@@ -47,9 +47,18 @@ namespace OSM2018.Algorithm.AAT
             this.MyPlayOneStep.Run(network, agent_set, true, correct, incorrect);
         }
 
-        public void RunOneRound(I_Network network, I_AgentSet agent_set, int current_round, int total_rounds)
+        public void RunOneRound(I_Network network, I_AgentSet agent_set, int current_round, int total_rounds, int round_steps)
         {
+            for (int i = 0; i < round_steps; i++)
+            {
+                this.PlayOneStep(network, agent_set, InfoEnum.Green, InfoEnum.Red);
+            }
+
             this.EstAwaRates.Run(agent_set, this.CandidateSetList, current_round, total_rounds);
+            this.SlctWeiStrategies.Run(this.CandidateSetList);
+            agent_set.InitBelief();
+            agent_set.InitOpinion();
+            this.MyPlayOneStep.Initialize();
         }
 
     }

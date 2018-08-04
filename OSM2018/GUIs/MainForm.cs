@@ -67,6 +67,7 @@ namespace OSM2018
             this.MyAgentGUI.Visible = false;
 
             this.MyLearningGUI = new LearningGUI();
+            this.MyLearningGUI.SetOSM(this.MyOSM);
             this.MyLearningGUI.Dock = DockStyle.Fill;
             this.MyLearningGUI.Name = "LearningGUI";
             this.Controls.Add(this.MyLearningGUI);

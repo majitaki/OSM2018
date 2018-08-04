@@ -62,6 +62,7 @@ namespace OSM2018.GUIs
             double sensor_acc = (double)this.numericUpDownSensorAccuracy.Value;
             double op_intro_rate = (double)this.numericUpDownOpinionIntroRate.Value;
             int op_intro_duration = (int)this.numericUpDownOpinionIntroDuration.Value;
+            var t_awa_rate = (double)this.numericUpDownTargetH.Value;
 
             I_AgentSet agent_set = new BasicAgentSetFactory(network, init_op, g_sigma, r_sigma).Generate(agent_seed, AgentInitMode.Random);
             I_Algo algo = null;
@@ -86,7 +87,7 @@ namespace OSM2018.GUIs
                     case AlgoEnum.OriginalAAT:
                         var gcw = new GeneratingCanWeights();
                         var ear = new EstimatingAwaRates();
-                        var sws = new SelectingWeiStrategies();
+                        var sws = new SelectingWeiStrategies(t_awa_rate);
                         var pos = new PlayOneStep(new SendOpinion(op_intro_rate, op_intro_duration), new ReceiveOpinion());
                         algo = new AAT_Algo(gcw, ear, sws, pos);
                         break;

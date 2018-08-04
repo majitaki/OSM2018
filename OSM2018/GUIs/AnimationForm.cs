@@ -74,14 +74,18 @@ namespace OSM2018.GUIs
             public Point TargetPoint { get; private set; }
             public int TargetID { get; private set; }
             public int ID { get; private set; }
+            public Dictionary<int, double> SourceWeightDic { get; private set; }
+            public Dictionary<int, double> TargetWeightDic { get; private set; }
 
-            public EdgeView(Point s, int s_id, Point t, int t_id, int id)
+            public EdgeView(Point s, int s_id, Point t, int t_id, int id, Dictionary<int, double> source_weight_dic, Dictionary<int, double> target_weight_dic)
             {
                 this.SourcePoint = s;
                 this.SourceID = s_id;
                 this.TargetPoint = t;
                 this.TargetID = t_id;
                 this.ID = id;
+                this.SourceWeightDic = source_weight_dic;
+                this.TargetWeightDic = target_weight_dic;
             }
 
             public bool IsNeighbor(int agent_id)
@@ -223,10 +227,10 @@ namespace OSM2018.GUIs
             this.pictureBoxAnimation.Invalidate();
         }
 
-        Matrix GetBaseMatrix(I_Network network)
+        Matrix GetBaseMatrix(I_Network network, I_AgentSet agent_set)
         {
             this.SetAgentViewList(network);
-            this.SetEdgeViewList(network);
+            this.SetEdgeViewList(network, agent_set);
 
             var CentralX = this.pictureBoxAnimation.ClientSize.Width / 2;
             var CentralY = this.pictureBoxAnimation.ClientSize.Height / 2;
@@ -279,7 +283,7 @@ namespace OSM2018.GUIs
             this.ViewY = -1 * (int)(ave_central_y * pos_scale) + this.ViewOriginY;
         }
 
-        internal void SetEdgeViewList(I_Network network)
+        internal void SetEdgeViewList(I_Network network, I_AgentSet agent_set)
         {
             this.EdgeViewList = new List<EdgeView>();
 
@@ -287,7 +291,14 @@ namespace OSM2018.GUIs
             {
                 Point s_point = new Point((int)this.AgentViewList[edge.SourceNodeID].X, (int)this.AgentViewList[edge.SourceNodeID].Y);
                 Point t_point = new Point((int)this.AgentViewList[edge.TargetNodeID].X, (int)this.AgentViewList[edge.TargetNodeID].Y);
-                this.EdgeViewList.Add(new EdgeView(s_point, edge.SourceNodeID, t_point, edge.TargetNodeID, edge.EdgeID));
+                Dictionary<int, double> s_wei_dic = null;
+                Dictionary<int, double> t_wei_dic = null;
+                if (agent_set != null)
+                {
+                    s_wei_dic = agent_set.AgentList.First(agent => agent.NodeID == edge.SourceNodeID).WeightDic;
+                    t_wei_dic = agent_set.AgentList.First(agent => agent.NodeID == edge.TargetNodeID).WeightDic;
+                }
+                this.EdgeViewList.Add(new EdgeView(s_point, edge.SourceNodeID, t_point, edge.TargetNodeID, edge.EdgeID, s_wei_dic, t_wei_dic));
             }
         }
 
@@ -306,15 +317,17 @@ namespace OSM2018.GUIs
 
 
         #region view
+
         void UpdateEdge(PaintEventArgs e)
         {
-
             this.MyPen = (Pen)this.MyDrawSetting.LinkPen.Clone();
-            this.MyPen.Width /= this.ViewScale;
+            var base_edge_width = this.MyPen.Width / this.ViewScale;
 
+            this.MyPen.Width = base_edge_width;
             foreach (var edge_view in EdgeViewList)
             {
                 e.Graphics.DrawLine(this.MyPen, edge_view.SourcePoint, edge_view.TargetPoint);
+
             }
         }
 
@@ -535,17 +548,16 @@ namespace OSM2018.GUIs
             }
 
             e.Graphics.DrawEllipse(this.MyPen, -r_outer / 2, -r_outer / 2, r_outer, r_outer);
+
             //信念のmeter
             this.MyPen = (Pen)this.MyDrawSetting.MeterPen.Clone();
             this.MyPen.Width /= this.ViewScale;
             e.Graphics.DrawLine(this.MyPen,
                 0,
                 0,
-                (float)0.5 * r3 * (float)Math.Cos(Math.PI * my_belief + Math.PI),
-                (float)0.5 * r3 * (float)Math.Sin(Math.PI * my_belief + Math.PI));
+                (float)r2 * (float)Math.Cos(Math.PI * my_belief + Math.PI),
+                (float)r2 * (float)Math.Sin(Math.PI * my_belief + Math.PI));
 
-            //信念の円
-            //e.Graphics.FillEllipse(this.MyDrawSetting.BeliefBrush, -r / 2, -r / 2, r2 / 2, r2 / 2);
 
             //init belief
             this.MyPen = (Pen)this.MyDrawSetting.InitMeterPen.Clone();
@@ -605,7 +617,7 @@ namespace OSM2018.GUIs
             if (this.MyOSM == null || this.MyOSM.MyNetwork == null) { return; }
             if (this.MyOSM.MyNetwork.MyLayout == null) this.UpdateLayout();
 
-            var base_matrix = this.GetBaseMatrix(this.MyOSM.MyNetwork);
+            var base_matrix = this.GetBaseMatrix(this.MyOSM.MyNetwork, this.MyOSM.MyAgentSet);
             e.Graphics.Transform = base_matrix;
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
@@ -626,14 +638,7 @@ namespace OSM2018.GUIs
         {
             if (this.NullCheck()) return;
 
-            Matrix baseMatrix = this.GetBaseMatrix(this.MyOSM.MyNetwork);
-            //if (baseMatrix == null) return;
-
-            //Matrix agentMatrix = baseMatrix.Clone(); ;
-            //var current_p = this.PointToClient(Control.MousePosition);
-            //current_p.X -= (int)(agentMatrix.OffsetX * this.ViewScale);
-            //current_p.Y -= (int)(agentMatrix.OffsetY * this.ViewScale);
-
+            Matrix baseMatrix = this.GetBaseMatrix(this.MyOSM.MyNetwork, this.MyOSM.MyAgentSet);
             //縮尺を変更
             Matrix agentMatrix = new Matrix();
             float modifyScale = 1 / this.ViewScale;
