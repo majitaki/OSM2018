@@ -13,10 +13,12 @@ namespace OSM2018.GUIs
 {
     public partial class LearningGUI : UserControl
     {
+        MainForm MyMF;
         I_OSM MyOSM;
 
-        public LearningGUI()
+        public LearningGUI(MainForm mf)
         {
+            this.MyMF = mf;
             InitializeComponent();
         }
 

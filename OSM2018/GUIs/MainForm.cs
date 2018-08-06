@@ -25,6 +25,10 @@ namespace OSM2018
         ExperimentGUI MyExperimentGUI;
         AnimationForm MyAnimationForm;
         I_OSM MyOSM;
+        int CurrentWidth;
+        int CurrentHeight;
+
+        bool PlayStopFlag;
 
         public MainForm()
         {
@@ -43,19 +47,20 @@ namespace OSM2018
             this.numericUpDownStepsControl.Value = 1000;
             this.numericUpDownSpeedControl.Value = 1;
             this.labelRoundNum.Text = 1.ToString();
+            this.PlayStopFlag = true;
         }
 
         void UserInitializeComponent()
         {
             this.SettingGUIList = new List<UserControl>();
 
-            this.MyAnimationForm = new AnimationForm();
+            this.MyAnimationForm = new AnimationForm(this);
             this.MyAnimationForm.SetOSM(this.MyOSM);
             this.MyAnimationForm.Show();
             this.MyAnimationForm.Left = this.Right;
             this.DoubleBuffered = true;
 
-            this.MyNetworkGUI = new NetworkGUI(this.MyAnimationForm);
+            this.MyNetworkGUI = new NetworkGUI(this.MyAnimationForm, this);
             this.MyNetworkGUI.SetOSM(this.MyOSM);
             this.MyNetworkGUI.Dock = DockStyle.Fill;
             this.MyNetworkGUI.Name = "NetworkGUI";
@@ -63,7 +68,7 @@ namespace OSM2018
             this.SettingGUIList.Add(this.MyNetworkGUI);
             this.MyNetworkGUI.Visible = true;
 
-            this.MyAgentGUI = new AgentGUI(this.MyNetworkGUI, this.MyAnimationForm);
+            this.MyAgentGUI = new AgentGUI(this.MyNetworkGUI, this.MyAnimationForm, this);
             this.MyAgentGUI.SetOSM(this.MyOSM);
             this.MyAgentGUI.Dock = DockStyle.Fill;
             this.MyAgentGUI.Name = "AgentGUI";
@@ -71,7 +76,7 @@ namespace OSM2018
             this.SettingGUIList.Add(this.MyAgentGUI);
             this.MyAgentGUI.Visible = false;
 
-            this.MyLearningGUI = new LearningGUI();
+            this.MyLearningGUI = new LearningGUI(this);
             this.MyLearningGUI.SetOSM(this.MyOSM);
             this.MyLearningGUI.Dock = DockStyle.Fill;
             this.MyLearningGUI.Name = "LearningGUI";
@@ -138,15 +143,17 @@ namespace OSM2018
         #endregion
 
 
-        void PlayStop()
+        internal void PlayStop()
         {
+            this.PlayStopFlag = true;
+            this.ChangePlayButton(false);
             int round_num = 1;
             int step_num = 0;
 
             this.labelRoundNum.Text = round_num.ToString();
             this.labelStepNum.Text = step_num.ToString();
             if (this.MyOSM == null || this.MyOSM.MyNetwork == null || this.MyOSM.MyAgentSet == null) return;
-            this.timerAnimation.Enabled = false;
+
             if (this.radioButtonStepCheck.Checked)
             {
                 this.MyOSM.InitializePlaySteps();
@@ -196,6 +203,27 @@ namespace OSM2018
             this.MyAnimationForm.UpdatePictureBox();
         }
 
+        void ChangePlayButton(bool turn_mode)
+        {
+            if (turn_mode)
+            {
+                this.PlayStopFlag = !this.PlayStopFlag;
+            }
+
+            if (!this.PlayStopFlag)
+            {
+                this.timerAnimation.Enabled = true;
+                this.radioButtonPlay.Image = Properties.Resources.icon_pause;
+            }
+            else
+            {
+                this.timerAnimation.Enabled = false;
+                this.radioButtonPlay.Image = Properties.Resources.icon_play;
+            }
+
+
+        }
+
         private void timerAnimation_Tick(object sender, EventArgs e)
         {
             this.PlayOneStep();
@@ -213,13 +241,37 @@ namespace OSM2018
 
         private void radioButtonPlay_Click(object sender, EventArgs e)
         {
-            if (this.radioButtonPlay.Checked) this.timerAnimation.Enabled = true;
-
+            this.ChangePlayButton(true);
         }
 
         private void radioButtonPlayStep_Click(object sender, EventArgs e)
         {
             this.PlayOneStep();
+        }
+
+        private void buttonGraphShow_Click(object sender, EventArgs e)
+        {
+            this.MyAnimationForm.Left = this.Right;
+            this.MyAnimationForm.Visible = !this.MyAnimationForm.Visible;
+        }
+
+        private void checkBoxMenu_CheckedChanged(object sender, EventArgs e)
+        {
+            var menu = (CheckBox)sender;
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                menu.Checked = false;
+                return;
+            }
+
+            if (menu.Checked)
+            {
+                this.CurrentHeight = this.Height;
+            }
+            else
+            {
+                this.ClientSize = new System.Drawing.Size(this.CurrentWidth, this.CurrentHeight);
+            }
         }
     }
 }

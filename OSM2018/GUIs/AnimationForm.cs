@@ -101,6 +101,7 @@ namespace OSM2018.GUIs
             }
         }
 
+        MainForm MyMF;
         internal I_OSM MyOSM;
 
 
@@ -124,8 +125,9 @@ namespace OSM2018.GUIs
         float DraggingOldX;
         float DraggingOldY;
 
-        public AnimationForm()
+        public AnimationForm(MainForm mf)
         {
+            this.MyMF = mf;
             InitializeComponent();
             this.UserInitialize();
             this.InitializeNetwork();
@@ -218,6 +220,19 @@ namespace OSM2018.GUIs
         public void UpdatePictureBox()
         {
             this.pictureBoxAnimation.Invalidate();
+            this.UpdateInfo();
+        }
+
+        void UpdateInfo()
+        {
+            if (this.NullCheck() || this.SelectedAgentList.Count == 0) return;
+
+            Console.WriteLine("-----");
+            this.MyOSM.PrintNodeInfo(this.SelectedAgentList.Last());
+            if (this.MyOSM.MyAgentSet == null) return;
+            this.MyOSM.PrintAgentInfo(this.SelectedAgentList.Last());
+            if (this.MyOSM.MyAlgo == null) return;
+            this.MyOSM.PrintAlgoAgentInfo(this.SelectedAgentList.Last());
         }
 
         Matrix GetBaseMatrix(I_Network network, I_AgentSet agent_set)
@@ -382,7 +397,6 @@ namespace OSM2018.GUIs
                         break;
                 }
 
-
             }
         }
 
@@ -429,101 +443,11 @@ namespace OSM2018.GUIs
                 float sigmaSweepDeg = (g_sigma - r_sigma) * 180f;
 
 
-                e.Graphics.FillPie(this.MyDrawSetting.LightGrayBrush, -r_outer / 2, -r_outer / 2, r_outer, r_outer, zeroDeg, 180);
-                e.Graphics.FillPie(this.MyDrawSetting.GrayBrush, -r_outer / 2, -r_outer / 2, r_outer, r_outer, sigmaLeftDeg, sigmaSweepDeg);
+                //e.Graphics.FillPie(this.MyDrawSetting.LightGrayBrush, -r_outer / 2, -r_outer / 2, r_outer, r_outer, zeroDeg, 180);
+                //e.Graphics.FillPie(this.MyDrawSetting.GrayBrush, -r_outer / 2, -r_outer / 2, r_outer, r_outer, sigmaLeftDeg, sigmaSweepDeg);
+                e.Graphics.FillPie(this.MyDrawSetting.OpinionBrush, -r_outer / 2, -r_outer / 2, r_outer, r_outer, sigmaLeftDeg, sigmaSweepDeg);
                 e.Graphics.FillPie(this.MyDrawSetting.RedSigmaBlush, -r_outer / 2, -r_outer / 2, r_outer, r_outer, zeroDeg, r_sigma * 180f);
                 e.Graphics.FillPie(this.MyDrawSetting.GreenSigmaBlush, -r_outer / 2, -r_outer / 2, r_outer, r_outer, sigmaRightDeg, r_sigma * 180f);
-            }
-
-            //外枠の円
-            this.MyPen = (Pen)this.MyDrawSetting.PriorBeliefPen.Clone();
-            this.MyPen.Width /= this.ViewScale;
-            e.Graphics.DrawEllipse(this.MyPen, -r_outer / 2, -r_outer / 2, r_outer, r_outer);
-
-            //信念のmeter
-            this.MyPen = (Pen)this.MyDrawSetting.MeterPen.Clone();
-            this.MyPen.Width /= this.ViewScale;
-            e.Graphics.DrawLine(this.MyPen,
-                0,
-                0,
-                (float)r2 * (float)Math.Cos(Math.PI * my_belief + Math.PI),
-                (float)r2 * (float)Math.Sin(Math.PI * my_belief + Math.PI)
-                );
-
-            //init belief
-            this.MyPen = (Pen)this.MyDrawSetting.MeterPen.Clone();
-            this.MyPen.Width /= this.ViewScale;
-            e.Graphics.DrawLine(this.MyPen,
-                (float)0.5 * r3 * (float)Math.Cos(Math.PI * my_init_belief + Math.PI),
-                (float)0.5 * r3 * (float)Math.Sin(Math.PI * my_init_belief + Math.PI),
-                (float)0.55 * r3 * (float)Math.Cos(Math.PI * my_init_belief + Math.PI),
-                (float)0.55 * r3 * (float)Math.Sin(Math.PI * my_init_belief + Math.PI)
-                );
-
-        }
-
-        void DrawAATAgent(PaintEventArgs e, I_Agent agent, float r)
-        {
-            float r2 = r * 2;
-            float r3 = r * 3;
-            float r4 = r * 4;
-            float r5 = r * 5;
-            float r_outer = r3;
-
-            var algo = this.MyOSM.MyAlgo as AAT_Algo;
-            var my_opinion = agent.Opinion;
-            var my_belief = (float)agent.Belief;
-            var my_init_belief = (float)agent.InitBelief;
-            var g_sigma = (float)agent.GreenSigma;
-            var r_sigma = (float)agent.RedSigma;
-
-            if (my_opinion == InfoEnum.Green)
-            {
-                this.MyDrawSetting.OpinionBrush.Color = this.MyDrawSetting.OpCorrectColor;
-            }
-            else if (my_opinion == InfoEnum.Red)
-            {
-                this.MyDrawSetting.OpinionBrush.Color = this.MyDrawSetting.OpIncorrectColor;
-            }
-            else if (my_opinion == InfoEnum.Undeter)
-            {
-                this.MyDrawSetting.OpinionBrush.Color = this.MyDrawSetting.OpUndeterColor;
-            }
-
-            //意見の円
-            e.Graphics.FillEllipse(this.MyDrawSetting.OpinionBrush, -r_outer / 2, -r_outer / 2, r_outer, r_outer);
-
-            //扇型を表示
-            {
-                float zeroDeg = 180f;
-                float sigmaLeftDeg = (r_sigma * 180f + zeroDeg);
-                float sigmaRightDeg = (g_sigma * 180f + zeroDeg);
-                float sigmaSweepDeg = (g_sigma - r_sigma) * 180f;
-
-
-                e.Graphics.FillPie(this.MyDrawSetting.LightGrayBrush, -r_outer / 2, -r_outer / 2, r_outer, r_outer, zeroDeg, 180);
-                e.Graphics.FillPie(this.MyDrawSetting.GrayBrush, -r_outer / 2, -r_outer / 2, r_outer, r_outer, sigmaLeftDeg, sigmaSweepDeg);
-                e.Graphics.FillPie(this.MyDrawSetting.RedSigmaBlush, -r_outer / 2, -r_outer / 2, r_outer, r_outer, zeroDeg, r_sigma * 180f);
-                e.Graphics.FillPie(this.MyDrawSetting.GreenSigmaBlush, -r_outer / 2, -r_outer / 2, r_outer, r_outer, sigmaRightDeg, r_sigma * 180f);
-            }
-
-            //目盛り作成
-
-            if (algo.CandidateSetList != null)
-            {
-                var scale_list = algo.CandidateSetList[agent.NodeID].GetSelectCandidate().BeliefScaleList;
-
-                this.MyPen = (Pen)this.MyDrawSetting.BlackThinPen.Clone();
-                this.MyPen.Width /= this.ViewScale;
-                foreach (var scale in scale_list)
-                {
-                    e.Graphics.DrawLine(this.MyPen,
-                              r_outer / 3 * (float)Math.Cos(Math.PI * scale + Math.PI),
-                              r_outer / 3 * (float)Math.Sin(Math.PI * scale + Math.PI),
-                              r_outer / 2 * (float)Math.Cos(Math.PI * scale + Math.PI),
-                              r_outer / 2 * (float)Math.Sin(Math.PI * scale + Math.PI)
-                              );
-                }
             }
 
             //外枠の円
@@ -548,8 +472,8 @@ namespace OSM2018.GUIs
             e.Graphics.DrawLine(this.MyPen,
                 0,
                 0,
-                (float)r2 * (float)Math.Cos(Math.PI * my_belief + Math.PI),
-                (float)r2 * (float)Math.Sin(Math.PI * my_belief + Math.PI));
+                (float)0.5 * r3 * (float)Math.Cos(Math.PI * my_belief + Math.PI),
+                (float)0.5 * r3 * (float)Math.Sin(Math.PI * my_belief + Math.PI));
 
 
             //init belief
@@ -561,6 +485,36 @@ namespace OSM2018.GUIs
                 (float)0.55 * r3 * (float)Math.Cos(Math.PI * my_init_belief + Math.PI),
                 (float)0.55 * r3 * (float)Math.Sin(Math.PI * my_init_belief + Math.PI)
                 );
+
+        }
+
+        void DrawAATAgent(PaintEventArgs e, I_Agent agent, float r)
+        {
+            this.DrawNullAgent(e, agent, r);
+            float r2 = r * 2;
+            float r3 = r * 3;
+            float r4 = r * 4;
+            float r5 = r * 5;
+            float r_outer = r3;
+            var algo = this.MyOSM.MyAlgo as AAT_Algo;
+
+            //目盛り作成
+            if (algo.CandidateSetList != null)
+            {
+                var scale_list = algo.CandidateSetList[agent.NodeID].GetSelectCandidate().BeliefScaleList;
+
+                this.MyPen = (Pen)this.MyDrawSetting.BlackThinPen.Clone();
+                this.MyPen.Width /= this.ViewScale;
+                foreach (var scale in scale_list)
+                {
+                    e.Graphics.DrawLine(this.MyPen,
+                              r_outer / 3 * (float)Math.Cos(Math.PI * scale + Math.PI),
+                              r_outer / 3 * (float)Math.Sin(Math.PI * scale + Math.PI),
+                              r_outer / 2 * (float)Math.Cos(Math.PI * scale + Math.PI),
+                              r_outer / 2 * (float)Math.Sin(Math.PI * scale + Math.PI)
+                              );
+                }
+            }
         }
 
         void UpdateNeighborAgent(PaintEventArgs e, Matrix base_matrix)
@@ -782,14 +736,6 @@ namespace OSM2018.GUIs
 
             this.Invoke(new Action(this.UpdatePictureBox));
 
-            if (this.NullCheck() || this.SelectedAgentList.Count == 0) return;
-
-            Console.WriteLine("-----");
-            this.MyOSM.PrintNodeInfo(this.SelectedAgentList.Last());
-            if (this.MyOSM.MyAgentSet == null) return;
-            this.MyOSM.PrintAgentInfo(this.SelectedAgentList.Last());
-            if (this.MyOSM.MyAlgo == null) return;
-            this.MyOSM.PrintAlgoAgentInfo(this.SelectedAgentList.Last());
         }
 
         private void pictureBoxAnimation_SizeChanged(object sender, EventArgs e)

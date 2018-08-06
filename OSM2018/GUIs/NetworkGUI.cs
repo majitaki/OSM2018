@@ -27,13 +27,15 @@ namespace OSM2018.GUIs
     public partial class NetworkGUI : UserControl
     {
         AnimationForm MyAnimationForm;
+        MainForm MyMF;
         internal I_OSM MyOSM;
 
-        public NetworkGUI(AnimationForm anime_form)
+        public NetworkGUI(AnimationForm anime_form, MainForm mf)
         {
             InitializeComponent();
             this.UserInitialize();
             this.MyAnimationForm = anime_form;
+            this.MyMF = mf;
         }
 
         void UserInitialize()
@@ -57,6 +59,7 @@ namespace OSM2018.GUIs
 
         async private void buttonGenerateGraph_Click(object sender, EventArgs e)
         {
+            this.MyMF.PlayStop();
             I_NetworkGenerator network_generator = null;
             this.MyOSM.MyNetwork = null;
             this.MyOSM.MyAgentSet = null;

@@ -24,10 +24,12 @@ namespace OSM2018.GUIs
     {
         NetworkGUI MyNetworkGUI;
         AnimationForm MyAnimationForm;
+        MainForm MyMF;
         internal I_OSM MyOSM;
 
-        public AgentGUI(NetworkGUI network_gui, AnimationForm anime_form)
+        public AgentGUI(NetworkGUI network_gui, AnimationForm anime_form, MainForm mf)
         {
+            this.MyMF = mf;
             this.MyNetworkGUI = network_gui;
             this.MyAnimationForm = anime_form;
             InitializeComponent();
@@ -105,6 +107,7 @@ namespace OSM2018.GUIs
 
         private void buttonGenerateAgentNetwork_Click(object sender, EventArgs e)
         {
+            this.MyMF.PlayStop();
             I_Network network = this.MyNetworkGUI.MyOSM.MyNetwork;
             if (network == null) return;
             this.GenerateAgentWithAlgo(network);

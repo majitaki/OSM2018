@@ -37,7 +37,6 @@
             this.radioButtonSeedPlus = new System.Windows.Forms.RadioButton();
             this.radioButtonPlay = new System.Windows.Forms.RadioButton();
             this.radioButtonPlayStep = new System.Windows.Forms.RadioButton();
-            this.radioButtonMultiplePlay = new System.Windows.Forms.RadioButton();
             this.panel4 = new System.Windows.Forms.Panel();
             this.buttonGraphShow = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
@@ -84,7 +83,7 @@
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(729, 116);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(695, 116);
             this.flowLayoutPanel2.TabIndex = 7;
             this.flowLayoutPanel2.WrapContents = false;
             // 
@@ -102,6 +101,7 @@
             this.checkBoxMenu.Size = new System.Drawing.Size(42, 110);
             this.checkBoxMenu.TabIndex = 8;
             this.checkBoxMenu.UseVisualStyleBackColor = true;
+            this.checkBoxMenu.CheckedChanged += new System.EventHandler(this.checkBoxMenu_CheckedChanged);
             // 
             // panel3
             // 
@@ -110,7 +110,7 @@
             this.panel3.Controls.Add(this.flowLayoutPanel4);
             this.panel3.Location = new System.Drawing.Point(51, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(308, 112);
+            this.panel3.Size = new System.Drawing.Size(256, 112);
             this.panel3.TabIndex = 7;
             // 
             // flowLayoutPanel4
@@ -119,10 +119,9 @@
             this.flowLayoutPanel4.Controls.Add(this.radioButtonSeedPlus);
             this.flowLayoutPanel4.Controls.Add(this.radioButtonPlay);
             this.flowLayoutPanel4.Controls.Add(this.radioButtonPlayStep);
-            this.flowLayoutPanel4.Controls.Add(this.radioButtonMultiplePlay);
             this.flowLayoutPanel4.Location = new System.Drawing.Point(3, 7);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(302, 66);
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(248, 66);
             this.flowLayoutPanel4.TabIndex = 13;
             // 
             // radioButtonPlayStop
@@ -202,24 +201,6 @@
             this.radioButtonPlayStep.UseVisualStyleBackColor = false;
             this.radioButtonPlayStep.Click += new System.EventHandler(this.radioButtonPlayStep_Click);
             // 
-            // radioButtonMultiplePlay
-            // 
-            this.radioButtonMultiplePlay.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioButtonMultiplePlay.AutoSize = true;
-            this.radioButtonMultiplePlay.BackColor = System.Drawing.Color.Transparent;
-            this.radioButtonMultiplePlay.FlatAppearance.BorderSize = 0;
-            this.radioButtonMultiplePlay.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.ControlDark;
-            this.radioButtonMultiplePlay.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.radioButtonMultiplePlay.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark;
-            this.radioButtonMultiplePlay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.radioButtonMultiplePlay.Image = global::OSM2018.Properties.Resources.icon_fastforward;
-            this.radioButtonMultiplePlay.Location = new System.Drawing.Point(243, 3);
-            this.radioButtonMultiplePlay.Name = "radioButtonMultiplePlay";
-            this.radioButtonMultiplePlay.Size = new System.Drawing.Size(54, 54);
-            this.radioButtonMultiplePlay.TabIndex = 9;
-            this.radioButtonMultiplePlay.TabStop = true;
-            this.radioButtonMultiplePlay.UseVisualStyleBackColor = false;
-            // 
             // panel4
             // 
             this.panel4.Controls.Add(this.label1);
@@ -228,7 +209,7 @@
             this.panel4.Controls.Add(this.label17);
             this.panel4.Controls.Add(this.numericUpDownControlSeed);
             this.panel4.Controls.Add(this.numericUpDownStepsControl);
-            this.panel4.Location = new System.Drawing.Point(365, 3);
+            this.panel4.Location = new System.Drawing.Point(313, 3);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(139, 112);
             this.panel4.TabIndex = 9;
@@ -238,12 +219,13 @@
             this.buttonGraphShow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonGraphShow.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.buttonGraphShow.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.buttonGraphShow.Location = new System.Drawing.Point(114, 3);
+            this.buttonGraphShow.Location = new System.Drawing.Point(10, 7);
             this.buttonGraphShow.Name = "buttonGraphShow";
             this.buttonGraphShow.Size = new System.Drawing.Size(101, 27);
             this.buttonGraphShow.TabIndex = 22;
             this.buttonGraphShow.Text = "Graph Show";
             this.buttonGraphShow.UseVisualStyleBackColor = false;
+            this.buttonGraphShow.Click += new System.EventHandler(this.buttonGraphShow_Click);
             // 
             // label17
             // 
@@ -279,9 +261,9 @@
             this.panel2.Controls.Add(this.buttonGraphShow);
             this.panel2.Controls.Add(this.labelStep);
             this.panel2.Controls.Add(this.labelRound);
-            this.panel2.Location = new System.Drawing.Point(510, 3);
+            this.panel2.Location = new System.Drawing.Point(458, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(215, 112);
+            this.panel2.Size = new System.Drawing.Size(232, 112);
             this.panel2.TabIndex = 0;
             // 
             // labelRoundNum
@@ -573,7 +555,7 @@
             this.numericUpDownStepsControl.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.numericUpDownStepsControl.Location = new System.Drawing.Point(78, 44);
             this.numericUpDownStepsControl.Maximum = new decimal(new int[] {
-            1000,
+            10000,
             0,
             0,
             0});
@@ -586,7 +568,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ClientSize = new System.Drawing.Size(729, 667);
+            this.ClientSize = new System.Drawing.Size(695, 667);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.flowLayoutPanel2);
             this.Name = "MainForm";
@@ -618,7 +600,6 @@
         private System.Windows.Forms.RadioButton radioButtonSeedPlus;
         private System.Windows.Forms.RadioButton radioButtonPlay;
         private System.Windows.Forms.RadioButton radioButtonPlayStep;
-        private System.Windows.Forms.RadioButton radioButtonMultiplePlay;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button buttonGraphShow;
         private System.Windows.Forms.Label label17;
