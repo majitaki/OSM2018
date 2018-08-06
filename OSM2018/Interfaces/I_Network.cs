@@ -15,5 +15,7 @@ namespace OSM2018.Interfaces
         List<I_Edge> EdgeList { get; }
         I_Layout MyLayout { get; }
         void SetLayout(I_Layout layout);
+        void PrintInfo();
+        void PrintInfo(int node_id);
     }
 }

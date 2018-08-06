@@ -8,6 +8,6 @@ namespace OSM2018.Interfaces.Algo.AAT
 {
     interface I_EstimatingAwaRates
     {
-        void Run(I_AgentSet agent_set, List<I_CandidateSet> canset_list, int current_round, int total_rounds);
+        void Run(I_AgentSet agent_set, List<I_CandidateSet> canset_list, int current_round);
     }
 }

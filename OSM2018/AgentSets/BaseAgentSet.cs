@@ -50,6 +50,17 @@ namespace OSM2018.AgentSets
             }
         }
 
+
+        public void SetWeights(List<double> weight_list)
+        {
+            if (this.AgentList.Count != weight_list.Count) return;
+
+            foreach (var agent in this.AgentList)
+            {
+                agent.SetWeight(weight_list[agent.NodeID]);
+            }
+        }
+
         public void InitBelief()
         {
             foreach (var agent in this.AgentList)

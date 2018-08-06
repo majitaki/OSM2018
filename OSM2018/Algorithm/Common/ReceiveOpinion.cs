@@ -55,10 +55,11 @@ namespace OSM2018.Algorithm.Common
 
                 //opinion update
                 target_agent.Opinion = OpinionBeliefUpdater.UpdateOpinion(pre_opinion, target_agent.Belief, target_agent.GreenSigma, target_agent.RedSigma);
-                target_agent.IsChanged = (pre_opinion != target_agent.Opinion) ? true : false;
+                target_agent.IsChanged = (target_agent.InitOpinion != target_agent.Opinion) ? true : false;
+                var op_change = (pre_opinion != target_agent.Opinion) ? true : false;
 
                 //send message
-                if (target_agent.IsChanged)
+                if (op_change)
                 {
                     var neighbor_id_list = network.NodeList[target_agent.NodeID].NeighborNodeIDList;
                     foreach (var nei_id in neighbor_id_list)

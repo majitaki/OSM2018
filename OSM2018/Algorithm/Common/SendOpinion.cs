@@ -44,7 +44,7 @@ namespace OSM2018.Algorithm.Common
         {
             this.OpinionIntroCounts++;
             if (this.OpinionIntroCounts < this.OpinionIntroductionDuration) return;
-            if (RandomPool.Get(SeedEnum.PlayStepSeed).NextDouble() > op_intro_rate) return;
+
             this.OpinionIntroCounts = 0;
             this.EnvOpinionCounts++;
 
@@ -54,6 +54,8 @@ namespace OSM2018.Algorithm.Common
             foreach (var agent in agent_set.AgentList)
             {
                 if (!(agent.IsSensor)) continue;
+                if (RandomPool.Get(SeedEnum.PlayStepSeed).NextDouble() > op_intro_rate) continue;
+
                 var env_info = InfoEnum.Undeter;
                 if (RandomPool.Get(SeedEnum.PlayStepSeed).NextDouble() < agent.SensorAccuracy)
                 {

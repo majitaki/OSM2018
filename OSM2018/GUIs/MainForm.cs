@@ -38,6 +38,11 @@ namespace OSM2018
         {
             Debug.Listeners.Add(new TextWriterTraceListener(Console.Out));
             PythonProxy.StartUpPython();
+            this.radioButtonStepCheck.Checked = true;
+            this.radioButtonNetworkGUI.Checked = true;
+            this.numericUpDownStepsControl.Value = 1000;
+            this.numericUpDownSpeedControl.Value = 1;
+            this.labelRoundNum.Text = 1.ToString();
         }
 
         void UserInitializeComponent()
@@ -132,41 +137,61 @@ namespace OSM2018
 
         #endregion
 
-        void ControlChange()
-        {
-
-        }
 
         void PlayStop()
         {
-            int round_num = 0;
+            int round_num = 1;
             int step_num = 0;
 
             this.labelRoundNum.Text = round_num.ToString();
             this.labelStepNum.Text = step_num.ToString();
             if (this.MyOSM == null || this.MyOSM.MyNetwork == null || this.MyOSM.MyAgentSet == null) return;
             this.timerAnimation.Enabled = false;
-            this.MyOSM.Initialize();
+            if (this.radioButtonStepCheck.Checked)
+            {
+                this.MyOSM.InitializePlaySteps();
+            }
+            else if (this.radioButtonRoundCheck.Checked)
+            {
+                this.MyOSM.InitializeRunRounds();
+            }
             this.MyAnimationForm.UpdatePictureBox();
         }
 
         void PlaySeedStop()
         {
             this.PlayStop();
-            this.numericUpDownPlayStepSeed.Value++;
+            this.numericUpDownControlSeed.Value++;
         }
 
         void PlayOneStep()
         {
-            // if (!this.radioButtonPlay.Checked || !this.radioButtonPlayStep.Checked) return;
-
-            var playstep_seed = (int)this.numericUpDownPlayStepSeed.Value;
-            playstep_seed += int.Parse(this.labelStepNum.Text);
             var osm = this.MyAgentGUI.MyOSM;
-            if (osm == null) return;
+            if (osm == null || osm.MyAgentSet == null || osm.MyAlgo == null) return;
 
-            osm.PlaySteps(1, playstep_seed);
-            this.labelStepNum.Text = (int.Parse(this.labelStepNum.Text) + 1).ToString();
+            var control_seed = (int)this.numericUpDownControlSeed.Value;
+            var control_speed = (int)this.numericUpDownSpeedControl.Value;
+            var control_steps = (int)this.numericUpDownStepsControl.Value;
+
+            var current_rounds = int.Parse(this.labelRoundNum.Text);
+            var current_steps = int.Parse(this.labelStepNum.Text);
+
+            control_seed += int.Parse(this.labelStepNum.Text);
+            control_seed += int.Parse(this.labelRoundNum.Text);
+            osm.PlaySteps(control_speed, control_seed);
+            this.labelStepNum.Text = (current_steps + control_speed).ToString();
+            current_steps += control_speed;
+
+            if (this.radioButtonRoundCheck.Checked)
+            {
+                if (control_steps <= current_steps)
+                {
+                    osm.RunRoundWithoutPlaySteps(current_rounds, control_seed);
+                    //osm.RunRounds(1, control_steps, control_seed);
+                    this.labelStepNum.Text = 0.ToString();
+                    this.labelRoundNum.Text = (current_rounds + 1).ToString();
+                }
+            }
 
             this.MyAnimationForm.UpdatePictureBox();
         }

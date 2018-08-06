@@ -14,6 +14,7 @@ namespace OSM2018.Interfaces
         void SetSensors(int num, double sensor_acc);
         void SetInitWeights(List<double> init_weight_list);
         void SetInitWeights(List<Dictionary<int, double>> init_weight_dictionary_list);
+        void SetWeights(List<double> weight_list);
         void InitBelief();
         void InitOpinion();
         void InitWeight();

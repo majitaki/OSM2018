@@ -28,5 +28,26 @@ namespace OSM2018.Networks
         {
             this.MyLayout = layout;
         }
+
+        public void PrintInfo()
+        {
+            Console.WriteLine($"Network Enum: {this.MyNetworkEnum}");
+            Console.WriteLine($"Network Seed: {this.NetworkSeed}");
+            Console.WriteLine($"Total Nodes: {this.NodeList.Count}");
+            Console.WriteLine($"Total Edges: {this.EdgeList.Count}");
+            Console.WriteLine($"Layout Enum: {this.MyLayout.MyLayoutEnum}");
+        }
+
+        public void PrintInfo(int node_id)
+        {
+            if (!this.NodeList.Exists(node => node.NodeID == node_id))
+            {
+                Console.WriteLine($"Not Exist Node of {node_id}");
+                return;
+            }
+
+            Console.WriteLine($"Node ID: {node_id}");
+            Console.WriteLine($"Total Neighbors: {this.NodeList[node_id].NeighborNodeIDList.Count}");
+        }
     }
 }

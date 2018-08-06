@@ -103,7 +103,6 @@ namespace OSM2018.GUIs
 
         internal I_OSM MyOSM;
 
-        bool IsLayoutChange;
 
         DrawSetting MyDrawSetting;
         Pen MyPen;
@@ -112,8 +111,6 @@ namespace OSM2018.GUIs
         List<int> NeighborAgentList;
         int NodeSizeScale;
         delegate void MyDelegate();
-        int ZoomValue;
-        int MoveValue;
 
         List<AgentView> AgentViewList;
         List<EdgeView> EdgeViewList;
@@ -157,10 +154,6 @@ namespace OSM2018.GUIs
             this.NodeSizeScale = this.trackBarRadius.Value;
 
             this.MouseWheel += new MouseEventHandler(this.pictureboxAnimation_MouseWheel);
-
-            this.ZoomValue = 0;
-            this.MoveValue = 0;
-            this.IsLayoutChange = false;
 
             this.comboBoxLayout.SelectedIndex = 0;
         }
@@ -570,6 +563,70 @@ namespace OSM2018.GUIs
                 );
         }
 
+        void UpdateNeighborAgent(PaintEventArgs e, Matrix base_matrix)
+        {
+            this.MyPen = (Pen)this.MyDrawSetting.RedPen.Clone();
+            this.MyPen.Width /= this.ViewScale;
+
+            foreach (var agent in this.AgentViewList)
+            {
+                if (!this.NeighborAgentList.Contains(agent.ID)) continue;
+                float r = agent.R;
+                float r2 = r * 2;
+                float r3 = r * 3;
+                float r4 = r * 4;
+                float r5 = r * 5;
+                float r_outer = r3;
+                Matrix agentMatrix = base_matrix.Clone();
+
+                try
+                {
+                    agentMatrix.Translate(this.AgentViewList[agent.ID].X, this.AgentViewList[agent.ID].Y);
+                    e.Graphics.Transform = agentMatrix.Clone(); ;
+                    e.Graphics.DrawEllipse(this.MyPen, -r_outer / 2, -r_outer / 2, r_outer, r_outer);
+                }
+                catch { }
+            }
+        }
+
+        void UpdateSelectAgent(PaintEventArgs e, Matrix base_matrix)
+        {
+            this.MyPen = (Pen)this.MyDrawSetting.SelectedPen.Clone();
+            this.MyPen.Width /= this.ViewScale;
+
+            foreach (var agent in this.AgentViewList)
+            {
+                if (!this.SelectedAgentList.Contains(agent.ID)) continue;
+                float r = agent.R;
+                float r2 = r * 2;
+                float r3 = r * 3;
+                float r4 = r * 4;
+                float r5 = r * 5;
+                float r_outer = r3;
+                Matrix agentMatrix = base_matrix.Clone();
+
+                try
+                {
+                    agentMatrix.Translate(this.AgentViewList[agent.ID].X, this.AgentViewList[agent.ID].Y);
+                    e.Graphics.Transform = agentMatrix.Clone(); ;
+                    e.Graphics.DrawEllipse(this.MyPen, -r_outer / 2, -r_outer / 2, r_outer, r_outer);
+                }
+                catch { }
+            }
+        }
+
+        void UpdateSelectEdge(PaintEventArgs e)
+        {
+            this.MyPen = (Pen)this.MyDrawSetting.SelectedLinkPen.Clone();
+            this.MyPen.Width /= this.ViewScale;
+
+            foreach (var edge in this.EdgeViewList)
+            {
+                if (!this.SelectedEdgeList.Contains(edge.ID)) continue;
+                e.Graphics.DrawLine(this.MyPen, edge.SourcePoint, edge.TargetPoint);
+            }
+        }
+
         bool NullCheck()
         {
             return (this.MyOSM.MyNetwork == null) ? true : false;
@@ -621,11 +678,26 @@ namespace OSM2018.GUIs
             e.Graphics.Transform = base_matrix;
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
+            //edge
             this.UpdateEdge(e);
             e.Graphics.Transform = base_matrix;
 
+            //agent
             this.UpdateAgent(e, base_matrix);
             e.Graphics.Transform = base_matrix;
+
+            //select neighbor
+            this.UpdateNeighborAgent(e, base_matrix);
+            e.Graphics.Transform = base_matrix;
+
+            //select agent
+            this.UpdateSelectAgent(e, base_matrix);
+            e.Graphics.Transform = base_matrix;
+
+            //select edge
+            this.UpdateSelectEdge(e);
+            e.Graphics.Transform = base_matrix;
+
         }
 
         private void pictureBoxAnimation_DoubleClick(object sender, EventArgs e)
@@ -710,7 +782,14 @@ namespace OSM2018.GUIs
 
             this.Invoke(new Action(this.UpdatePictureBox));
 
-            if (this.NullCheck()) return;
+            if (this.NullCheck() || this.SelectedAgentList.Count == 0) return;
+
+            Console.WriteLine("-----");
+            this.MyOSM.PrintNodeInfo(this.SelectedAgentList.Last());
+            if (this.MyOSM.MyAgentSet == null) return;
+            this.MyOSM.PrintAgentInfo(this.SelectedAgentList.Last());
+            if (this.MyOSM.MyAlgo == null) return;
+            this.MyOSM.PrintAlgoAgentInfo(this.SelectedAgentList.Last());
         }
 
         private void pictureBoxAnimation_SizeChanged(object sender, EventArgs e)

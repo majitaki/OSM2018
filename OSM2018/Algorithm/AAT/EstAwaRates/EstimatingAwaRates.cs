@@ -11,7 +11,7 @@ namespace OSM2018.Algorithm.AAT.EstAwaRates
 {
     class EstimatingAwaRates : I_EstimatingAwaRates
     {
-        public void Run(I_AgentSet agent_set, List<I_CandidateSet> canset_list, int current_round, int total_rounds)
+        public void Run(I_AgentSet agent_set, List<I_CandidateSet> canset_list, int current_round)
         {
             foreach (var agent in agent_set.AgentList)
             {
@@ -28,13 +28,18 @@ namespace OSM2018.Algorithm.AAT.EstAwaRates
             foreach (var can in canset.SingleCandidateList)
             {
                 var pre_counts = (current_round - 1) * can.AwaRate;
+
                 if (this.IsEvsOpinionFormed(agent, select_can, can))
                 {
                     can.AwaRate = (pre_counts + 1) / current_round;
+                    can.AwaCounts = (int)pre_counts + 1;
+                    can.AwaCurrentRounds = current_round;
                 }
                 else
                 {
                     can.AwaRate = (pre_counts + 0) / current_round;
+                    can.AwaCounts = (int)pre_counts + 0;
+                    can.AwaCurrentRounds = current_round;
                 }
             }
         }

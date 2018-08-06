@@ -17,11 +17,15 @@ namespace OSM2018.Algorithm.AAT
         public List<double> BeliefScaleList { get; }
         public int OpinionFormedSuccessCounts { get; }
         public int OpinionFormedFailureCounts { get; }
+        public int AwaCounts { get; set; }
+        public int AwaCurrentRounds { get; set; }
 
         public SingleCandidate(int can_index, I_Agent agent)
         {
             this.CanIndex = can_index;
             this.CanWeight = OpinionBeliefUpdater.GetWeightForScale(agent.InitBelief, agent.GreenSigma, agent.RedSigma, can_index);
+            this.AwaCounts = 0;
+            this.AwaCurrentRounds = 0;
 
             this.BeliefScaleList = new List<double>();
             this.BeliefScaleList.Add(agent.InitBelief);

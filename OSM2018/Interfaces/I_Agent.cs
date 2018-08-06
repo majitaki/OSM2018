@@ -1,4 +1,5 @@
-﻿using OSM2018.Utility;
+﻿using OSM2018.Interfaces.Algo;
+using OSM2018.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace OSM2018.Interfaces
         double SensorAccuracy { get; }
         bool IsChanged { get; set; }
         Queue<I_Message> SendReadyMessageQueue { get; set; }
+        void PrintInfo();
 
         void Initialize();
 
@@ -31,5 +33,6 @@ namespace OSM2018.Interfaces
         void SetSensor(bool is_sensor, double sensor_acc);
         void SetInitWeight(double weight);
         void SetInitWeightList(Dictionary<int, double> weight_list);
+        void SetWeight(double weight);
     }
 }

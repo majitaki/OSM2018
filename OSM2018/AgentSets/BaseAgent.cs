@@ -82,5 +82,26 @@ namespace OSM2018.AgentSets
             this.InitWeightDic = init_weight_dic;
             this.WeightDic = new Dictionary<int, double>(this.InitWeightDic);
         }
+
+        public void PrintInfo()
+        {
+            Console.WriteLine($"Belief:{this.Belief}");
+            Console.WriteLine($"Opinion:{this.Opinion}");
+            Console.WriteLine($"Weight:{this.WeightDic.First().Value}");
+            Console.WriteLine($"Receive Green:{this.ReceiveGreenCounts}");
+            Console.WriteLine($"Receive Red:{this.ReceiveRedCounts}");
+            Console.WriteLine($"Is Changed:{this.IsChanged}");
+        }
+
+        public void SetWeight(double weight)
+        {
+            Dictionary<int, double> weight_dic = new Dictionary<int, double>();
+
+            foreach (var weight_element in this.WeightDic)
+            {
+                weight_dic.Add(weight_element.Key, weight);
+            }
+            this.WeightDic = weight_dic;
+        }
     }
 }
