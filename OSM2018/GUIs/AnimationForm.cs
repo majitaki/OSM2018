@@ -213,6 +213,12 @@ namespace OSM2018.GUIs
                 case LayoutEnum.Spring:
                     layout = new Spring_LayoutGenerator(this.MyOSM.MyNetwork).Generate();
                     break;
+                case LayoutEnum.Square:
+                    layout = new Square_LayoutGenerator(this.MyOSM.MyNetwork).Generate();
+                    break;
+                default:
+                    layout = new Circular_LayoutGenerator(this.MyOSM.MyNetwork).Generate();
+                    break;
             }
             this.MyOSM.MyNetwork.SetLayout(layout);
         }

@@ -132,6 +132,7 @@
     <Compile Include="Networks\BaseLayout.cs" />
     <Compile Include="Networks\BaseNetwork.cs" />
     <Compile Include="Networks\Edge.cs" />
+    <Compile Include="Networks\LayoutGenerator\Square_LayoutGenerator.cs" />
     <Compile Include="Networks\LayoutGenerator\Spring_LayoutGenerator.cs" />
     <Compile Include="Networks\LayoutGenerator\Spectral_LayoutGenerator.cs" />
     <Compile Include="Networks\LayoutGenerator\Shell_LayoutGenerator.cs" />

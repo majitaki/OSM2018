@@ -48,6 +48,7 @@ namespace OSM2018.Utility
         Shell,
         Spectral,
         Spring,
+        Square,
         Null
     }
 
