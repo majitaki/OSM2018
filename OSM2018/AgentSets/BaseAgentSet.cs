@@ -66,6 +66,7 @@ namespace OSM2018.AgentSets
             foreach (var agent in this.AgentList)
             {
                 agent.Belief = agent.InitBelief;
+                agent.IsReceived = false;
             }
         }
 
@@ -74,6 +75,7 @@ namespace OSM2018.AgentSets
             foreach (var agent in this.AgentList)
             {
                 agent.Opinion = agent.InitOpinion;
+                agent.IsChanged = false;
             }
         }
 

@@ -24,7 +24,10 @@ namespace OSM2018.AgentSets
         public int ReceiveRedCounts { get; set; }
         public double SensorAccuracy { get; private set; }
         public bool IsChanged { get; set; }
+        public bool IsReceived { get; set; }
         public Queue<I_Message> SendReadyMessageQueue { get; set; }
+        public List<int> ChangedRoundList { get; set; }
+        public List<int> ReceiveRoundList { get; set; }
 
         public BaseAgent(int id, double init_belief, Dictionary<int, double> init_weight_list, InfoEnum init_op, double g_sigma, double r_sigma)
         {
@@ -39,6 +42,7 @@ namespace OSM2018.AgentSets
             this.SensorAccuracy = 0;
             this.ReceiveGreenCounts = this.ReceiveRedCounts = 0;
             this.IsChanged = false;
+            this.IsReceived = false;
             this.SendReadyMessageQueue = new Queue<I_Message>();
         }
 
@@ -49,6 +53,9 @@ namespace OSM2018.AgentSets
             this.WeightDic = new Dictionary<int, double>(this.InitWeightDic);
             this.ReceiveGreenCounts = this.ReceiveRedCounts = 0;
             this.IsChanged = false;
+            this.IsReceived = false;
+            this.ChangedRoundList = new List<int>();
+            this.ReceiveRoundList = new List<int>();
             this.SendReadyMessageQueue = new Queue<I_Message>();
         }
 
@@ -85,12 +92,15 @@ namespace OSM2018.AgentSets
 
         public void PrintInfo()
         {
-            Console.WriteLine($"Belief:{this.Belief}");
+            Console.WriteLine($"Belief:{this.Belief:f3}");
             Console.WriteLine($"Opinion:{this.Opinion}");
-            Console.WriteLine($"Weight:{this.WeightDic.First().Value}");
+            Console.WriteLine($"Weight:{this.WeightDic.First().Value:f3}");
             Console.WriteLine($"Receive Green:{this.ReceiveGreenCounts}");
             Console.WriteLine($"Receive Red:{this.ReceiveRedCounts}");
             Console.WriteLine($"Is Changed:{this.IsChanged}");
+            Console.WriteLine($"Is Received:{this.IsReceived}");
+            Console.WriteLine($"Changed Rounds:{this.ChangedRoundList.Count}");
+            Console.WriteLine($"Received Rounds:{this.ReceiveRoundList.Count}");
         }
 
         public void SetWeight(double weight)

@@ -54,6 +54,7 @@
     <Compile Include="AgentSets\BaseAgentSet.cs" />
     <Compile Include="Algorithm\AAT\AAT_Algo.cs" />
     <Compile Include="Algorithm\AAT\CandidateSet.cs" />
+    <Compile Include="Algorithm\AAT\EstAwaRates\AATD_EstimatingAwaRates.cs" />
     <Compile Include="Algorithm\AAT\EstAwaRates\EstimatingAwaRates.cs" />
     <Compile Include="Algorithm\AAT\GeneCanWeights\GeneratingCanWeights.cs" />
     <Compile Include="Algorithm\AAT\SingleCandidate.cs" />

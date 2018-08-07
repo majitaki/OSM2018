@@ -398,6 +398,7 @@ namespace OSM2018.GUIs
                 switch (this.MyOSM.MyAlgo.MyAlgoEnum)
                 {
                     case AlgoEnum.OriginalAAT:
+                    case AlgoEnum.AATD:
                         this.DrawAATAgent(e, agent, r);
                         //this.DrawNullAgent(e, agent, r);
                         break;

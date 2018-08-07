@@ -24,7 +24,10 @@ namespace OSM2018.Interfaces
         int ReceiveRedCounts { get; set; }
         double SensorAccuracy { get; }
         bool IsChanged { get; set; }
+        bool IsReceived { get; set; }
         Queue<I_Message> SendReadyMessageQueue { get; set; }
+        List<int> ChangedRoundList { get; set; }
+        List<int> ReceiveRoundList { get; set; }
         void PrintInfo();
 
         void Initialize();

@@ -27,7 +27,7 @@ namespace OSM2018.Algorithm.Common
                 var message = this.ReceiveMessageQueue.Dequeue();
                 var target_agent = agent_set.AgentList.First(agent => agent.NodeID == message.TargetNodeID);
                 var pre_opinion = target_agent.Opinion;
-                var belief = target_agent.Belief;
+                var pre_belief = target_agent.Belief;
                 double wei = 0;
 
                 if (message.SourceNodeID < 0)
@@ -44,20 +44,21 @@ namespace OSM2018.Algorithm.Common
                 //belief update
                 if (target_agent.IsSensor)
                 {
-                    target_agent.Belief = OpinionBeliefUpdater.UpdateBelief(belief, target_agent.SensorAccuracy, message_op);
+                    target_agent.Belief = OpinionBeliefUpdater.UpdateBelief(pre_belief, target_agent.SensorAccuracy, message_op);
                 }
                 else
                 {
-                    target_agent.Belief = OpinionBeliefUpdater.UpdateBelief(belief, wei, message_op);
+                    target_agent.Belief = OpinionBeliefUpdater.UpdateBelief(pre_belief, wei, message_op);
                 }
                 if (message_op == InfoEnum.Green) target_agent.ReceiveGreenCounts++;
                 if (message_op == InfoEnum.Red) target_agent.ReceiveRedCounts++;
+                target_agent.IsReceived = (target_agent.InitBelief != target_agent.Belief) ? true : false;
 
                 //opinion update
                 target_agent.Opinion = OpinionBeliefUpdater.UpdateOpinion(pre_opinion, target_agent.Belief, target_agent.GreenSigma, target_agent.RedSigma);
                 target_agent.IsChanged = (target_agent.InitOpinion != target_agent.Opinion) ? true : false;
-                var op_change = (pre_opinion != target_agent.Opinion) ? true : false;
 
+                var op_change = (pre_opinion != target_agent.Opinion) ? true : false;
                 //send message
                 if (op_change)
                 {

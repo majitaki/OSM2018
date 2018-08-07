@@ -194,7 +194,6 @@ namespace OSM2018
                 if (control_steps <= current_steps)
                 {
                     osm.RunRoundWithoutPlaySteps(current_rounds, control_seed);
-                    //osm.RunRounds(1, control_steps, control_seed);
                     this.labelStepNum.Text = 0.ToString();
                     this.labelRoundNum.Text = (current_rounds + 1).ToString();
                 }

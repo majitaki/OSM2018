@@ -20,13 +20,13 @@ namespace OSM2018.Algorithm.AAT
         public List<I_CandidateSet> CandidateSetList { get; private set; }
 
 
-        public AAT_Algo(I_GeneratingCanWeights gcw, I_EstimatingAwaRates ear, I_SelectingWeiStrategies sws, I_PlayOneStep pos)
+        public AAT_Algo(AlgoEnum algo_enum, I_GeneratingCanWeights gcw, I_EstimatingAwaRates ear, I_SelectingWeiStrategies sws, I_PlayOneStep pos)
         {
             this.GeneCanWeights = gcw;
             this.EstAwaRates = ear;
             this.SlctWeiStrategies = sws;
             this.MyPlayOneStep = pos;
-            this.MyAlgoEnum = AlgoEnum.OriginalAAT;
+            this.MyAlgoEnum = algo_enum;
         }
 
         public void Initialize(I_Network network, I_AgentSet agent_set)
@@ -34,6 +34,12 @@ namespace OSM2018.Algorithm.AAT
             agent_set.InitBelief();
             agent_set.InitOpinion();
             agent_set.InitCounts();
+            foreach (var agent in agent_set.AgentList)
+            {
+                agent.ChangedRoundList = new List<int>();
+                agent.ReceiveRoundList = new List<int>();
+            }
+
             this.MyPlayOneStep.Initialize();
 
             this.CandidateSetList = GeneCanWeights.Generate(network, agent_set);
@@ -50,6 +56,12 @@ namespace OSM2018.Algorithm.AAT
 
         public void RunOneRoundwithoutPlaySteps(I_Network network, I_AgentSet agent_set, int current_round)
         {
+            foreach (var agent in agent_set.AgentList)
+            {
+                if (agent.IsChanged) agent.ChangedRoundList.Add(current_round);
+                if (agent.IsReceived) agent.ReceiveRoundList.Add(current_round);
+            }
+
             this.EstAwaRates.Run(agent_set, this.CandidateSetList, current_round);
             this.SlctWeiStrategies.Run(this.CandidateSetList);
             var weight_list = this.CandidateSetList.Select(can => can.GetCanWeight(can.SelectCanIndex)).ToList();
@@ -69,14 +81,6 @@ namespace OSM2018.Algorithm.AAT
 
             this.RunOneRoundwithoutPlaySteps(network, agent_set, current_round);
             return;
-
-            this.EstAwaRates.Run(agent_set, this.CandidateSetList, current_round);
-            this.SlctWeiStrategies.Run(this.CandidateSetList);
-            var weight_list = this.CandidateSetList.Select(can => can.GetCanWeight(can.SelectCanIndex)).ToList();
-            agent_set.SetWeights(weight_list);
-            agent_set.InitBelief();
-            agent_set.InitOpinion();
-            this.MyPlayOneStep.Initialize();
         }
 
         public void InitializePlaySteps(I_Network network, I_AgentSet agent_set)
@@ -99,6 +103,8 @@ namespace OSM2018.Algorithm.AAT
 
         public void PrintInfo(int node_id)
         {
+            Console.WriteLine($"Algo: {this.MyAlgoEnum}");
+
             var canset = this.CandidateSetList[node_id];
             var sort_canset = canset.SingleCandidateList.OrderBy(can => can.CanWeight).ToList();
 
@@ -110,7 +116,7 @@ namespace OSM2018.Algorithm.AAT
                 var h_count = can.AwaCounts;
                 var h_round = can.AwaCurrentRounds;
                 var h = can.AwaRate;
-                Console.WriteLine($"index: {can_index,2} weight: {can_weight:f3} h_count: {h_count,2} h_round: {h_round,2} h: {h:f4} {select}");
+                Console.WriteLine($"index: {can_index,3} weight: {can_weight:f3} h_count: {h_count,3} h_round: {h_round,3} h: {h:f4} {select}");
             }
         }
 

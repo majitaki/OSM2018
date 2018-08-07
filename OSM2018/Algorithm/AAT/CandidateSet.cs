@@ -13,7 +13,6 @@ namespace OSM2018.Algorithm.AAT
         public List<I_SingleCandidate> SingleCandidateList { get; private set; }
         public int InitSelectCanIndex { get; private set; }
         public int SelectCanIndex { get; set; }
-        public List<int> DeterminedRoundList { get; }
 
         public CandidateSet(I_Node node, I_Agent agent)
         {

@@ -55,6 +55,7 @@ namespace OSM2018.Utility
     enum AlgoEnum
     {
         OriginalAAT,
+        AATD,
         Custom,
         Fool
     }

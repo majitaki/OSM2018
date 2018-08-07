@@ -39,6 +39,7 @@ namespace OSM2018.GUIs
         void UserInitialize()
         {
             this.comboBoxAAT.Items.Add(AlgoEnum.OriginalAAT);
+            this.comboBoxAAT.Items.Add(AlgoEnum.AATD);
             this.comboBoxAAT.SelectedIndex = 0;
 
             foreach (InfoEnum op in Enum.GetValues(typeof(InfoEnum)))
@@ -94,7 +95,14 @@ namespace OSM2018.GUIs
                         var ear = new EstimatingAwaRates();
                         var sws = new SelectingWeiStrategies(t_awa_rate);
                         var pos = new PlayOneStep(new SendOpinion(op_intro_rate, op_intro_duration), new ReceiveOpinion());
-                        algo = new AAT_Algo(gcw, ear, sws, pos);
+                        algo = new AAT_Algo(AlgoEnum.OriginalAAT, gcw, ear, sws, pos);
+                        break;
+                    case AlgoEnum.AATD:
+                        var aatd_gcw = new GeneratingCanWeights();
+                        var aatd_ear = new AATD_EstimatingAwaRates();
+                        var aatd_sws = new SelectingWeiStrategies(t_awa_rate);
+                        var aatd_pos = new PlayOneStep(new SendOpinion(op_intro_rate, op_intro_duration), new ReceiveOpinion());
+                        algo = new AAT_Algo(AlgoEnum.AATD, aatd_gcw, aatd_ear, aatd_sws, aatd_pos);
                         break;
                 }
             }
