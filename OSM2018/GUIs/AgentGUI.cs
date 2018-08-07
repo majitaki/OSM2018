@@ -46,6 +46,9 @@ namespace OSM2018.GUIs
                 this.comboBoxInitOpinion.Items.Add(op.ToString());
             }
             this.comboBoxInitOpinion.SelectedIndex = 0;
+
+            this.checkBoxSensorRateEnabled.Checked = true;
+            this.numericUpDownSensorRate.Value = (decimal)0.10;
         }
 
         internal void SetOSM(I_OSM osm)

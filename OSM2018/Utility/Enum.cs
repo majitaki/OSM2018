@@ -33,6 +33,8 @@ namespace OSM2018.Utility
         PowerLawCluster,
         RandomKernel,
         RandomLobster,
+        Grid2D,
+        Hexagonal,
         Custom,
         Void
     }

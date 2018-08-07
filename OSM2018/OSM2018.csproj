@@ -139,10 +139,12 @@
     <Compile Include="Networks\LayoutGenerator\KK_LayoutGenerator.cs" />
     <Compile Include="Networks\LayoutGenerator\FR_LayoutGenerator.cs" />
     <Compile Include="Networks\LayoutGenerator\Circular_LayoutGenerator.cs" />
+    <Compile Include="Networks\NetworkGenerator\Hexagonal_NetworkGenerator.cs" />
     <Compile Include="Networks\NetworkGenerator\PC_NetworkGenerator.cs" />
     <Compile Include="Networks\NetworkGenerator\ConnectedWS_NetworkGenerator.cs" />
     <Compile Include="Networks\NetworkGenerator\NewmanWS_NetworkGenerator.cs" />
     <Compile Include="Networks\NetworkGenerator\ER_NetworkGenerator.cs" />
+    <Compile Include="Networks\NetworkGenerator\Grid2D_NetworkGenerator.cs" />
     <Compile Include="Networks\Node.cs" />
     <Compile Include="Networks\NetworkGenerator\BA_NetworkGenerator.cs" />
     <Compile Include="Networks\NetworkGenerator\WS_NetworkGenerator.cs" />
@@ -223,10 +225,16 @@
     <None Include="Resources\PythonScript\NetworkGenerator\gnp_random_graph.py">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Resources\PythonScript\NetworkGenerator\hexagonal_lattice_graph.py">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\PythonScript\NetworkGenerator\newman_watts_strogatz_graph.py">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Resources\PythonScript\NetworkGenerator\powerlaw_cluster_graph.py">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\PythonScript\NetworkGenerator\grid_2d_graph.py">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Resources\PythonScript\NetworkGenerator\watts_strogatz_graph.py">

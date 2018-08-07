@@ -18,6 +18,12 @@ namespace OSM2018.Algorithm.AAT
         public CandidateSet(I_Node node, I_Agent agent)
         {
             this.SingleCandidateList = new List<I_SingleCandidate>();
+
+            if (node.NeighborNodeIDList.Count == 0)
+            {
+                this.SingleCandidateList.Add(new SingleCandidate(1, agent));
+            }
+
             for (int can_index = 1; can_index <= node.NeighborNodeIDList.Count; can_index++)
             {
                 this.SingleCandidateList.Add(new SingleCandidate(can_index, agent));

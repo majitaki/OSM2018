@@ -33,7 +33,7 @@ namespace OSM2018.GUIs
                 this.X = x;
                 this.Y = y;
                 this.R = (float)(r * Math.Log(d));
-                if (this.R == 0) this.R = 1;
+                if (this.R == 0 || d == 0) this.R = 1;
                 this.R *= radius_scale;
                 this.ID = id;
                 this.PenWidth = width;

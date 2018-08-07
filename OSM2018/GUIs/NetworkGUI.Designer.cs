@@ -63,6 +63,13 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.numericUpDownEdgeCreationP = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
+            this.radioButtonOther = new System.Windows.Forms.RadioButton();
+            this.comboBoxOther = new System.Windows.Forms.ComboBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.numericUpDownGridM = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
+            this.numericUpDownGridN = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGraphSeed)).BeginInit();
@@ -78,6 +85,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPCrndEdge)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEdgeCreationP)).BeginInit();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGridM)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGridN)).BeginInit();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -88,6 +98,7 @@
             this.flowLayoutPanel1.Controls.Add(this.groupBoxBAproperty);
             this.flowLayoutPanel1.Controls.Add(this.groupBoxPCproperty);
             this.flowLayoutPanel1.Controls.Add(this.groupBox1);
+            this.flowLayoutPanel1.Controls.Add(this.groupBox4);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(682, 668);
@@ -199,6 +210,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.radioButtonOther);
+            this.groupBox3.Controls.Add(this.comboBoxOther);
             this.groupBox3.Controls.Add(this.radioButtonSmallWorld);
             this.groupBox3.Controls.Add(this.radioButtonScaleFree);
             this.groupBox3.Controls.Add(this.radioButtonRandom);
@@ -582,6 +595,112 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Edge Creation P";
             // 
+            // radioButtonOther
+            // 
+            this.radioButtonOther.AutoSize = true;
+            this.radioButtonOther.Location = new System.Drawing.Point(194, 127);
+            this.radioButtonOther.Name = "radioButtonOther";
+            this.radioButtonOther.Size = new System.Drawing.Size(14, 13);
+            this.radioButtonOther.TabIndex = 31;
+            this.radioButtonOther.TabStop = true;
+            this.radioButtonOther.UseVisualStyleBackColor = true;
+            // 
+            // comboBoxOther
+            // 
+            this.comboBoxOther.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.comboBoxOther.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBoxOther.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.comboBoxOther.FormattingEnabled = true;
+            this.comboBoxOther.Location = new System.Drawing.Point(212, 121);
+            this.comboBoxOther.Name = "comboBoxOther";
+            this.comboBoxOther.Size = new System.Drawing.Size(147, 27);
+            this.comboBoxOther.TabIndex = 30;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.numericUpDownGridN);
+            this.groupBox4.Controls.Add(this.label3);
+            this.groupBox4.Controls.Add(this.numericUpDownGridM);
+            this.groupBox4.Controls.Add(this.label1);
+            this.groupBox4.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.groupBox4.Location = new System.Drawing.Point(3, 374);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(298, 79);
+            this.groupBox4.TabIndex = 21;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Lattice Property";
+            // 
+            // numericUpDownGridM
+            // 
+            this.numericUpDownGridM.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.numericUpDownGridM.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.numericUpDownGridM.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.numericUpDownGridM.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.numericUpDownGridM.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numericUpDownGridM.Location = new System.Drawing.Point(223, 21);
+            this.numericUpDownGridM.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDownGridM.Name = "numericUpDownGridM";
+            this.numericUpDownGridM.Size = new System.Drawing.Size(69, 22);
+            this.numericUpDownGridM.TabIndex = 7;
+            this.numericUpDownGridM.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(99, 19);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "M Node Num";
+            // 
+            // numericUpDownGridN
+            // 
+            this.numericUpDownGridN.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.numericUpDownGridN.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.numericUpDownGridN.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.numericUpDownGridN.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.numericUpDownGridN.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numericUpDownGridN.Location = new System.Drawing.Point(223, 49);
+            this.numericUpDownGridN.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDownGridN.Name = "numericUpDownGridN";
+            this.numericUpDownGridN.Size = new System.Drawing.Size(69, 22);
+            this.numericUpDownGridN.TabIndex = 9;
+            this.numericUpDownGridN.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 48);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(99, 19);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "N Node Num";
+            // 
             // NetworkGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -612,6 +731,10 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEdgeCreationP)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGridM)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGridN)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -653,5 +776,12 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.NumericUpDown numericUpDownEdgeCreationP;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.RadioButton radioButtonOther;
+        private System.Windows.Forms.ComboBox comboBoxOther;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.NumericUpDown numericUpDownGridN;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.NumericUpDown numericUpDownGridM;
+        private System.Windows.Forms.Label label1;
     }
 }

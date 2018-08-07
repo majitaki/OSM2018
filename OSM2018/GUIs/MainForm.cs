@@ -44,7 +44,7 @@ namespace OSM2018
             PythonProxy.StartUpPython();
             this.radioButtonStepCheck.Checked = true;
             this.radioButtonNetworkGUI.Checked = true;
-            this.numericUpDownStepsControl.Value = 1000;
+            this.numericUpDownStepsControl.Value = 3000;
             this.numericUpDownSpeedControl.Value = 1;
             this.labelRoundNum.Text = 1.ToString();
             this.PlayStopFlag = true;

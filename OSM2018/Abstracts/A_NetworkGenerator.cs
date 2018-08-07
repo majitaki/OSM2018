@@ -15,7 +15,7 @@ namespace OSM2018.Abstracts
         public abstract NetworkEnum MyNetworkEnum { get; }
         protected abstract string GeneratePath { get; }
 
-        public I_Network Generate(int network_seed)
+        public I_Network Generate(int network_seed, bool seed_enable)
         {
             RandomPool.Declare(SeedEnum.LayoutSeed, network_seed);
             var state = 0;
@@ -27,7 +27,7 @@ namespace OSM2018.Abstracts
                     var delete_success = ConvertNetwork.DeleteNetworkOutput();
                     if (!delete_success) goto default;
 
-                    var python_success = this.RawGenerate(network_seed);
+                    var python_success = this.RawGenerate(network_seed, seed_enable);
                     if (!python_success) goto default;
 
                     var raw_edge_list = ConvertNetwork.GetRawEdgeList();
@@ -51,9 +51,16 @@ namespace OSM2018.Abstracts
                     return null;
             }
         }
-        bool RawGenerate(int network_seed)
+        bool RawGenerate(int network_seed, bool seed_enable)
         {
-            PythonProxy.GenerateGraph(this.GeneratePath + " " + network_seed);
+            if (seed_enable)
+            {
+                PythonProxy.GenerateGraph(this.GeneratePath + " " + network_seed);
+            }
+            else
+            {
+                PythonProxy.GenerateGraph(this.GeneratePath);
+            }
             bool exist_flag = false;
             while (!exist_flag)
             {

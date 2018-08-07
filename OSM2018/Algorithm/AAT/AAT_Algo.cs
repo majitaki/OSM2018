@@ -56,6 +56,7 @@ namespace OSM2018.Algorithm.AAT
             agent_set.SetWeights(weight_list);
             agent_set.InitBelief();
             agent_set.InitOpinion();
+            agent_set.InitCounts();
             this.MyPlayOneStep.Initialize();
         }
 

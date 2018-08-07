@@ -43,13 +43,19 @@ namespace OSM2018.GUIs
             this.comboBoxSmallWorld.Items.Add(NetworkEnum.WS);
             this.comboBoxSmallWorld.Items.Add(NetworkEnum.NewmanWS);
             this.comboBoxSmallWorld.Items.Add(NetworkEnum.ConnectedWS);
+
             this.comboBoxScaleFree.Items.Add(NetworkEnum.BA);
             this.comboBoxScaleFree.Items.Add(NetworkEnum.PowerLawCluster);
+
             this.comboBoxRandom.Items.Add(NetworkEnum.ER);
+
+            this.comboBoxOther.Items.Add(NetworkEnum.Grid2D);
+            this.comboBoxOther.Items.Add(NetworkEnum.Hexagonal);
 
             this.comboBoxSmallWorld.SelectedIndex = 0;
             this.comboBoxScaleFree.SelectedIndex = 0;
             this.comboBoxRandom.SelectedIndex = 0;
+            this.comboBoxOther.SelectedIndex = 0;
         }
 
         internal void SetOSM(I_OSM osm)
@@ -65,6 +71,7 @@ namespace OSM2018.GUIs
             this.MyOSM.MyAgentSet = null;
             this.MyOSM.MyAlgo = null;
 
+            bool seed_enable = true;
             int node_num = (int)this.numericUpDownNodeNum.Value;
             int network_seed = (int)this.numericUpDownGraphSeed.Value;
             double rewire_p = (double)this.numericUpDownWSrewirep.Value;
@@ -73,9 +80,12 @@ namespace OSM2018.GUIs
             int rnd_edge_num = (int)this.numericUpDownPCrndEdge.Value;
             double triangle_p = (double)this.numericUpDownPCaddTriP.Value;
             double edge_creation_p = (double)this.numericUpDownEdgeCreationP.Value;
+            int grid_m = (int)this.numericUpDownGridM.Value;
+            int grid_n = (int)this.numericUpDownGridN.Value;
 
             if (this.radioButtonSmallWorld.Checked)
             {
+                seed_enable = true;
                 switch ((NetworkEnum)Enum.Parse(typeof(NetworkEnum), this.comboBoxSmallWorld.Text, true))
                 {
                     case NetworkEnum.WS:
@@ -91,6 +101,7 @@ namespace OSM2018.GUIs
             }
             else if (this.radioButtonScaleFree.Checked)
             {
+                seed_enable = true;
                 switch ((NetworkEnum)Enum.Parse(typeof(NetworkEnum), this.comboBoxScaleFree.Text, true))
                 {
                     case NetworkEnum.BA:
@@ -103,6 +114,7 @@ namespace OSM2018.GUIs
             }
             else if (this.radioButtonRandom.Checked)
             {
+                seed_enable = true;
                 switch ((NetworkEnum)Enum.Parse(typeof(NetworkEnum), this.comboBoxRandom.Text, true))
                 {
                     case NetworkEnum.ER:
@@ -110,10 +122,24 @@ namespace OSM2018.GUIs
                         break;
                 }
             }
+            else if (this.radioButtonOther.Checked)
+            {
+                switch ((NetworkEnum)Enum.Parse(typeof(NetworkEnum), this.comboBoxOther.Text, true))
+                {
+                    case NetworkEnum.Grid2D:
+                        seed_enable = false;
+                        network_generator = new Grid2D_NetworkGenerator(grid_m, grid_n);
+                        break;
+                    case NetworkEnum.Hexagonal:
+                        seed_enable = false;
+                        network_generator = new Hexagonal_NetworkGenerator(grid_m, grid_n);
+                        break;
+                }
+            }
 
             await Task.Run(() =>
             {
-                this.MyOSM.MyNetwork = network_generator.Generate(network_seed);
+                this.MyOSM.MyNetwork = network_generator.Generate(network_seed, seed_enable);
                 this.MyAnimationForm.UpdatePictureBox();
             });
 

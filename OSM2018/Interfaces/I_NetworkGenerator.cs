@@ -10,6 +10,6 @@ namespace OSM2018.Interfaces
     interface I_NetworkGenerator
     {
         NetworkEnum MyNetworkEnum { get; }
-        I_Network Generate(int network_seed);
+        I_Network Generate(int network_seed, bool seed_enable);
     }
 }
