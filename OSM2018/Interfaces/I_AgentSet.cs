@@ -19,5 +19,6 @@ namespace OSM2018.Interfaces
         void InitOpinion();
         void InitWeight();
         void InitCounts();
+        void InitRoundInfo();
     }
 }

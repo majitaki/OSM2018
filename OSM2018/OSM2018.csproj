@@ -58,8 +58,10 @@
     <Compile Include="Algorithm\AAT\EstAwaRates\EstimatingAwaRates.cs" />
     <Compile Include="Algorithm\AAT\GeneCanWeights\GeneratingCanWeights.cs" />
     <Compile Include="Algorithm\AAT\SingleCandidate.cs" />
+    <Compile Include="Algorithm\AAT\SlctWeiStrategies\AATD_SelectingWeiStrategies.cs" />
     <Compile Include="Algorithm\AAT\SlctWeiStrategies\SelectingWeiStrategies.cs" />
     <Compile Include="Algorithm\Common\Message.cs" />
+    <Compile Include="Algorithm\Common\OSMLog.cs" />
     <Compile Include="Algorithm\Common\PlayOneStep.cs" />
     <Compile Include="Algorithm\Common\ReceiveOpinion.cs" />
     <Compile Include="Algorithm\Common\SendOpinion.cs" />
@@ -130,6 +132,7 @@
     <Compile Include="Interfaces\I_Node.cs" />
     <Compile Include="Interfaces\Algo\AAT\I_SelectingWeiStrategies.cs" />
     <Compile Include="Interfaces\I_OSM.cs" />
+    <Compile Include="Interfaces\I_OSMLog.cs" />
     <Compile Include="Networks\BaseLayout.cs" />
     <Compile Include="Networks\BaseNetwork.cs" />
     <Compile Include="Networks\Edge.cs" />
@@ -157,6 +160,7 @@
     <Compile Include="Utility\DrawSetting.cs" />
     <Compile Include="Utility\Enum.cs" />
     <Compile Include="Utility\OpinionUpdater.cs" />
+    <Compile Include="Utility\OutputLog.cs" />
     <Compile Include="Utility\PythonProxy.cs" />
     <Compile Include="Utility\RandomPool.cs" />
     <Compile Include="Utility\StaticColor.cs" />

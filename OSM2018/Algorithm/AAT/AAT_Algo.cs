@@ -1,4 +1,5 @@
-﻿using OSM2018.Interfaces;
+﻿using OSM2018.Algorithm.Common;
+using OSM2018.Interfaces;
 using OSM2018.Interfaces.Algo;
 using OSM2018.Interfaces.Algo.AAT;
 using OSM2018.Utility;
@@ -17,6 +18,7 @@ namespace OSM2018.Algorithm.AAT
         I_EstimatingAwaRates EstAwaRates;
         I_SelectingWeiStrategies SlctWeiStrategies;
         I_PlayOneStep MyPlayOneStep;
+        public I_OSMLog MyOSMLog { get; }
         public List<I_CandidateSet> CandidateSetList { get; private set; }
 
 
@@ -27,6 +29,7 @@ namespace OSM2018.Algorithm.AAT
             this.SlctWeiStrategies = sws;
             this.MyPlayOneStep = pos;
             this.MyAlgoEnum = algo_enum;
+            this.MyOSMLog = new OSMLog();
         }
 
         public void Initialize(I_Network network, I_AgentSet agent_set)
@@ -34,11 +37,8 @@ namespace OSM2018.Algorithm.AAT
             agent_set.InitBelief();
             agent_set.InitOpinion();
             agent_set.InitCounts();
-            foreach (var agent in agent_set.AgentList)
-            {
-                agent.ChangedRoundList = new List<int>();
-                agent.ReceiveRoundList = new List<int>();
-            }
+            agent_set.InitRoundInfo();
+
 
             this.MyPlayOneStep.Initialize();
 
@@ -54,7 +54,7 @@ namespace OSM2018.Algorithm.AAT
             this.MyPlayOneStep.Run(network, agent_set, true, correct, incorrect);
         }
 
-        public void RunOneRoundwithoutPlaySteps(I_Network network, I_AgentSet agent_set, int current_round)
+        public void RunOneRoundWithoutPlaySteps(I_Network network, I_AgentSet agent_set, int current_round)
         {
             foreach (var agent in agent_set.AgentList)
             {
@@ -62,8 +62,10 @@ namespace OSM2018.Algorithm.AAT
                 if (agent.IsReceived) agent.ReceiveRoundList.Add(current_round);
             }
 
+            this.MyOSMLog.RecordOneRound(network, agent_set, current_round);
+
             this.EstAwaRates.Run(agent_set, this.CandidateSetList, current_round);
-            this.SlctWeiStrategies.Run(this.CandidateSetList);
+            this.SlctWeiStrategies.Run(this.CandidateSetList, agent_set, current_round);
             var weight_list = this.CandidateSetList.Select(can => can.GetCanWeight(can.SelectCanIndex)).ToList();
             agent_set.SetWeights(weight_list);
             agent_set.InitBelief();
@@ -79,7 +81,7 @@ namespace OSM2018.Algorithm.AAT
                 this.PlayOneStep(network, agent_set, InfoEnum.Green, InfoEnum.Red);
             }
 
-            this.RunOneRoundwithoutPlaySteps(network, agent_set, current_round);
+            this.RunOneRoundWithoutPlaySteps(network, agent_set, current_round);
             return;
         }
 

@@ -100,7 +100,8 @@ namespace OSM2018.GUIs
                     case AlgoEnum.AATD:
                         var aatd_gcw = new GeneratingCanWeights();
                         var aatd_ear = new AATD_EstimatingAwaRates();
-                        var aatd_sws = new SelectingWeiStrategies(t_awa_rate);
+                        var aatd_sws = new AATD_SelectingWeiStrategies(t_awa_rate, 2, agent_set.AgentList.Count);
+                        //var aatd_sws = new SelectingWeiStrategies(t_awa_rate);
                         var aatd_pos = new PlayOneStep(new SendOpinion(op_intro_rate, op_intro_duration), new ReceiveOpinion());
                         algo = new AAT_Algo(AlgoEnum.AATD, aatd_gcw, aatd_ear, aatd_sws, aatd_pos);
                         break;

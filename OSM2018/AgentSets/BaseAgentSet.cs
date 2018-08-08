@@ -96,5 +96,13 @@ namespace OSM2018.AgentSets
             }
         }
 
+        public void InitRoundInfo()
+        {
+            foreach (var agent in this.AgentList)
+            {
+                agent.ChangedRoundList = new List<int>();
+                agent.ReceiveRoundList = new List<int>();
+            }
+        }
     }
 }

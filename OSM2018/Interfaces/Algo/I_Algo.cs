@@ -10,9 +10,10 @@ namespace OSM2018.Interfaces.Algo
     interface I_Algo
     {
         AlgoEnum MyAlgoEnum { get; }
+        I_OSMLog MyOSMLog { get; }
         void Initialize(I_Network network, I_AgentSet agent_set);
         void RunOneRound(I_Network network, I_AgentSet agent_set, int current_round, int round_steps);
-        void RunOneRoundwithoutPlaySteps(I_Network network, I_AgentSet agent_set, int current_round);
+        void RunOneRoundWithoutPlaySteps(I_Network network, I_AgentSet agent_set, int current_round);
         void PlayOneStep(I_Network network, I_AgentSet agent_set, InfoEnum correct, InfoEnum incorrect);
         void InitializePlaySteps(I_Network network, I_AgentSet agent_set);
         void InitializeRunRounds(I_Network network, I_AgentSet agent_set);

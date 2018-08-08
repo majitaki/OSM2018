@@ -1,4 +1,5 @@
-﻿using OSM2018.Interfaces.Algo.AAT;
+﻿using OSM2018.Interfaces;
+using OSM2018.Interfaces.Algo.AAT;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace OSM2018.Algorithm.AAT.SlctWeiStrategies
             this.TargetAwaRate = target_h;
         }
 
-        public void Run(List<I_CandidateSet> canset_list)
+        public void Run(List<I_CandidateSet> canset_list, I_AgentSet agent_set, int current_round)
         {
             foreach (var canset in canset_list)
             {

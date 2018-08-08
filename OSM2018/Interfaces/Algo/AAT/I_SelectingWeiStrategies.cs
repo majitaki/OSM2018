@@ -8,6 +8,6 @@ namespace OSM2018.Interfaces.Algo.AAT
 {
     interface I_SelectingWeiStrategies
     {
-        void Run(List<I_CandidateSet> canset_list);
+        void Run(List<I_CandidateSet> canset_list, I_AgentSet agent_set, int current_round);
     }
 }
