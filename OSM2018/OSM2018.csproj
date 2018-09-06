@@ -56,6 +56,7 @@
     <Compile Include="Algorithm\AAT\CandidateSet.cs" />
     <Compile Include="Algorithm\AAT\EstAwaRates\AATD_EstimatingAwaRates.cs" />
     <Compile Include="Algorithm\AAT\EstAwaRates\EstimatingAwaRates.cs" />
+    <Compile Include="Algorithm\AAT\EstAwaRates\HCII_AATD_EstimatingAwaRates.cs" />
     <Compile Include="Algorithm\AAT\GeneCanWeights\GeneratingCanWeights.cs" />
     <Compile Include="Algorithm\AAT\SingleCandidate.cs" />
     <Compile Include="Algorithm\AAT\SlctWeiStrategies\AATD_SelectingWeiStrategies.cs" />

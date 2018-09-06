@@ -38,8 +38,12 @@ namespace OSM2018.GUIs
 
         void UserInitialize()
         {
-            this.comboBoxAAT.Items.Add(AlgoEnum.OriginalAAT);
-            this.comboBoxAAT.Items.Add(AlgoEnum.AATD);
+            //this.comboBoxAAT.Items.Add(AlgoEnum.OriginalAAT);
+            //this.comboBoxAAT.Items.Add(AlgoEnum.AATD);
+            foreach (AlgoEnum algo_enum in Enum.GetValues(typeof(AlgoEnum)))
+            {
+                this.comboBoxAAT.Items.Add(algo_enum.ToString());
+            }
             this.comboBoxAAT.SelectedIndex = 0;
 
             foreach (InfoEnum op in Enum.GetValues(typeof(InfoEnum)))
@@ -96,6 +100,13 @@ namespace OSM2018.GUIs
                         var sws = new SelectingWeiStrategies(t_awa_rate);
                         var pos = new PlayOneStep(new SendOpinion(op_intro_rate, op_intro_duration), new ReceiveOpinion());
                         algo = new AAT_Algo(AlgoEnum.OriginalAAT, gcw, ear, sws, pos);
+                        break;
+                    case AlgoEnum.HCII_AATD:
+                        var hcii_aatd_gcw = new GeneratingCanWeights();
+                        var hcii_aatd_ear = new HCII_AATD_EstimatingAwaRates();
+                        var hcii_sws = new SelectingWeiStrategies(t_awa_rate);
+                        var hcii_aatd_pos = new PlayOneStep(new SendOpinion(op_intro_rate, op_intro_duration), new ReceiveOpinion());
+                        algo = new AAT_Algo(AlgoEnum.HCII_AATD, hcii_aatd_gcw, hcii_aatd_ear, hcii_sws, hcii_aatd_pos);
                         break;
                     case AlgoEnum.AATD:
                         var aatd_gcw = new GeneratingCanWeights();
