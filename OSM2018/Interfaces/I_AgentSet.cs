@@ -20,5 +20,6 @@ namespace OSM2018.Interfaces
         void InitWeight();
         void InitCounts();
         void InitRoundInfo();
+        Dictionary<string, string> GetInfoString();
     }
 }

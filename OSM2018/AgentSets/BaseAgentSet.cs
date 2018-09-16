@@ -12,6 +12,8 @@ namespace OSM2018.AgentSets
     {
         public int AgentSeed { get; }
         public List<I_Agent> AgentList { get; }
+        public int SensorNum { get; private set; }
+        public double SensorAcc { get; private set; }
 
         public BaseAgentSet(List<I_Agent> agent_list, int agent_seed)
         {
@@ -21,6 +23,9 @@ namespace OSM2018.AgentSets
 
         public void SetSensors(int num, double sensor_acc)
         {
+            this.SensorNum = num;
+            this.SensorAcc = sensor_acc;
+
             var ir = RandomPool.Get(SeedEnum.AgentSeed);
 
             var list = this.AgentList.Select(agent => agent.NodeID).OrderBy(id => ir.Next()).Take(num)
@@ -103,6 +108,16 @@ namespace OSM2018.AgentSets
                 agent.ChangedRoundList = new List<int>();
                 agent.ReceiveRoundList = new List<int>();
             }
+        }
+
+        public Dictionary<string, string> GetInfoString()
+        {
+            var dic = new Dictionary<string, string>();
+            dic.Add("agent_seed", this.AgentSeed.ToString());
+            dic.Add("sensor_num", this.SensorNum.ToString());
+            dic.Add("sensor_acc", this.SensorAcc.ToString());
+
+            return dic;
         }
     }
 }

@@ -12,7 +12,7 @@ namespace OSM2018.Interfaces
         bool IsRecordingSteps { get; }
 
         //round
-        void StartRecordRounds(string cnd_name = "normal");
+        void StartRecordRounds(Dictionary<string, string> network_info, Dictionary<string, string> agent_info, Dictionary<string, string> algo_info, string exp_name);
         void RecordOneRound(I_Network network, I_AgentSet agent_set, int current_round);
         void StopRecordRounds();
         //step

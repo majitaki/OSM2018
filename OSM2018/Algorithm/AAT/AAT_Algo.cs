@@ -122,5 +122,12 @@ namespace OSM2018.Algorithm.AAT
             }
         }
 
+        public Dictionary<string, string> GetInfoString()
+        {
+            var dic = new Dictionary<string, string>();
+            dic.Add("algo", this.MyAlgoEnum.ToString());
+
+            return dic;
+        }
     }
 }

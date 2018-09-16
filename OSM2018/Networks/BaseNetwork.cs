@@ -49,5 +49,15 @@ namespace OSM2018.Networks
             Console.WriteLine($"Node ID: {node_id}");
             Console.WriteLine($"Total Neighbors: {this.NodeList[node_id].NeighborNodeIDList.Count}");
         }
+
+        public Dictionary<string, string> GetInfoString()
+        {
+            var dic = new Dictionary<string, string>();
+            dic.Add("nk", this.MyNetworkEnum.ToString());
+            dic.Add("nk_seed", this.NetworkSeed.ToString());
+            dic.Add("nk_node", this.NodeList.Count.ToString());
+
+            return dic;
+        }
     }
 }

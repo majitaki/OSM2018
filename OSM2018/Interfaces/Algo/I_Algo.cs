@@ -19,5 +19,6 @@ namespace OSM2018.Interfaces.Algo
         void InitializeRunRounds(I_Network network, I_AgentSet agent_set);
         void PrintInfo();
         void PrintInfo(int node_id);
+        Dictionary<string, string> GetInfoString();
     }
 }

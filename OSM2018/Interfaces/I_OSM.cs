@@ -18,7 +18,7 @@ namespace OSM2018.Interfaces
         void PlaySteps(int steps, int playstep_seed);
         void InitializePlaySteps();
         void RunRoundWithoutPlaySteps(int current_round, int runround_seed);
-        void RunRounds(int rounds, int round_steps, int runround_seed);
+        void RunRounds(int rounds, int round_steps, int runround_seed, string exp_name = "no_exp");
         void InitializeRunRounds();
 
         void PrintNetworkInfo();

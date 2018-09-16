@@ -17,5 +17,6 @@ namespace OSM2018.Interfaces
         void SetLayout(I_Layout layout);
         void PrintInfo();
         void PrintInfo(int node_id);
+        Dictionary<string, string> GetInfoString();
     }
 }
