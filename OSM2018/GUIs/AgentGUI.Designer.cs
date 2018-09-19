@@ -30,13 +30,16 @@
         {
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.labelAgentNetworkGeneProgress = new System.Windows.Forms.Label();
             this.comboBoxInitOpinion = new System.Windows.Forms.ComboBox();
             this.numericUpDownAgentSeed = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.buttonGenerateAgentNetwork = new System.Windows.Forms.Button();
             this.groupBoxAgent = new System.Windows.Forms.GroupBox();
+            this.numericUpDownTargetH = new System.Windows.Forms.NumericUpDown();
+            this.label8 = new System.Windows.Forms.Label();
+            this.numericUpDownOpinionIntroDuration = new System.Windows.Forms.NumericUpDown();
+            this.label6 = new System.Windows.Forms.Label();
             this.numericUpDownRedSigma = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.checkBoxSensorRateEnabled = new System.Windows.Forms.CheckBox();
@@ -62,14 +65,12 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
-            this.numericUpDownOpinionIntroDuration = new System.Windows.Forms.NumericUpDown();
-            this.label6 = new System.Windows.Forms.Label();
-            this.numericUpDownTargetH = new System.Windows.Forms.NumericUpDown();
-            this.label8 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAgentSeed)).BeginInit();
             this.groupBoxAgent.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTargetH)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOpinionIntroDuration)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRedSigma)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSensorRate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSensorAccuracy)).BeginInit();
@@ -79,8 +80,6 @@
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOpinionIntroDuration)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTargetH)).BeginInit();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -96,7 +95,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.labelAgentNetworkGeneProgress);
             this.groupBox1.Controls.Add(this.comboBoxInitOpinion);
             this.groupBox1.Controls.Add(this.numericUpDownAgentSeed);
             this.groupBox1.Controls.Add(this.label1);
@@ -110,17 +108,6 @@
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Agent Generation";
-            // 
-            // labelAgentNetworkGeneProgress
-            // 
-            this.labelAgentNetworkGeneProgress.AutoSize = true;
-            this.labelAgentNetworkGeneProgress.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAgentNetworkGeneProgress.ForeColor = System.Drawing.Color.GreenYellow;
-            this.labelAgentNetworkGeneProgress.Location = new System.Drawing.Point(111, 32);
-            this.labelAgentNetworkGeneProgress.Name = "labelAgentNetworkGeneProgress";
-            this.labelAgentNetworkGeneProgress.Size = new System.Drawing.Size(81, 19);
-            this.labelAgentNetworkGeneProgress.TabIndex = 16;
-            this.labelAgentNetworkGeneProgress.Text = "Can Work";
             // 
             // comboBoxInitOpinion
             // 
@@ -204,6 +191,75 @@
             this.groupBoxAgent.TabIndex = 18;
             this.groupBoxAgent.TabStop = false;
             this.groupBoxAgent.Text = "Agent Property";
+            // 
+            // numericUpDownTargetH
+            // 
+            this.numericUpDownTargetH.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.numericUpDownTargetH.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.numericUpDownTargetH.DecimalPlaces = 2;
+            this.numericUpDownTargetH.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.numericUpDownTargetH.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            131072});
+            this.numericUpDownTargetH.Location = new System.Drawing.Point(198, 234);
+            this.numericUpDownTargetH.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDownTargetH.Name = "numericUpDownTargetH";
+            this.numericUpDownTargetH.Size = new System.Drawing.Size(107, 26);
+            this.numericUpDownTargetH.TabIndex = 24;
+            this.numericUpDownTargetH.Value = new decimal(new int[] {
+            90,
+            0,
+            0,
+            131072});
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(9, 236);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(81, 19);
+            this.label8.TabIndex = 23;
+            this.label8.Text = "Target h";
+            // 
+            // numericUpDownOpinionIntroDuration
+            // 
+            this.numericUpDownOpinionIntroDuration.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.numericUpDownOpinionIntroDuration.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.numericUpDownOpinionIntroDuration.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.numericUpDownOpinionIntroDuration.Location = new System.Drawing.Point(198, 202);
+            this.numericUpDownOpinionIntroDuration.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericUpDownOpinionIntroDuration.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDownOpinionIntroDuration.Name = "numericUpDownOpinionIntroDuration";
+            this.numericUpDownOpinionIntroDuration.Size = new System.Drawing.Size(107, 26);
+            this.numericUpDownOpinionIntroDuration.TabIndex = 22;
+            this.numericUpDownOpinionIntroDuration.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(9, 204);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(171, 19);
+            this.label6.TabIndex = 21;
+            this.label6.Text = "Opinion Intro Dura";
             // 
             // numericUpDownRedSigma
             // 
@@ -578,75 +634,6 @@
             this.label7.TabIndex = 8;
             this.label7.Text = "h_target";
             // 
-            // numericUpDownOpinionIntroDuration
-            // 
-            this.numericUpDownOpinionIntroDuration.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.numericUpDownOpinionIntroDuration.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.numericUpDownOpinionIntroDuration.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.numericUpDownOpinionIntroDuration.Location = new System.Drawing.Point(198, 202);
-            this.numericUpDownOpinionIntroDuration.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.numericUpDownOpinionIntroDuration.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDownOpinionIntroDuration.Name = "numericUpDownOpinionIntroDuration";
-            this.numericUpDownOpinionIntroDuration.Size = new System.Drawing.Size(107, 26);
-            this.numericUpDownOpinionIntroDuration.TabIndex = 22;
-            this.numericUpDownOpinionIntroDuration.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(9, 204);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(171, 19);
-            this.label6.TabIndex = 21;
-            this.label6.Text = "Opinion Intro Dura";
-            // 
-            // numericUpDownTargetH
-            // 
-            this.numericUpDownTargetH.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.numericUpDownTargetH.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.numericUpDownTargetH.DecimalPlaces = 2;
-            this.numericUpDownTargetH.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.numericUpDownTargetH.Increment = new decimal(new int[] {
-            5,
-            0,
-            0,
-            131072});
-            this.numericUpDownTargetH.Location = new System.Drawing.Point(198, 234);
-            this.numericUpDownTargetH.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDownTargetH.Name = "numericUpDownTargetH";
-            this.numericUpDownTargetH.Size = new System.Drawing.Size(107, 26);
-            this.numericUpDownTargetH.TabIndex = 24;
-            this.numericUpDownTargetH.Value = new decimal(new int[] {
-            90,
-            0,
-            0,
-            131072});
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(9, 236);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(81, 19);
-            this.label8.TabIndex = 23;
-            this.label8.Text = "Target h";
-            // 
             // AgentGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -663,6 +650,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAgentSeed)).EndInit();
             this.groupBoxAgent.ResumeLayout(false);
             this.groupBoxAgent.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTargetH)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOpinionIntroDuration)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRedSigma)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSensorRate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSensorAccuracy)).EndInit();
@@ -674,8 +663,6 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOpinionIntroDuration)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTargetH)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -684,7 +671,6 @@
 
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label labelAgentNetworkGeneProgress;
         private System.Windows.Forms.ComboBox comboBoxInitOpinion;
         private System.Windows.Forms.NumericUpDown numericUpDownAgentSeed;
         private System.Windows.Forms.Label label1;

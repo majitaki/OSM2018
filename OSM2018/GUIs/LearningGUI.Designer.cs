@@ -32,7 +32,6 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.comboBoxAATFact = new System.Windows.Forms.ComboBox();
             this.label21 = new System.Windows.Forms.Label();
-            this.labelAgentNetworkGeneProgress = new System.Windows.Forms.Label();
             this.numericUpDownLearningSeed = new System.Windows.Forms.NumericUpDown();
             this.label11 = new System.Windows.Forms.Label();
             this.numericUpDownAllSteps = new System.Windows.Forms.NumericUpDown();
@@ -59,7 +58,6 @@
             // 
             this.groupBox2.Controls.Add(this.comboBoxAATFact);
             this.groupBox2.Controls.Add(this.label21);
-            this.groupBox2.Controls.Add(this.labelAgentNetworkGeneProgress);
             this.groupBox2.Controls.Add(this.numericUpDownLearningSeed);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.numericUpDownAllSteps);
@@ -101,17 +99,6 @@
             this.label21.Size = new System.Drawing.Size(54, 19);
             this.label21.TabIndex = 23;
             this.label21.Text = "Fact:";
-            // 
-            // labelAgentNetworkGeneProgress
-            // 
-            this.labelAgentNetworkGeneProgress.AutoSize = true;
-            this.labelAgentNetworkGeneProgress.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAgentNetworkGeneProgress.ForeColor = System.Drawing.Color.GreenYellow;
-            this.labelAgentNetworkGeneProgress.Location = new System.Drawing.Point(86, 32);
-            this.labelAgentNetworkGeneProgress.Name = "labelAgentNetworkGeneProgress";
-            this.labelAgentNetworkGeneProgress.Size = new System.Drawing.Size(81, 19);
-            this.labelAgentNetworkGeneProgress.TabIndex = 22;
-            this.labelAgentNetworkGeneProgress.Text = "Can Work";
             // 
             // numericUpDownLearningSeed
             // 
@@ -208,7 +195,7 @@
             this.buttonRunLearning.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonRunLearning.Location = new System.Drawing.Point(6, 25);
             this.buttonRunLearning.Name = "buttonRunLearning";
-            this.buttonRunLearning.Size = new System.Drawing.Size(74, 32);
+            this.buttonRunLearning.Size = new System.Drawing.Size(91, 32);
             this.buttonRunLearning.TabIndex = 0;
             this.buttonRunLearning.Text = "Run";
             this.buttonRunLearning.UseVisualStyleBackColor = false;
@@ -238,7 +225,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ComboBox comboBoxAATFact;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label labelAgentNetworkGeneProgress;
         private System.Windows.Forms.NumericUpDown numericUpDownLearningSeed;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.NumericUpDown numericUpDownAllSteps;

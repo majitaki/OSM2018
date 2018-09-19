@@ -26,16 +26,16 @@ namespace OSM2018.GUIs
 {
     public partial class NetworkGUI : UserControl
     {
-        AnimationForm MyAnimationForm;
+        AnimationForm MyAF;
         MainForm MyMF;
         internal I_OSM MyOSM;
 
-        public NetworkGUI(AnimationForm anime_form, MainForm mf)
+        public NetworkGUI(MainForm mf)
         {
             InitializeComponent();
             this.UserInitialize();
-            this.MyAnimationForm = anime_form;
             this.MyMF = mf;
+            this.MyAF = this.MyMF.MyAnimationForm;
         }
 
         void UserInitialize()
@@ -56,11 +56,35 @@ namespace OSM2018.GUIs
             this.comboBoxScaleFree.SelectedIndex = 0;
             this.comboBoxRandom.SelectedIndex = 0;
             this.comboBoxOther.SelectedIndex = 0;
+
+            this.IsGeneratingNetwork = false;
         }
 
         internal void SetOSM(I_OSM osm)
         {
             this.MyOSM = osm;
+        }
+
+        bool is_gene_network;
+        bool IsGeneratingNetwork
+        {
+            get
+            {
+                return this.is_gene_network;
+            }
+
+            set
+            {
+                this.is_gene_network = value;
+                if (!value)
+                {
+                    this.buttonGenerateGraph.Text = "Generate";
+                }
+                else
+                {
+                    this.buttonGenerateGraph.Text = "Progress";
+                }
+            }
         }
 
         async private void buttonGenerateGraph_Click(object sender, EventArgs e)
@@ -137,11 +161,13 @@ namespace OSM2018.GUIs
                 }
             }
 
+            this.IsGeneratingNetwork = true;
             await Task.Run(() =>
             {
                 this.MyOSM.MyNetwork = network_generator.Generate(network_seed, seed_enable);
-                this.MyAnimationForm.UpdatePictureBox();
+                this.MyAF.UpdatePictureBox();
             });
+            this.IsGeneratingNetwork = false;
 
 
             /*

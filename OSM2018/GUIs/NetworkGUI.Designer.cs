@@ -30,13 +30,14 @@
         {
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.labelGraphGeneProgress = new System.Windows.Forms.Label();
             this.numericUpDownGraphSeed = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownNodeNum = new System.Windows.Forms.NumericUpDown();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.buttonGenerateGraph = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.radioButtonOther = new System.Windows.Forms.RadioButton();
+            this.comboBoxOther = new System.Windows.Forms.ComboBox();
             this.radioButtonSmallWorld = new System.Windows.Forms.RadioButton();
             this.radioButtonScaleFree = new System.Windows.Forms.RadioButton();
             this.radioButtonRandom = new System.Windows.Forms.RadioButton();
@@ -63,13 +64,11 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.numericUpDownEdgeCreationP = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
-            this.radioButtonOther = new System.Windows.Forms.RadioButton();
-            this.comboBoxOther = new System.Windows.Forms.ComboBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.numericUpDownGridM = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
             this.numericUpDownGridN = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
+            this.numericUpDownGridM = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGraphSeed)).BeginInit();
@@ -86,8 +85,8 @@
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEdgeCreationP)).BeginInit();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGridM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGridN)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGridM)).BeginInit();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -106,7 +105,6 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.labelGraphGeneProgress);
             this.groupBox2.Controls.Add(this.numericUpDownGraphSeed);
             this.groupBox2.Controls.Add(this.numericUpDownNodeNum);
             this.groupBox2.Controls.Add(this.label10);
@@ -120,17 +118,6 @@
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Graph Generation";
-            // 
-            // labelGraphGeneProgress
-            // 
-            this.labelGraphGeneProgress.AutoSize = true;
-            this.labelGraphGeneProgress.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelGraphGeneProgress.ForeColor = System.Drawing.Color.GreenYellow;
-            this.labelGraphGeneProgress.Location = new System.Drawing.Point(105, 32);
-            this.labelGraphGeneProgress.Name = "labelGraphGeneProgress";
-            this.labelGraphGeneProgress.Size = new System.Drawing.Size(81, 19);
-            this.labelGraphGeneProgress.TabIndex = 14;
-            this.labelGraphGeneProgress.Text = "Can Work";
             // 
             // numericUpDownGraphSeed
             // 
@@ -230,6 +217,27 @@
             this.groupBox3.TabIndex = 14;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Graph List";
+            // 
+            // radioButtonOther
+            // 
+            this.radioButtonOther.AutoSize = true;
+            this.radioButtonOther.Location = new System.Drawing.Point(194, 127);
+            this.radioButtonOther.Name = "radioButtonOther";
+            this.radioButtonOther.Size = new System.Drawing.Size(14, 13);
+            this.radioButtonOther.TabIndex = 31;
+            this.radioButtonOther.TabStop = true;
+            this.radioButtonOther.UseVisualStyleBackColor = true;
+            // 
+            // comboBoxOther
+            // 
+            this.comboBoxOther.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.comboBoxOther.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBoxOther.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.comboBoxOther.FormattingEnabled = true;
+            this.comboBoxOther.Location = new System.Drawing.Point(212, 121);
+            this.comboBoxOther.Name = "comboBoxOther";
+            this.comboBoxOther.Size = new System.Drawing.Size(147, 27);
+            this.comboBoxOther.TabIndex = 30;
             // 
             // radioButtonSmallWorld
             // 
@@ -595,27 +603,6 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Edge Creation P";
             // 
-            // radioButtonOther
-            // 
-            this.radioButtonOther.AutoSize = true;
-            this.radioButtonOther.Location = new System.Drawing.Point(194, 127);
-            this.radioButtonOther.Name = "radioButtonOther";
-            this.radioButtonOther.Size = new System.Drawing.Size(14, 13);
-            this.radioButtonOther.TabIndex = 31;
-            this.radioButtonOther.TabStop = true;
-            this.radioButtonOther.UseVisualStyleBackColor = true;
-            // 
-            // comboBoxOther
-            // 
-            this.comboBoxOther.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.comboBoxOther.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBoxOther.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.comboBoxOther.FormattingEnabled = true;
-            this.comboBoxOther.Location = new System.Drawing.Point(212, 121);
-            this.comboBoxOther.Name = "comboBoxOther";
-            this.comboBoxOther.Size = new System.Drawing.Size(147, 27);
-            this.comboBoxOther.TabIndex = 30;
-            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.numericUpDownGridN);
@@ -630,41 +617,6 @@
             this.groupBox4.TabIndex = 21;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Lattice Property";
-            // 
-            // numericUpDownGridM
-            // 
-            this.numericUpDownGridM.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDownGridM.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.numericUpDownGridM.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.numericUpDownGridM.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.numericUpDownGridM.Increment = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDownGridM.Location = new System.Drawing.Point(223, 21);
-            this.numericUpDownGridM.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDownGridM.Name = "numericUpDownGridM";
-            this.numericUpDownGridM.Size = new System.Drawing.Size(69, 22);
-            this.numericUpDownGridM.TabIndex = 7;
-            this.numericUpDownGridM.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(99, 19);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "M Node Num";
             // 
             // numericUpDownGridN
             // 
@@ -701,6 +653,41 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "N Node Num";
             // 
+            // numericUpDownGridM
+            // 
+            this.numericUpDownGridM.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.numericUpDownGridM.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.numericUpDownGridM.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.numericUpDownGridM.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.numericUpDownGridM.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numericUpDownGridM.Location = new System.Drawing.Point(223, 21);
+            this.numericUpDownGridM.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDownGridM.Name = "numericUpDownGridM";
+            this.numericUpDownGridM.Size = new System.Drawing.Size(69, 22);
+            this.numericUpDownGridM.TabIndex = 7;
+            this.numericUpDownGridM.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(99, 19);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "M Node Num";
+            // 
             // NetworkGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -733,8 +720,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEdgeCreationP)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGridM)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGridN)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownGridM)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -743,7 +730,6 @@
 
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label labelGraphGeneProgress;
         private System.Windows.Forms.NumericUpDown numericUpDownGraphSeed;
         private System.Windows.Forms.NumericUpDown numericUpDownNodeNum;
         private System.Windows.Forms.Label label10;

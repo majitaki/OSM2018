@@ -21,6 +21,7 @@ namespace OSM2018.GUIs
         {
             this.MyMF = mf;
             InitializeComponent();
+            this.IsLearning = false;
         }
 
         internal void SetOSM(I_OSM osm)
@@ -28,7 +29,29 @@ namespace OSM2018.GUIs
             this.MyOSM = osm;
         }
 
-        private void buttonRunLearning_Click(object sender, EventArgs e)
+        bool is_learning;
+        bool IsLearning
+        {
+            get
+            {
+                return this.is_learning;
+            }
+
+            set
+            {
+                this.is_learning = value;
+                if (!value)
+                {
+                    this.buttonRunLearning.Text = "Learning";
+                }
+                else
+                {
+                    this.buttonRunLearning.Text = "Progress";
+                }
+            }
+        }
+
+        async private void buttonRunLearning_Click(object sender, EventArgs e)
         {
             var total_rounds = (int)this.numericUpDownAllRounds.Value;
             var round_steps = (int)this.numericUpDownAllSteps.Value;
@@ -39,7 +62,14 @@ namespace OSM2018.GUIs
             if (network == null || algo == null || agent_set == null) return;
 
             this.MyOSM.Initialize();
-            this.MyOSM.RunRounds(total_rounds, round_steps, round_seed);
+
+            this.IsLearning = true;
+            await Task.Run(() =>
+            {
+                this.MyOSM.RunRounds(total_rounds, round_steps, round_seed);
+                this.MyMF.MyAnimationForm.UpdatePictureBox();
+            });
+            this.IsLearning = false;
         }
     }
 }

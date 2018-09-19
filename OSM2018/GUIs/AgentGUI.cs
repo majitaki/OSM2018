@@ -22,16 +22,16 @@ namespace OSM2018.GUIs
 {
     public partial class AgentGUI : UserControl
     {
-        NetworkGUI MyNetworkGUI;
-        AnimationForm MyAnimationForm;
+        NetworkGUI MyNG;
+        AnimationForm MyAF;
         MainForm MyMF;
         internal I_OSM MyOSM;
 
-        public AgentGUI(NetworkGUI network_gui, AnimationForm anime_form, MainForm mf)
+        public AgentGUI(MainForm mf)
         {
             this.MyMF = mf;
-            this.MyNetworkGUI = network_gui;
-            this.MyAnimationForm = anime_form;
+            this.MyNG = this.MyMF.MyNetworkGUI;
+            this.MyAF = this.MyMF.MyAnimationForm;
             InitializeComponent();
             this.UserInitialize();
         }
@@ -54,11 +54,35 @@ namespace OSM2018.GUIs
 
             this.checkBoxSensorRateEnabled.Checked = true;
             this.numericUpDownSensorRate.Value = (decimal)0.10;
+
+            this.IsGeneratingAgentNetwork = false;
         }
 
         internal void SetOSM(I_OSM osm)
         {
             this.MyOSM = osm;
+        }
+
+        bool is_gene_agent_network;
+        bool IsGeneratingAgentNetwork
+        {
+            get
+            {
+                return this.is_gene_agent_network;
+            }
+
+            set
+            {
+                this.is_gene_agent_network = value;
+                if (!value)
+                {
+                    this.buttonGenerateAgentNetwork.Text = "Generate";
+                }
+                else
+                {
+                    this.buttonGenerateAgentNetwork.Text = "Progress";
+                }
+            }
         }
 
         async void GenerateAgentWithAlgo(I_Network network)
@@ -120,18 +144,20 @@ namespace OSM2018.GUIs
             }
             this.MyOSM.MyAlgo = algo;
 
+            this.IsGeneratingAgentNetwork = true;
             await Task.Run(() =>
             {
                 this.MyOSM.Initialize();
-                this.MyAnimationForm.UpdatePictureBox();
+                this.MyAF.UpdatePictureBox();
             });
+            this.IsGeneratingAgentNetwork = false;
         }
 
 
         private void buttonGenerateAgentNetwork_Click(object sender, EventArgs e)
         {
             this.MyMF.PlayStop();
-            I_Network network = this.MyNetworkGUI.MyOSM.MyNetwork;
+            I_Network network = this.MyNG.MyOSM.MyNetwork;
             if (network == null) return;
             this.GenerateAgentWithAlgo(network);
 

@@ -18,12 +18,12 @@ namespace OSM2018
     public partial class MainForm : Form
     {
         List<UserControl> SettingGUIList;
-        NetworkGUI MyNetworkGUI;
-        AgentGUI MyAgentGUI;
-        LearningGUI MyLearningGUI;
-        AnimationGUI MyAnimationGUI;
-        ExperimentGUI MyExperimentGUI;
-        AnimationForm MyAnimationForm;
+        internal NetworkGUI MyNetworkGUI;
+        internal AgentGUI MyAgentGUI;
+        internal LearningGUI MyLearningGUI;
+        internal AnimationGUI MyAnimationGUI;
+        internal ExperimentGUI MyExperimentGUI;
+        internal AnimationForm MyAnimationForm;
         I_OSM MyOSM;
         int CurrentWidth;
         int CurrentHeight;
@@ -60,7 +60,7 @@ namespace OSM2018
             this.MyAnimationForm.Left = this.Right;
             this.DoubleBuffered = true;
 
-            this.MyNetworkGUI = new NetworkGUI(this.MyAnimationForm, this);
+            this.MyNetworkGUI = new NetworkGUI(this);
             this.MyNetworkGUI.SetOSM(this.MyOSM);
             this.MyNetworkGUI.Dock = DockStyle.Fill;
             this.MyNetworkGUI.Name = "NetworkGUI";
@@ -68,7 +68,7 @@ namespace OSM2018
             this.SettingGUIList.Add(this.MyNetworkGUI);
             this.MyNetworkGUI.Visible = true;
 
-            this.MyAgentGUI = new AgentGUI(this.MyNetworkGUI, this.MyAnimationForm, this);
+            this.MyAgentGUI = new AgentGUI(this);
             this.MyAgentGUI.SetOSM(this.MyOSM);
             this.MyAgentGUI.Dock = DockStyle.Fill;
             this.MyAgentGUI.Name = "AgentGUI";
