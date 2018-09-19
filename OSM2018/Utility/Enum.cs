@@ -57,6 +57,7 @@ namespace OSM2018.Utility
         OriginalAAT,
         HCII_AATD,
         AATD,
+        AATD_NoTargetH,
         Custom,
         Fool
     }

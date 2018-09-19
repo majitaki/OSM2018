@@ -400,6 +400,7 @@ namespace OSM2018.GUIs
                     case AlgoEnum.OriginalAAT:
                     case AlgoEnum.AATD:
                     case AlgoEnum.HCII_AATD:
+                    case AlgoEnum.AATD_NoTargetH:
                         this.DrawAATAgent(e, agent, r);
                         //this.DrawNullAgent(e, agent, r);
                         break;

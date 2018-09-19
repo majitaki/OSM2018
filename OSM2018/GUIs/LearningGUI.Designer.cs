@@ -30,8 +30,6 @@
         {
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.comboBoxAATFact = new System.Windows.Forms.ComboBox();
-            this.label21 = new System.Windows.Forms.Label();
             this.numericUpDownLearningSeed = new System.Windows.Forms.NumericUpDown();
             this.label11 = new System.Windows.Forms.Label();
             this.numericUpDownAllSteps = new System.Windows.Forms.NumericUpDown();
@@ -56,8 +54,6 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.comboBoxAATFact);
-            this.groupBox2.Controls.Add(this.label21);
             this.groupBox2.Controls.Add(this.numericUpDownLearningSeed);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.numericUpDownAllSteps);
@@ -69,36 +65,10 @@
             this.groupBox2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.groupBox2.Location = new System.Drawing.Point(3, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(222, 200);
+            this.groupBox2.Size = new System.Drawing.Size(222, 168);
             this.groupBox2.TabIndex = 17;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Learning Control";
-            // 
-            // comboBoxAATFact
-            // 
-            this.comboBoxAATFact.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxAATFact.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.comboBoxAATFact.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxAATFact.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBoxAATFact.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.comboBoxAATFact.FormattingEnabled = true;
-            this.comboBoxAATFact.Items.AddRange(new object[] {
-            "Undeter",
-            "Correct",
-            "Incorrect"});
-            this.comboBoxAATFact.Location = new System.Drawing.Point(109, 161);
-            this.comboBoxAATFact.Name = "comboBoxAATFact";
-            this.comboBoxAATFact.Size = new System.Drawing.Size(107, 27);
-            this.comboBoxAATFact.TabIndex = 24;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(6, 160);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(54, 19);
-            this.label21.TabIndex = 23;
-            this.label21.Text = "Fact:";
             // 
             // numericUpDownLearningSeed
             // 
@@ -223,8 +193,6 @@
 
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ComboBox comboBoxAATFact;
-        private System.Windows.Forms.Label label21;
         private System.Windows.Forms.NumericUpDown numericUpDownLearningSeed;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.NumericUpDown numericUpDownAllSteps;

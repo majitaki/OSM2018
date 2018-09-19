@@ -48,7 +48,12 @@ namespace OSM2018.OSM
             RandomPool.Declare(SeedEnum.RunRoundSeed, runround_seed);
             RandomPool.Declare(SeedEnum.PlayStepSeed, runround_seed);
 
-            this.MyAlgo.MyOSMLog.StartRecordRounds(this.MyNetwork.GetInfoString(), this.MyAgentSet.GetInfoString(), this.MyAlgo.GetInfoString(), exp_name);
+            var round_dic = new Dictionary<string, string>();
+            round_dic.Add("round_seed", runround_seed.ToString());
+            round_dic.Add("total_round", total_rounds.ToString());
+            round_dic.Add("round_steps", round_steps.ToString());
+
+            this.MyAlgo.MyOSMLog.StartRecordRounds(this.MyNetwork.GetInfoString(), this.MyAgentSet.GetInfoString(), this.MyAlgo.GetInfoString(), round_dic, exp_name);
             for (int current_round = 1; current_round <= total_rounds; current_round++)
             {
                 this.MyAlgo.RunOneRound(this.MyNetwork, this.MyAgentSet, current_round, round_steps);

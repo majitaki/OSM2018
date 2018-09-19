@@ -79,10 +79,12 @@ namespace OSM2018.GUIs
                 if (!value)
                 {
                     this.buttonGenerateGraph.Text = "Generate";
+                    this.buttonGenerateGraph.ForeColor = Color.FromKnownColor(KnownColor.ControlLightLight);
                 }
                 else
                 {
                     this.buttonGenerateGraph.Text = "Progress";
+                    this.buttonGenerateGraph.ForeColor = Color.DarkRed;
                 }
             }
         }

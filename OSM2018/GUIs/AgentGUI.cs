@@ -77,10 +77,12 @@ namespace OSM2018.GUIs
                 if (!value)
                 {
                     this.buttonGenerateAgentNetwork.Text = "Generate";
+                    this.buttonGenerateAgentNetwork.ForeColor = Color.FromKnownColor(KnownColor.ControlLightLight);
                 }
                 else
                 {
                     this.buttonGenerateAgentNetwork.Text = "Progress";
+                    this.buttonGenerateAgentNetwork.ForeColor = Color.DarkRed;
                 }
             }
         }
@@ -136,9 +138,16 @@ namespace OSM2018.GUIs
                         var aatd_gcw = new GeneratingCanWeights();
                         var aatd_ear = new AATD_EstimatingAwaRates();
                         var aatd_sws = new AATD_SelectingWeiStrategies(t_awa_rate, 2, agent_set.AgentList.Count);
-                        //var aatd_sws = new SelectingWeiStrategies(t_awa_rate);
                         var aatd_pos = new PlayOneStep(new SendOpinion(op_intro_rate, op_intro_duration), new ReceiveOpinion());
                         algo = new AAT_Algo(AlgoEnum.AATD, aatd_gcw, aatd_ear, aatd_sws, aatd_pos);
+                        break;
+                    case AlgoEnum.AATD_NoTargetH:
+                        var aatd_noth_gcw = new GeneratingCanWeights();
+                        var aatd_noth_ear = new AATD_EstimatingAwaRates();
+                        var aatd_noth_sws = new AATD_SelectingWeiStrategies(1.0, 2, agent_set.AgentList.Count);
+                        var aatd_noth_pos = new PlayOneStep(new SendOpinion(op_intro_rate, op_intro_duration), new ReceiveOpinion());
+                        algo = new AAT_Algo(AlgoEnum.AATD, aatd_noth_gcw, aatd_noth_ear, aatd_noth_sws, aatd_noth_pos);
+
                         break;
                 }
             }

@@ -74,7 +74,7 @@ namespace OSM2018.Algorithm.Common
             OutputLog.OutputLogCSV(this.RoundResults, this.OutputRoundFilePath);
         }
 
-        public void StartRecordRounds(Dictionary<string, string> network_info, Dictionary<string, string> agent_info, Dictionary<string, string> algo_info, string exp_folder_name)
+        public void StartRecordRounds(Dictionary<string, string> network_info, Dictionary<string, string> agent_info, Dictionary<string, string> algo_info, Dictionary<string, string> round_info, string exp_folder_name)
         {
             this.InitializeRound();
             var base_path = Environment.CurrentDirectory;
@@ -98,6 +98,11 @@ namespace OSM2018.Algorithm.Common
             }
 
             foreach (var dic in algo_info)
+            {
+                condition_string += dic.Key.ToString() + "." + dic.Value.ToString() + "_";
+            }
+
+            foreach (var dic in round_info)
             {
                 condition_string += dic.Key.ToString() + "." + dic.Value.ToString() + "_";
             }

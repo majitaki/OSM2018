@@ -43,10 +43,12 @@ namespace OSM2018.GUIs
                 if (!value)
                 {
                     this.buttonRunLearning.Text = "Learning";
+                    this.buttonRunLearning.ForeColor = Color.FromKnownColor(KnownColor.ControlLightLight);
                 }
                 else
                 {
                     this.buttonRunLearning.Text = "Progress";
+                    this.buttonRunLearning.ForeColor = Color.DarkRed;
                 }
             }
         }
