@@ -75,7 +75,7 @@ namespace OSM2018.Utility
         LayoutSeed,
         AgentSeed,
         PlayStepSeed,
-        RunRoundSeed,
+        RoundSeed,
         ExperimentSeed
     }
 

@@ -66,6 +66,8 @@
     <Compile Include="Algorithm\Common\PlayOneStep.cs" />
     <Compile Include="Algorithm\Common\ReceiveOpinion.cs" />
     <Compile Include="Algorithm\Common\SendOpinion.cs" />
+    <Compile Include="Experiments\Exp_AATD_LowRound_ChangeNetwork.cs" />
+    <Compile Include="Experiments\Exp_NoExperiment.cs" />
     <Compile Include="Factories\AgentFactory.cs" />
     <Compile Include="Factories\AgentSetFactories\Basic_AgentSetFactory.cs" />
     <Compile Include="Factories\LayoutFactory.cs" />
@@ -125,6 +127,7 @@
     <Compile Include="Interfaces\I_Edge.cs" />
     <Compile Include="Interfaces\Algo\AAT\I_EstimatingAwaRates.cs" />
     <Compile Include="Interfaces\Algo\AAT\I_GeneratingCanWeights.cs" />
+    <Compile Include="Interfaces\I_Experiment.cs" />
     <Compile Include="Interfaces\I_Layout.cs" />
     <Compile Include="Interfaces\I_LayoutGenerator.cs" />
     <Compile Include="Interfaces\I_Message.cs" />
@@ -272,9 +275,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Tasks\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Resources\icon_agent.png" />
     <Content Include="Resources\icon_animation.png" />

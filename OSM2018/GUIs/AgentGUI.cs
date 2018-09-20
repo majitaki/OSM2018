@@ -166,7 +166,7 @@ namespace OSM2018.GUIs
         private void buttonGenerateAgentNetwork_Click(object sender, EventArgs e)
         {
             this.MyMF.PlayStop();
-            I_Network network = this.MyNG.MyOSM.MyNetwork;
+            I_Network network = this.MyOSM.MyNetwork;
             if (network == null) return;
             this.GenerateAgentWithAlgo(network);
 
