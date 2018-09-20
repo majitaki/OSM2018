@@ -10,9 +10,10 @@ namespace OSM2018.Interfaces
     {
         bool IsRecordingRounds { get; }
         bool IsRecordingSteps { get; }
+        //string BaseLogFolderName { get; }
 
         //round
-        void StartRecordRounds(Dictionary<string, string> network_info, Dictionary<string, string> agent_info, Dictionary<string, string> algo_info, Dictionary<string, string> round_info, string exp_name);
+        void StartRecordRounds(string output_round_filepath);
         void RecordOneRound(I_Network network, I_AgentSet agent_set, int current_round);
         void StopRecordRounds();
         //step

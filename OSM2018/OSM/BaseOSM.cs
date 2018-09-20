@@ -46,22 +46,8 @@ namespace OSM2018.OSM
 
         public void RunRounds(int total_rounds, int round_steps, int runround_seed, string exp_name)
         {
-            var exp = new Exp_NoExperiment(total_rounds, round_steps, runround_seed, this.MyAlgo, this.MyNetwork, this.MyAgentSet);
+            var exp = new Exp_NoExperiment(total_rounds, round_steps, runround_seed, this);
             exp.Run();
-            //RandomPool.Declare(SeedEnum.RoundSeed, runround_seed);
-            //RandomPool.Declare(SeedEnum.PlayStepSeed, runround_seed);
-
-            //var round_dic = new Dictionary<string, string>();
-            //round_dic.Add("round_seed", runround_seed.ToString());
-            //round_dic.Add("total_round", total_rounds.ToString());
-            //round_dic.Add("round_steps", round_steps.ToString());
-
-            //this.MyAlgo.MyOSMLog.StartRecordRounds(this.MyNetwork.GetInfoString(), this.MyAgentSet.GetInfoString(), this.MyAlgo.GetInfoString(), round_dic, exp_name);
-            //for (int current_round = 1; current_round <= total_rounds; current_round++)
-            //{
-            //    this.MyAlgo.RunOneRound(this.MyNetwork, this.MyAgentSet, current_round, round_steps);
-            //}
-            //this.MyAlgo.MyOSMLog.StopRecordRounds();
         }
 
         public void InitializePlaySteps()

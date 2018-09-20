@@ -91,7 +91,7 @@ namespace OSM2018
             this.SettingGUIList.Add(this.MyAnimationGUI);
             this.MyAnimationGUI.Visible = false;
 
-            this.MyExperimentGUI = new ExperimentGUI();
+            this.MyExperimentGUI = new ExperimentGUI(this);
             this.MyExperimentGUI.Dock = DockStyle.Fill;
             this.MyExperimentGUI.Name = "ExperimentGUI";
             this.Controls.Add(this.MyExperimentGUI);

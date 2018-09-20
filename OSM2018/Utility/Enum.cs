@@ -96,6 +96,13 @@ namespace OSM2018.Utility
         Rate
     }
 
+    enum ExpEnum
+    {
+        //Exp_NoExperiment,
+        Exp_LowRound_ChangeNetwork,
+
+    }
+
     struct Position
     {
         public double X { get; private set; }

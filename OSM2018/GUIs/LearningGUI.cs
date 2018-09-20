@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using OSM2018.Interfaces;
 using OSM2018.Interfaces.Algo;
+using OSM2018.Experiments;
 
 namespace OSM2018.GUIs
 {
@@ -68,6 +69,8 @@ namespace OSM2018.GUIs
             this.IsLearning = true;
             await Task.Run(() =>
             {
+                //var exp = new Exp_NoExperiment(total_rounds, round_steps, round_seed, this.MyOSM);
+                //exp.Run();
                 this.MyOSM.RunRounds(total_rounds, round_steps, round_seed);
                 this.MyMF.MyAnimationForm.UpdatePictureBox();
             });

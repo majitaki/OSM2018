@@ -11,6 +11,8 @@ namespace OSM2018.Utility
 {
     class OutputLog
     {
+        static public string BaseLogFolderName = "OutputLog";
+
         static public void OutputLogCSV(DataTable dt, string filepath)
         {
             string sp = string.Empty;

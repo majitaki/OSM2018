@@ -48,7 +48,7 @@ namespace OSM2018.Factories
                     }
                     break;
                 case AgentInitMode.Normal:
-                    init_belief = ir.NextNormal(0.5, g_sigma);
+                    init_belief = ir.NextNormal(0.5, 0.1);
                     break;
                 case AgentInitMode.NormalWeakPulledByOpinion:
                     break;

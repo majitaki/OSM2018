@@ -407,8 +407,8 @@
             this.flowLayoutPanel1.Controls.Add(this.radioButtonAgentGUI);
             this.flowLayoutPanel1.Controls.Add(this.radioButtonLearningGUI);
             this.flowLayoutPanel1.Controls.Add(this.radioButtonNullSetting);
-            this.flowLayoutPanel1.Controls.Add(this.radioButtonAnimationGUI);
             this.flowLayoutPanel1.Controls.Add(this.radioButtonExperimentGUI);
+            this.flowLayoutPanel1.Controls.Add(this.radioButtonAnimationGUI);
             this.flowLayoutPanel1.Controls.Add(this.radioButton3);
             this.flowLayoutPanel1.Controls.Add(this.radioButtonLogSetting);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -499,7 +499,7 @@
             this.radioButtonAnimationGUI.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.radioButtonAnimationGUI.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark;
             this.radioButtonAnimationGUI.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.radioButtonAnimationGUI.Location = new System.Drawing.Point(3, 219);
+            this.radioButtonAnimationGUI.Location = new System.Drawing.Point(3, 273);
             this.radioButtonAnimationGUI.Name = "radioButtonAnimationGUI";
             this.radioButtonAnimationGUI.Size = new System.Drawing.Size(48, 48);
             this.radioButtonAnimationGUI.TabIndex = 6;
@@ -517,7 +517,7 @@
             this.radioButtonExperimentGUI.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.radioButtonExperimentGUI.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ControlDark;
             this.radioButtonExperimentGUI.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.radioButtonExperimentGUI.Location = new System.Drawing.Point(3, 273);
+            this.radioButtonExperimentGUI.Location = new System.Drawing.Point(3, 219);
             this.radioButtonExperimentGUI.Name = "radioButtonExperimentGUI";
             this.radioButtonExperimentGUI.Size = new System.Drawing.Size(48, 48);
             this.radioButtonExperimentGUI.TabIndex = 7;

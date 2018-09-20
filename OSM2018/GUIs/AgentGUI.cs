@@ -100,7 +100,7 @@ namespace OSM2018.GUIs
             int op_intro_duration = (int)this.numericUpDownOpinionIntroDuration.Value;
             var t_awa_rate = (double)this.numericUpDownTargetH.Value;
 
-            I_AgentSet agent_set = new BasicAgentSetFactory(network, init_op, g_sigma, r_sigma).Generate(agent_seed, AgentInitMode.Random);
+            I_AgentSet agent_set = new BasicAgentSetFactory(network, init_op, g_sigma, r_sigma).Generate(agent_seed, AgentInitMode.Normal);
             I_Algo algo = null;
 
             //agent

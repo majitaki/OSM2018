@@ -14,18 +14,17 @@ namespace OSM2018.Algorithm.Common
     {
         public bool IsRecordingRounds { get; private set; }
         public bool IsRecordingSteps { get; private set; }
-        string BaseLogFolderName;
-        string ExpFolderName;
+        //public string BaseLogFolderName { get; private set; }
+        //string ExpFolderName;
         string OutputRoundFilePath;
-        string OutputRoundFolderPath;
+        //string OutputRoundFolderPath;
         DataTable RoundResults;
         DataTable StepResults;
 
         public OSMLog()
         {
-            this.BaseLogFolderName = "OutputLog";
-            this.ExpFolderName = "";
-
+            //this.BaseLogFolderName = "OutputLog";
+            //this.ExpFolderName = "";
             this.InitializeRound();
         }
 
@@ -74,46 +73,16 @@ namespace OSM2018.Algorithm.Common
             OutputLog.OutputLogCSV(this.RoundResults, this.OutputRoundFilePath);
         }
 
-        public void StartRecordRounds(Dictionary<string, string> network_info, Dictionary<string, string> agent_info, Dictionary<string, string> algo_info, Dictionary<string, string> round_info, string exp_folder_name)
+        public void StartRecordRounds(string output_round_filepath)
         {
             this.InitializeRound();
-            var base_path = Environment.CurrentDirectory;
-            this.ExpFolderName = exp_folder_name;
-            var dt = DateTime.Now;
-            var dt_string = dt.ToString("yyyy-MM-dd-HH-mm-ss");
-            this.OutputRoundFolderPath = base_path + "\\" + this.BaseLogFolderName + "\\" + this.ExpFolderName + "\\" + dt_string;
-            OutputLog.SafeCreateDirectory(this.OutputRoundFolderPath);
-            var di = new DirectoryInfo(this.OutputRoundFolderPath);
-            this.OutputRoundFilePath = OutputLog.SafeCreateCSV(di, "RoundOpinion" + "_" + dt_string);
-
-            var condition_string = "";
-            foreach (var dic in network_info)
-            {
-                condition_string += dic.Key.ToString() + "." + dic.Value.ToString() + "_";
-            }
-
-            foreach (var dic in agent_info)
-            {
-                condition_string += dic.Key.ToString() + "." + dic.Value.ToString() + "_";
-            }
-
-            foreach (var dic in algo_info)
-            {
-                condition_string += dic.Key.ToString() + "." + dic.Value.ToString() + "_";
-            }
-
-            foreach (var dic in round_info)
-            {
-                condition_string += dic.Key.ToString() + "." + dic.Value.ToString() + "_";
-            }
-
-            var condition_path = OutputLog.SafeCreateCSV(di, condition_string);
-            OutputLog.OutputLogCSV(new DataTable(), condition_path);
+            this.OutputRoundFilePath = output_round_filepath;
             this.IsRecordingRounds = true;
         }
 
         public void StopRecordRounds()
         {
+            this.OutputRoundFilePath = "";
             this.IsRecordingRounds = false;
         }
 

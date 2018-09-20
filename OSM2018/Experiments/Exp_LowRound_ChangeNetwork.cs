@@ -12,27 +12,85 @@ using OSM2018.OSM;
 using OSM2018.Utility;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace OSM2018.Experiments
 {
-    class Exp_AATD_LowRound_ChangeNetwork : I_Experiment
+    class Exp_LowRound_ChangeNetwork : I_Experiment
     {
+        string ExpName;
+        string DataName;
+        string BasePath;
+        string OutputFolderPath;
+        string OutputRoundFilePath;
+
+        public Exp_LowRound_ChangeNetwork()
+        {
+            this.ExpName = "AATD_LowRound_ChangeNetwork";
+            var dt = DateTime.Now;
+            this.DataName = dt.ToString("yyyy-MM-dd-HH-mm-ss");
+            this.BasePath = Environment.CurrentDirectory;
+            this.OutputFolderPath = this.BasePath + "\\" + OutputLog.BaseLogFolderName + "\\" + this.ExpName + "\\" + this.DataName;
+            OutputLog.SafeCreateDirectory(this.OutputFolderPath);
+        }
+
         public string PrintObject()
         {
             string obj_str = "少ないラウンド100におけるAATDの有効性の検証．ネットワークトポロジーを変化";
             return obj_str;
         }
 
+        void MakeConditionFile(int round_seed, int total_rounds, int round_steps, I_OSM osm)
+        {
+            var round_dic = new Dictionary<string, string>();
+            round_dic.Add("round_seed", round_seed.ToString());
+            round_dic.Add("total_round", total_rounds.ToString());
+            round_dic.Add("round_steps", round_steps.ToString());
+
+            var condition_string = "";
+            foreach (var dic in osm.MyNetwork.GetInfoString())
+            {
+                condition_string += dic.Key.ToString() + "." + dic.Value.ToString() + "_";
+            }
+
+            foreach (var dic in osm.MyAgentSet.GetInfoString())
+            {
+                condition_string += dic.Key.ToString() + "." + dic.Value.ToString() + "_";
+            }
+
+            foreach (var dic in osm.MyAlgo.GetInfoString())
+            {
+                condition_string += dic.Key.ToString() + "." + dic.Value.ToString() + "_";
+            }
+
+            foreach (var dic in round_dic)
+            {
+                condition_string += dic.Key.ToString() + "." + dic.Value.ToString() + "_";
+            }
+            var di = new DirectoryInfo(this.OutputFolderPath);
+            var condition_path = OutputLog.SafeCreateCSV(di, condition_string);
+            OutputLog.OutputLogCSV(new DataTable(), condition_path);
+        }
+        void MakeFile(NetworkEnum n_enum, int node_num, int n_seed, AlgoEnum a_enum)
+        {
+            var di = new DirectoryInfo(this.OutputFolderPath);
+            this.OutputRoundFilePath = OutputLog.SafeCreateCSV(di, "RoundOpinion" + "_nenum." + n_enum.ToString() + "_node." + node_num.ToString() + "_aenum." + a_enum.ToString() + "_nseed." + n_seed.ToString());
+        }
+
+
         public void Run()
         {
             //network
             int network_seed_num = 5;
-            int round_num = 100;
-            int step_num = 1000;
-            List<int> node_num_list = new List<int> { 100, 200, 500, 1000 };
+            int total_rounds = 100;
+            int round_steps = 1500;
+            int round_seed = 0;
+            //List<int> node_num_list = new List<int> { 100, 200, 500, 1000 };
+            List<int> node_num_list = new List<int> { 100 };
             double sensor_rate = 0.1;
             double rewire_p = 0.01;
             int degree = 6;
@@ -58,7 +116,6 @@ namespace OSM2018.Experiments
 
             //algo
             List<AlgoEnum> algo_enum_list = new List<AlgoEnum> { AlgoEnum.OriginalAAT, AlgoEnum.HCII_AATD, AlgoEnum.AATD_NoTargetH };
-
 
             for (int network_seed = 0; network_seed < network_seed_num; network_seed++)
             {
@@ -94,8 +151,8 @@ namespace OSM2018.Experiments
                         var network = network_generator.Generate(network_seed, seed_enable);
                         I_Layout layout = new Square_LayoutGenerator(network).Generate();
 
-                        int agent_seed = network_seed++;
-                        I_AgentSet agent_set = new BasicAgentSetFactory(network, init_op, g_sigma, r_sigma).Generate(agent_seed, AgentInitMode.Random);
+                        int agent_seed = network_seed;
+                        I_AgentSet agent_set = new BasicAgentSetFactory(network, init_op, g_sigma, r_sigma).Generate(agent_seed, AgentInitMode.Normal);
                         agent_set.SetSensors((int)(node_num * sensor_rate), sensor_acc);
 
                         I_Algo algo = null;
@@ -138,8 +195,20 @@ namespace OSM2018.Experiments
                             osm.MyNetwork = network;
                             osm.MyAgentSet = agent_set;
                             osm.MyAlgo = algo;
-
                             osm.Initialize();
+
+                            this.MakeFile(network_enum, node_num, network_seed, algo_enum);
+
+                            RandomPool.Declare(SeedEnum.RoundSeed, round_seed);
+                            RandomPool.Declare(SeedEnum.PlayStepSeed, round_seed);
+
+                            //Console.WriteLine(this.PrintObject());
+                            osm.MyAlgo.MyOSMLog.StartRecordRounds(this.OutputRoundFilePath);
+                            for (int current_round = 1; current_round <= total_rounds; current_round++)
+                            {
+                                osm.MyAlgo.RunOneRound(osm.MyNetwork, osm.MyAgentSet, current_round, round_steps);
+                            }
+                            osm.MyAlgo.MyOSMLog.StopRecordRounds();
                         }
 
 
