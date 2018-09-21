@@ -115,7 +115,7 @@ namespace OSM2018.Experiments
             var t_awa_rate = 0.9;
 
             //algo
-            List<AlgoEnum> algo_enum_list = new List<AlgoEnum> { AlgoEnum.OriginalAAT, AlgoEnum.HCII_AATD, AlgoEnum.AATD_NoTargetH };
+            List<AlgoEnum> algo_enum_list = new List<AlgoEnum> { AlgoEnum.OriginalAAT, AlgoEnum.HCII_AATD, AlgoEnum.AATD_NoTargetH, AlgoEnum.AATD};
 
             for (int network_seed = 0; network_seed < network_seed_num; network_seed++)
             {
