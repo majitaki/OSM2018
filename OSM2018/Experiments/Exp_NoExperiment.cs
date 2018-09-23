@@ -78,7 +78,7 @@ namespace OSM2018.Experiments
                 condition_string += dic.Key.ToString() + "." + dic.Value.ToString() + "_";
             }
 
-            var condition_path = OutputLog.SafeCreateCSV(di, condition_string);
+            var condition_path = OutputLog.SafeCreateTXT(di, condition_string);
             OutputLog.OutputLogCSV(new DataTable(), condition_path);
         }
 

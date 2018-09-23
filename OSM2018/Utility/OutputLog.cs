@@ -53,6 +53,18 @@ namespace OSM2018.Utility
             return filepath;
         }
 
+        static public string SafeCreateTXT(DirectoryInfo di, string tagName)
+        {
+            var max = di.GetFiles(tagName + "???.txt")                         // パターンに一致するファイルを取得する
+                .Select(fi => Regex.Match(fi.Name, @"(?i)_(\d{3})\.txt$"))      // ファイルの中で数値のものを探す
+                .Where(m => m.Success)                                          // 該当するファイルだけに絞り込む
+                .Select(m => Int32.Parse(m.Groups[1].Value))                    // 数値を取得する
+                .DefaultIfEmpty(0)                                              // １つも該当しなかった場合は 0 とする
+                .Max();                                                         // 最大値を取得する
+            var filepath = String.Format(di + "\\{0}_{1:d3}.txt", tagName, max + 1);
+            return filepath;
+        }
+
         static public void SafeCreateDirectory(string path)
         {
             if (Directory.Exists(path))
