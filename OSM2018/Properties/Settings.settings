@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="AnacondaPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">G:\ProgramData\Anaconda3\Scripts\activate.bat</Value>
+      <Value Profile="(Default)">C:\Users\majit\Anaconda3\Scripts\activate.bat </Value>
     </Setting>
     <Setting Name="AnacondaEnv" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -25,6 +25,9 @@
     </Setting>
     <Setting Name="kaigi_path" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\ProgramData\Anaconda3\Scripts\activate.bat</Value>
+    </Setting>
+    <Setting Name="note_path" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\majit\Anaconda3\Scripts\activate.bat </Value>
     </Setting>
   </Settings>
 </SettingsFile>

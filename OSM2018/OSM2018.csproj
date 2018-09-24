@@ -66,6 +66,7 @@
     <Compile Include="Algorithm\Common\PlayOneStep.cs" />
     <Compile Include="Algorithm\Common\ReceiveOpinion.cs" />
     <Compile Include="Algorithm\Common\SendOpinion.cs" />
+    <Compile Include="Algorithm\IWT\IWT_Algo.cs" />
     <Compile Include="Experiments\Exp_LowRound_ChangeNetwork.cs" />
     <Compile Include="Experiments\Exp_NoExperiment.cs" />
     <Compile Include="Factories\AgentFactory.cs" />
