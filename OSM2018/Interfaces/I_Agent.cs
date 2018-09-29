@@ -35,7 +35,8 @@ namespace OSM2018.Interfaces
         void SetInitialize(double init_belief, InfoEnum init_op, Dictionary<int, double> init_weight_list);
         void SetSensor(bool is_sensor, double sensor_acc);
         void SetInitWeight(double weight);
-        void SetInitWeightList(Dictionary<int, double> weight_list);
+        void SetInitWeightDic(Dictionary<int, double> weight_dic);
         void SetWeight(double weight);
+        void SetWeightDic(Dictionary<int, double> weight_dic);
     }
 }

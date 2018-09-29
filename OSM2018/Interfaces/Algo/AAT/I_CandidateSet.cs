@@ -8,6 +8,7 @@ namespace OSM2018.Interfaces.Algo.AAT
 {
     interface I_CandidateSet
     {
+        int NodeID { get; }
         List<I_SingleCandidate> SingleCandidateList { get; }
         int InitSelectCanIndex { get; }
         int SelectCanIndex { get; set; }

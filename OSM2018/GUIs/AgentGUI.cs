@@ -17,6 +17,10 @@ using OSM2018.Algorithm.AAT.EstAwaRates;
 using OSM2018.Algorithm.AAT.SlctWeiStrategies;
 using OSM2018.Algorithm.Common;
 using OSM2018.OSM;
+using OSM2018.Algorithm.IWT.GeneCanSusceptWeight;
+using OSM2018.Algorithm.IWT;
+using OSM2018.Algorithm.IWT.Indicator;
+using OSM2018.Algorithm.IWT.EstAwaRates;
 
 namespace OSM2018.GUIs
 {
@@ -147,7 +151,14 @@ namespace OSM2018.GUIs
                         var aatd_noth_sws = new AATD_SelectingWeiStrategies(1.0, 2, agent_set.AgentList.Count);
                         var aatd_noth_pos = new PlayOneStep(new SendOpinion(op_intro_rate, op_intro_duration), new ReceiveOpinion());
                         algo = new AAT_Algo(AlgoEnum.AATD, aatd_noth_gcw, aatd_noth_ear, aatd_noth_sws, aatd_noth_pos);
-
+                        break;
+                    case AlgoEnum.IWT:
+                        var iwt_gcw = new GeneratingCanSusceptWeight();
+                        var iwt_ear = new IWT_EstimatingAwaRates();
+                        var iwt_sws = new SelectingWeiStrategies(t_awa_rate);
+                        var sur_indi_set = new SurpriseIndicatorSet(network, agent_set);
+                        var iwt_pos = new PlayOneStep(new SendOpinion(op_intro_rate, op_intro_duration), new IWT_ReceiveOpinion(sur_indi_set));
+                        algo = new IWT_Algo(AlgoEnum.IWT, iwt_gcw, iwt_ear, iwt_sws, iwt_pos, sur_indi_set);
                         break;
                 }
             }

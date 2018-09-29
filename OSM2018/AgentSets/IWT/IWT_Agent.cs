@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OSM2018.AgentSets
+namespace OSM2018.AgentSets.IWT
 {
-    class BaseAgent : I_Agent
+    class IWT_Agent : I_Agent
     {
         public int NodeID { get; }
         public double Belief { get; set; }
@@ -29,7 +29,7 @@ namespace OSM2018.AgentSets
         public List<int> ChangedRoundList { get; set; }
         public List<int> ReceiveRoundList { get; set; }
 
-        public BaseAgent(int id, double init_belief, Dictionary<int, double> init_weight_list, InfoEnum init_op, double g_sigma, double r_sigma)
+        public IWT_Agent(int id, double init_belief, Dictionary<int, double> init_weight_list, InfoEnum init_op, double g_sigma, double r_sigma)
         {
             this.NodeID = id;
             this.Belief = this.InitBelief = init_belief;
@@ -94,7 +94,7 @@ namespace OSM2018.AgentSets
         {
             Console.WriteLine($"Belief:{this.Belief:f3}");
             Console.WriteLine($"Opinion:{this.Opinion}");
-            //Console.WriteLine($"Weight:{this.WeightDic.First().Value:f3}");
+            Console.WriteLine($"Weight:{this.WeightDic.First().Value:f3}");
             foreach (var weight in this.WeightDic)
             {
                 Console.WriteLine($"nei_id: {weight.Key,3} weight: {weight.Value:f3}");

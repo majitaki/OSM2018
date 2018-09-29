@@ -34,7 +34,7 @@ namespace OSM2018.AgentSets
         }
 
 
-        public void SetInitWeights(List<double> init_weight_list)
+        public void SetInitWeightList(List<double> init_weight_list)
         {
             if (this.AgentList.Count != init_weight_list.Count) return;
 
@@ -45,18 +45,18 @@ namespace OSM2018.AgentSets
 
         }
 
-        public void SetInitWeights(List<Dictionary<int, double>> init_weight_dictionary_list)
+        public void SetInitWeightDicList(List<Dictionary<int, double>> init_weight_dictionary_list)
         {
             if (this.AgentList.Count != init_weight_dictionary_list.Count) return;
 
             foreach (var agent in this.AgentList)
             {
-                agent.SetInitWeightList(init_weight_dictionary_list[agent.NodeID]);
+                agent.SetInitWeightDic(init_weight_dictionary_list[agent.NodeID]);
             }
         }
 
 
-        public void SetWeights(List<double> weight_list)
+        public void SetWeightList(List<double> weight_list)
         {
             if (this.AgentList.Count != weight_list.Count) return;
 
@@ -118,6 +118,16 @@ namespace OSM2018.AgentSets
             dic.Add("sensor_acc", this.SensorAcc.ToString());
 
             return dic;
+        }
+
+        public void SetWeightDicList(List<Dictionary<int, double>> weight_dic_list)
+        {
+            if (this.AgentList.Count != weight_dic_list.Count) return;
+
+            foreach (var agent in this.AgentList)
+            {
+                agent.SetWeightDic(weight_dic_list[agent.NodeID]);
+            }
         }
     }
 }

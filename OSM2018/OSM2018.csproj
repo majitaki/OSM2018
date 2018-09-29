@@ -52,6 +52,7 @@
     <Compile Include="Abstracts\A_NetworkGenerator.cs" />
     <Compile Include="AgentSets\BaseAgent.cs" />
     <Compile Include="AgentSets\BaseAgentSet.cs" />
+    <Compile Include="AgentSets\IWT\IWT_Agent.cs" />
     <Compile Include="Algorithm\AAT\AAT_Algo.cs" />
     <Compile Include="Algorithm\AAT\CandidateSet.cs" />
     <Compile Include="Algorithm\AAT\EstAwaRates\AATD_EstimatingAwaRates.cs" />
@@ -66,7 +67,14 @@
     <Compile Include="Algorithm\Common\PlayOneStep.cs" />
     <Compile Include="Algorithm\Common\ReceiveOpinion.cs" />
     <Compile Include="Algorithm\Common\SendOpinion.cs" />
+    <Compile Include="Algorithm\IWT\EstAwaRates\IWT_EstimatingAwaRates.cs" />
+    <Compile Include="Algorithm\IWT\GeneCanSusceptWeight\GeneratingCanSusceptWeight.cs" />
+    <Compile Include="Algorithm\IWT\Indicator\SurpriseIndicator.cs" />
+    <Compile Include="Algorithm\IWT\Indicator\SurpriseIndicatorSet.cs" />
     <Compile Include="Algorithm\IWT\IWT_Algo.cs" />
+    <Compile Include="Algorithm\IWT\IWT_ReceiveOpinion.cs" />
+    <Compile Include="Algorithm\IWT\SingleSusceptCandidate.cs" />
+    <Compile Include="Algorithm\IWT\SusceptCandidateSet.cs" />
     <Compile Include="Experiments\Exp_LowRound_ChangeNetwork.cs" />
     <Compile Include="Experiments\Exp_NoExperiment.cs" />
     <Compile Include="Factories\AgentFactory.cs" />
@@ -117,6 +125,8 @@
     </Compile>
     <Compile Include="Interfaces\Algo\AAT\I_CandidateSet.cs" />
     <Compile Include="Interfaces\Algo\AAT\I_SingleCandidate.cs" />
+    <Compile Include="Interfaces\Algo\IWT\I_SurpriseIndicator.cs" />
+    <Compile Include="Interfaces\Algo\IWT\I_SurpriseIndicatorSet.cs" />
     <Compile Include="Interfaces\Algo\I_Algo.cs" />
     <Compile Include="Interfaces\Algo\I_FormOpinion.cs" />
     <Compile Include="Interfaces\Algo\I_PlayOneStep.cs" />

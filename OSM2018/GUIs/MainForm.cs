@@ -142,7 +142,9 @@ namespace OSM2018
 
         #endregion
 
-
+        /// <summary>
+        /// ステップの更新を開始時に戻すための初期化
+        /// </summary>
         internal void PlayStop()
         {
             this.PlayStopFlag = true;

@@ -404,6 +404,9 @@ namespace OSM2018.GUIs
                         this.DrawAATAgent(e, agent, r);
                         //this.DrawNullAgent(e, agent, r);
                         break;
+                    case AlgoEnum.IWT:
+                        this.DrawNullAgent(e, agent, r);
+                        break;
                 }
 
             }
@@ -602,6 +605,13 @@ namespace OSM2018.GUIs
             this.ViewScale = 1;
             this.Invoke(new Action(this.UpdatePictureBox));
         }
+
+        public void ClearSelectAgent()
+        {
+            this.SelectedAgentList.Clear();
+            this.SelectedEdgeList.Clear();
+            this.NeighborAgentList.Clear();
+        }
         #endregion
 
         #region event
@@ -735,9 +745,10 @@ namespace OSM2018.GUIs
             //clear
             if ((e as MouseEventArgs).Button == MouseButtons.Right)
             {
-                this.SelectedAgentList.Clear();
-                this.SelectedEdgeList.Clear();
-                this.NeighborAgentList.Clear();
+                this.ClearSelectAgent();
+                //this.SelectedAgentList.Clear();
+                //this.SelectedEdgeList.Clear();
+                //this.NeighborAgentList.Clear();
             }
 
             this.SelectedAgentList = this.SelectedAgentList.Distinct().ToList();

@@ -12,9 +12,10 @@ namespace OSM2018.Interfaces
         int AgentSeed { get; }
         List<I_Agent> AgentList { get; }
         void SetSensors(int num, double sensor_acc);
-        void SetInitWeights(List<double> init_weight_list);
-        void SetInitWeights(List<Dictionary<int, double>> init_weight_dictionary_list);
-        void SetWeights(List<double> weight_list);
+        void SetInitWeightList(List<double> init_weight_list);
+        void SetInitWeightDicList(List<Dictionary<int, double>> init_weight_dictionary_list);
+        void SetWeightList(List<double> weight_list);
+        void SetWeightDicList(List<Dictionary<int, double>> weight_dic_list);
         void InitBelief();
         void InitOpinion();
         void InitWeight();

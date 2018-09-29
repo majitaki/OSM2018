@@ -85,6 +85,7 @@ namespace OSM2018.GUIs
                 {
                     this.buttonGenerateGraph.Text = "Progress";
                     this.buttonGenerateGraph.ForeColor = Color.DarkRed;
+                    this.MyAF.ClearSelectAgent();
                 }
             }
         }

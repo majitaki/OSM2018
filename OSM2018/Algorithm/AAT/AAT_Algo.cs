@@ -46,7 +46,7 @@ namespace OSM2018.Algorithm.AAT
             var weight_list = this.CandidateSetList.Select(can => can.GetCanWeight(can.InitSelectCanIndex)).ToList();
             //weight_list = weight_list.Select(w => 0.8).ToList();
 
-            agent_set.SetInitWeights(weight_list);
+            agent_set.SetInitWeightList(weight_list);
         }
 
         public void PlayOneStep(I_Network network, I_AgentSet agent_set, InfoEnum correct, InfoEnum incorrect)
@@ -67,7 +67,7 @@ namespace OSM2018.Algorithm.AAT
             this.EstAwaRates.Run(agent_set, this.CandidateSetList, current_round);
             this.SlctWeiStrategies.Run(this.CandidateSetList, agent_set, current_round);
             var weight_list = this.CandidateSetList.Select(can => can.GetCanWeight(can.SelectCanIndex)).ToList();
-            agent_set.SetWeights(weight_list);
+            agent_set.SetWeightList(weight_list);
             agent_set.InitBelief();
             agent_set.InitOpinion();
             agent_set.InitCounts();
@@ -118,7 +118,7 @@ namespace OSM2018.Algorithm.AAT
                 var h_count = can.AwaCounts;
                 var h_round = can.AwaCurrentRounds;
                 var h = can.AwaRate;
-                Console.WriteLine($"index: {can_index,3} weight: {can_weight:f3} h_count: {h_count,3} h_round: {h_round,3} h: {h:f4} {select}");
+                Console.WriteLine($"index: {can_index,3} can_weight: {can_weight:f3} h_count: {h_count,3} h_round: {h_round,3} h: {h:f4} {select}");
             }
         }
 
