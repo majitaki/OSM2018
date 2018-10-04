@@ -95,7 +95,7 @@ namespace OSM2018.Experiments
             //List<int> node_num_list = new List<int> { 100, 200, 500, 1000 };
             //List<int> node_num_list = new List<int> { 100, 196, 400, 1024 };
             //List<int> node_num_list = new List<int> { 400 };
-            List<int> node_num_list = new List<int> { 100, 200, 300, 400 };
+            List<int> node_num_list = new List<int> {100, 200, 300, 400 };
             double sensor_rate = 0.1;
             double rewire_p = 0.01;
             int degree = 6;
@@ -133,24 +133,7 @@ namespace OSM2018.Experiments
                         int grid_m, grid_n;
                         grid_m = grid_n = 0;
                         //grid_m = grid_n = (int)Math.Floor(Math.Sqrt(Convert.ToDouble(node_num)));
-                        if (node_num == 100)
-                        {
-                            grid_m = grid_n = 6;
-                        }
-                        else if (node_num == 200)
-                        {
-                            grid_m = grid_n = 9;
-                        }
-                        else if (node_num == 300)
-                        {
-                            grid_m = 12;
-                            grid_n = 11;
-                        }
-                        else if (node_num == 400)
-                        {
-                            grid_m = 13;
-                            grid_n = 13;
-                        }
+
 
                         switch (network_enum)
                         {
@@ -167,14 +150,53 @@ namespace OSM2018.Experiments
                                 network_generator = new ER_NetworkGenerator(node_num, edge_creation_p);
                                 break;
                             case NetworkEnum.Grid2D:
+                                grid_m = grid_n = (int)Math.Floor(Math.Sqrt(Convert.ToDouble(node_num)));
                                 seed_enable = false;
                                 network_generator = new Grid2D_NetworkGenerator(grid_m, grid_n);
                                 break;
                             case NetworkEnum.Hexagonal:
+                                if (node_num == 100)
+                                {
+                                    grid_m = grid_n = 6;
+                                }
+                                else if (node_num == 200)
+                                {
+                                    grid_m = grid_n = 9;
+                                }
+                                else if (node_num == 300)
+                                {
+                                    grid_m = 12;
+                                    grid_n = 11;
+                                }
+                                else if (node_num == 400)
+                                {
+                                    grid_m = 13;
+                                    grid_n = 13;
+                                }
                                 seed_enable = false;
                                 network_generator = new Hexagonal_NetworkGenerator(grid_m, grid_n);
                                 break;
                             case NetworkEnum.Triangular:
+                                if (node_num == 100)
+                                {
+                                    grid_m = 12;
+                                    grid_n = 13;
+                                }
+                                else if (node_num == 200)
+                                {
+                                    grid_m = 18;
+                                    grid_n = 19;
+                                }
+                                else if (node_num == 300)
+                                {
+                                    grid_m = 24;
+                                    grid_n = 22;
+                                }
+                                else if (node_num == 400)
+                                {
+                                    grid_m = 27;
+                                    grid_n = 27;
+                                }
                                 seed_enable = false;
                                 network_generator = new Triangular_NetworkGenerator(grid_m, grid_n);
                                 break;
