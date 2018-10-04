@@ -35,6 +35,7 @@ namespace OSM2018.Utility
         RandomLobster,
         Grid2D,
         Hexagonal,
+        Triangular,
         Custom,
         Void
     }

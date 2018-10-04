@@ -51,6 +51,7 @@ namespace OSM2018.GUIs
 
             this.comboBoxOther.Items.Add(NetworkEnum.Grid2D);
             this.comboBoxOther.Items.Add(NetworkEnum.Hexagonal);
+            this.comboBoxOther.Items.Add(NetworkEnum.Triangular);
 
             this.comboBoxSmallWorld.SelectedIndex = 0;
             this.comboBoxScaleFree.SelectedIndex = 0;
@@ -160,6 +161,10 @@ namespace OSM2018.GUIs
                     case NetworkEnum.Hexagonal:
                         seed_enable = false;
                         network_generator = new Hexagonal_NetworkGenerator(grid_m, grid_n);
+                        break;
+                    case NetworkEnum.Triangular:
+                        seed_enable = false;
+                        network_generator = new Triangular_NetworkGenerator(grid_m, grid_n);
                         break;
                 }
             }

@@ -78,7 +78,10 @@ namespace OSM2018.Experiments
         void MakeFile(NetworkEnum n_enum, int node_num, int n_seed, AlgoEnum a_enum)
         {
             var di = new DirectoryInfo(this.OutputFolderPath);
-            this.OutputRoundFilePath = OutputLog.SafeCreateCSV(di, "RoundOpinion" + "_nenum." + n_enum.ToString() + "_node." + node_num.ToString() + "_aenum." + a_enum.ToString() + "_nseed." + n_seed.ToString());
+            string condition = "_nenum." + n_enum.ToString() + "_node." + node_num.ToString() + "_aenum." + a_enum.ToString();
+            var condi_folder = di + "\\" + condition;
+            OutputLog.SafeCreateDirectory(condi_folder);
+            this.OutputRoundFilePath = OutputLog.SafeCreateCSV(new DirectoryInfo(condi_folder), "RoundOpinion" + condition + "_nseed." + n_seed.ToString());
         }
 
 
@@ -86,11 +89,13 @@ namespace OSM2018.Experiments
         {
             //network
             int network_seed_num = 5;
-            int total_rounds = 100;
+            int total_rounds = 300;
             int round_steps = 1500;
             int round_seed = 0;
             //List<int> node_num_list = new List<int> { 100, 200, 500, 1000 };
-            List<int> node_num_list = new List<int> { 100 };
+            //List<int> node_num_list = new List<int> { 100, 196, 400, 1024 };
+            //List<int> node_num_list = new List<int> { 400 };
+            List<int> node_num_list = new List<int> { 100, 200, 300, 400 };
             double sensor_rate = 0.1;
             double rewire_p = 0.01;
             int degree = 6;
@@ -98,10 +103,11 @@ namespace OSM2018.Experiments
             int rnd_edge_num = 1;
             double triangle_p = 0.01;
             double edge_creation_p = 0.01;
-            int grid_m = 10;
-            int grid_n = 10;
+            //int grid_m = 20;
+            //int grid_n = 20;
             bool seed_enable = true;
-            List<NetworkEnum> network_enum_list = new List<NetworkEnum> { NetworkEnum.WS, NetworkEnum.BA, NetworkEnum.ER, NetworkEnum.Grid2D, NetworkEnum.Hexagonal };
+            //List<NetworkEnum> network_enum_list = new List<NetworkEnum> { NetworkEnum.WS, NetworkEnum.BA, NetworkEnum.ER, NetworkEnum.Grid2D, NetworkEnum.Hexagonal, NetworkEnum.Triangular };
+            List<NetworkEnum> network_enum_list = new List<NetworkEnum> { NetworkEnum.Grid2D, NetworkEnum.Hexagonal, NetworkEnum.Triangular };
             I_NetworkGenerator network_generator = null;
 
             //agent
@@ -115,7 +121,8 @@ namespace OSM2018.Experiments
             var t_awa_rate = 0.9;
 
             //algo
-            List<AlgoEnum> algo_enum_list = new List<AlgoEnum> { AlgoEnum.OriginalAAT, AlgoEnum.HCII_AATD, AlgoEnum.AATD_NoTargetH, AlgoEnum.AATD};
+            List<AlgoEnum> algo_enum_list = new List<AlgoEnum> { AlgoEnum.OriginalAAT, AlgoEnum.AATD_NoTargetH };
+            //List<AlgoEnum> algo_enum_list = new List<AlgoEnum> { AlgoEnum.AATD_NoTargetH, AlgoEnum.AATD };
 
             for (int network_seed = 0; network_seed < network_seed_num; network_seed++)
             {
@@ -123,6 +130,28 @@ namespace OSM2018.Experiments
                 {
                     foreach (var network_enum in network_enum_list)
                     {
+                        int grid_m, grid_n;
+                        grid_m = grid_n = 0;
+                        //grid_m = grid_n = (int)Math.Floor(Math.Sqrt(Convert.ToDouble(node_num)));
+                        if (node_num == 100)
+                        {
+                            grid_m = grid_n = 6;
+                        }
+                        else if (node_num == 200)
+                        {
+                            grid_m = grid_n = 9;
+                        }
+                        else if (node_num == 300)
+                        {
+                            grid_m = 12;
+                            grid_n = 11;
+                        }
+                        else if (node_num == 400)
+                        {
+                            grid_m = 13;
+                            grid_n = 13;
+                        }
+
                         switch (network_enum)
                         {
                             case NetworkEnum.WS:
@@ -144,6 +173,10 @@ namespace OSM2018.Experiments
                             case NetworkEnum.Hexagonal:
                                 seed_enable = false;
                                 network_generator = new Hexagonal_NetworkGenerator(grid_m, grid_n);
+                                break;
+                            case NetworkEnum.Triangular:
+                                seed_enable = false;
+                                network_generator = new Triangular_NetworkGenerator(grid_m, grid_n);
                                 break;
                             default:
                                 break;

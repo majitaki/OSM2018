@@ -165,6 +165,7 @@
     <Compile Include="Networks\NetworkGenerator\NewmanWS_NetworkGenerator.cs" />
     <Compile Include="Networks\NetworkGenerator\ER_NetworkGenerator.cs" />
     <Compile Include="Networks\NetworkGenerator\Grid2D_NetworkGenerator.cs" />
+    <Compile Include="Networks\NetworkGenerator\Triangular_NetworkGenerator.cs" />
     <Compile Include="Networks\Node.cs" />
     <Compile Include="Networks\NetworkGenerator\BA_NetworkGenerator.cs" />
     <Compile Include="Networks\NetworkGenerator\WS_NetworkGenerator.cs" />
@@ -244,6 +245,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Resources\PythonScript\NetworkGenerator\gnp_random_graph.py">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\PythonScript\NetworkGenerator\triangular_graph.py">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Resources\PythonScript\NetworkGenerator\hexagonal_lattice_graph.py">
