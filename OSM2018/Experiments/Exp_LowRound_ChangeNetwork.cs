@@ -93,7 +93,7 @@ namespace OSM2018.Experiments
             int total_rounds = 300;
             int round_steps = 1500;
             int round_seed = 0;
-            List<int> node_num_list = new List<int> { };
+            List<int> node_num_list = new List<int> { 100, 200, 300, 400, 500 };
             bool fix_sensor_num = true;
             double sensor_rate = 0.1;
             int sensor_num = 10;
@@ -266,7 +266,7 @@ namespace OSM2018.Experiments
 
                         int agent_seed = network_seed;
                         I_AgentSet agent_set = new BasicAgentSetFactory(network, init_op, g_sigma, r_sigma).Generate(agent_seed, AgentInitMode.Normal);
-                        if (fix_sensor_num)
+                        if (!fix_sensor_num)
                         {
                             agent_set.SetSensors((int)(node_num * sensor_rate), sensor_acc);
                         }
