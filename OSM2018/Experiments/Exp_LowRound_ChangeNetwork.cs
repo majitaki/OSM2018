@@ -88,14 +88,15 @@ namespace OSM2018.Experiments
         public void Run()
         {
             //network
-            int network_seed_num = 5;
+            int network_seed_num = 1;
             int total_rounds = 300;
             int round_steps = 1500;
             int round_seed = 0;
             //List<int> node_num_list = new List<int> { 100, 200, 500, 1000 };
             //List<int> node_num_list = new List<int> { 100, 196, 400, 1024 };
             //List<int> node_num_list = new List<int> { 400 };
-            List<int> node_num_list = new List<int> {100, 200, 300, 400 };
+            List<int> node_num_list = new List<int> { 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 };
+            //List<int> node_num_list = new List<int> { 500, 600, 700, 800, 900, 1000 };
             double sensor_rate = 0.1;
             double rewire_p = 0.01;
             int degree = 6;
@@ -173,6 +174,35 @@ namespace OSM2018.Experiments
                                     grid_m = 13;
                                     grid_n = 13;
                                 }
+                                else if (node_num == 500)
+                                {
+                                    grid_m = grid_n = 15;
+                                }
+                                else if (node_num == 600)
+                                {
+                                    grid_m = 18;
+                                    grid_n = 15;
+                                }
+                                else if (node_num == 700)
+                                {
+                                    grid_m = 19;
+                                    grid_n = 17;
+                                }
+                                else if (node_num == 800)
+                                {
+                                    grid_m = 20;
+                                    grid_n = 18;
+                                }
+                                else if (node_num == 900)
+                                {
+                                    grid_m = 21;
+                                    grid_n = 20;
+                                }
+                                else if (node_num == 1000)
+                                {
+                                    grid_m = 22;
+                                    grid_n = 21;
+                                }
                                 seed_enable = false;
                                 network_generator = new Hexagonal_NetworkGenerator(grid_m, grid_n);
                                 break;
@@ -197,6 +227,35 @@ namespace OSM2018.Experiments
                                     grid_m = 27;
                                     grid_n = 27;
                                 }
+                                else if (node_num == 500)
+                                {
+                                    grid_m = grid_n = 30;
+                                }
+                                else if (node_num == 600)
+                                {
+                                    grid_m = 32;
+                                    grid_n = 34;
+                                }
+                                else if (node_num == 700)
+                                {
+                                    grid_m = 36;
+                                    grid_n = 36;
+                                }
+                                else if (node_num == 800)
+                                {
+                                    grid_m = 39;
+                                    grid_n = 38;
+                                }
+                                else if (node_num == 900)
+                                {
+                                    grid_m = 42;
+                                    grid_n = 40;
+                                }
+                                else if (node_num == 1000)
+                                {
+                                    grid_m = 42;
+                                    grid_n = 45;
+                                }
                                 seed_enable = false;
                                 network_generator = new Triangular_NetworkGenerator(grid_m, grid_n);
                                 break;
@@ -208,6 +267,7 @@ namespace OSM2018.Experiments
 
                         int agent_seed = network_seed;
                         I_AgentSet agent_set = new BasicAgentSetFactory(network, init_op, g_sigma, r_sigma).Generate(agent_seed, AgentInitMode.Normal);
+                        sensor_rate = 10.0 / node_num;
                         agent_set.SetSensors((int)(node_num * sensor_rate), sensor_acc);
 
                         I_Algo algo = null;
