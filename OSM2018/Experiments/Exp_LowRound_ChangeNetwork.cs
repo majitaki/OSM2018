@@ -88,11 +88,12 @@ namespace OSM2018.Experiments
         public void Run()
         {
             //network
+            int network_start_seed = 10;
             int network_seed_num = 5;
             int total_rounds = 300;
             int round_steps = 1500;
             int round_seed = 0;
-            List<int> node_num_list = new List<int> {100, 200, 300, 400, 500};
+            List<int> node_num_list = new List<int> { };
             bool fix_sensor_num = true;
             double sensor_rate = 0.1;
             int sensor_num = 10;
@@ -123,7 +124,7 @@ namespace OSM2018.Experiments
             List<AlgoEnum> algo_enum_list = new List<AlgoEnum> { AlgoEnum.OriginalAAT, AlgoEnum.AATD_NoTargetH };
             //List<AlgoEnum> algo_enum_list = new List<AlgoEnum> { AlgoEnum.AATD_NoTargetH, AlgoEnum.AATD };
 
-            for (int network_seed = 0; network_seed < network_seed_num; network_seed++)
+            for (int network_seed = network_start_seed; network_seed < network_start_seed + network_seed_num; network_seed++)
             {
                 foreach (var node_num in node_num_list)
                 {
