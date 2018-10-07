@@ -34,13 +34,14 @@ namespace OSM2018.Experiments
             var dt = DateTime.Now;
             this.DataName = dt.ToString("yyyy-MM-dd-HH-mm-ss");
             this.BasePath = Environment.CurrentDirectory;
-            this.OutputFolderPath = this.BasePath + "\\" + OutputLog.BaseLogFolderName + "\\" + this.ExpName + "\\" + this.DataName;
+            //this.OutputFolderPath = this.BasePath + "\\" + OutputLog.BaseLogFolderName + "\\" + this.ExpName + "\\" + this.DataName;
+            this.OutputFolderPath = this.BasePath + "\\" + OutputLog.BaseLogFolderName + "\\" + this.ExpName + "\\" + this.DataName + "_" + this.PrintObject();
             OutputLog.SafeCreateDirectory(this.OutputFolderPath);
         }
 
         public string PrintObject()
         {
-            string obj_str = "少ないラウンド100におけるAATDの有効性の検証．ネットワークトポロジーを変化";
+            string obj_str = "rate_14-19";
             return obj_str;
         }
 
@@ -88,13 +89,13 @@ namespace OSM2018.Experiments
         public void Run()
         {
             //network
-            int network_start_seed = 10;
-            int network_seed_num = 5;
+            int network_start_seed = 14;
+            int network_finish_seed = 19;
             int total_rounds = 300;
             int round_steps = 1500;
             int round_seed = 0;
-            List<int> node_num_list = new List<int> { 100, 200, 300, 400, 500 };
-            bool fix_sensor_num = true;
+            List<int> node_num_list = new List<int> { 600, 700, 800, 900, 1000 };
+            bool fix_sensor_num = false;
             double sensor_rate = 0.1;
             int sensor_num = 10;
             double rewire_p = 0.01;
@@ -124,7 +125,7 @@ namespace OSM2018.Experiments
             List<AlgoEnum> algo_enum_list = new List<AlgoEnum> { AlgoEnum.OriginalAAT, AlgoEnum.AATD_NoTargetH };
             //List<AlgoEnum> algo_enum_list = new List<AlgoEnum> { AlgoEnum.AATD_NoTargetH, AlgoEnum.AATD };
 
-            for (int network_seed = network_start_seed; network_seed < network_start_seed + network_seed_num; network_seed++)
+            for (int network_seed = network_start_seed; network_seed <= network_finish_seed; network_seed++)
             {
                 foreach (var node_num in node_num_list)
                 {
